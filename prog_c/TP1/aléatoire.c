@@ -8,6 +8,7 @@ int main () {
     n = 5;
     
     /* initialiser le generateur de nombres aleatoires */
+    // !!!!!!! mettre le générateur en dehors de la boucle !
     srand((unsigned) time(NULL));
     
     /* afficher 5 nombres entiers aleatoires compris 0 et 49 */

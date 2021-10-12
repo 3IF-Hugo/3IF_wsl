@@ -15,23 +15,36 @@ int nbLines(FILE* stream)
     return cpt;
 }
 
+void lectureLigneAlea(FILE* stream, int numberL)
+{
+    int cptligne=0;
+    char * ligne=(char *)malloc(100*sizeof(char));
+    while (cptligne != numberL){
+        fgets(ligne,99,stream);
+        cptligne++;
+    }
+
+    fputs(ligne,stdout);
+    free(ligne);
+}
+
 int main(int argc, char * argv[])
 {
     int i;
-
-    for(i=1;i<argc+1;i++)
+    char str[200];
+    srandom(time(NULL)); // initialisation de la graine d’aléa
+    
+    for(i=1;i<argc;i++)
     {
-        char str[200];
+        
         FILE* fichier = NULL;
         fichier = fopen(argv[i], "r");
         
         int nbline = nbLines(fichier); 
         
-        srandom(time(NULL)); // initialisation de la graine d’aléa
-        long tirage = random() % nbline;
-
-        fgets(str,200,fichier);
-        fputs(str,stdout);
-
+        long tirage = random()%nbline;
+        //printf("nb aléa %ld\n",tirage);
+        lectureLigneAlea(fichier, tirage);
+        fclose(fichier);
     }
 }
