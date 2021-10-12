@@ -2,6 +2,8 @@
 
 void remplacer(FILE* fileOut, long offset, int k);
 
+int nbLines(FILE* stream);
+
 int main(int argc, char * argv[])
 {
     int i,j;
@@ -15,17 +17,18 @@ int main(int argc, char * argv[])
     long offset;
     
     for(i=0;i<20;i++)
-        {
+    {
             for(j=0;j<40;j++)
             {
                 fputc(caract,fichierOut);
             }
             fputc('\n',fichierOut);
-        }
-        fclose(fichierOut);
-        //fseek(fichierOut, 0, SEEK_SET);
-        //rewind(fichierOut);
-
+    }
+    //fseek(fichierOut, 0, SEEK_SET);
+    //rewind(fichierOut);
+    //printf("le nombre de lignes : %d",nbLines(fichierOut));
+    fclose(fichierOut);
+    
     while (1)
     {
         FILE* fichierALire;
@@ -38,7 +41,7 @@ int main(int argc, char * argv[])
         } while (caractereActuel != EOF);
 
         fclose(fichierALire);
-        
+
         scanf(" %c", &k);
         if(k == 'q')
         {
@@ -54,8 +57,27 @@ int main(int argc, char * argv[])
     return 0;
 }
 
+int nbLines(FILE* stream)
+{
+    int cpt=0;
+    while (feof(stream)==0)
+    {
+        if(fgetc(stream) == '\n')
+            cpt++;
+    }
+}
+
 void remplacer(FILE* fileOut, long offset, int k)
 {
     fseek(fileOut, offset, SEEK_SET);
-    fputc(k, fileOut);
+    if(fgetc(fileOut) == '\n'&& offset<=820)
+    {
+        fseek(fileOut, offset, SEEK_SET);
+        fputc(k, fileOut);
+        fputc('\n',fileOut);
+    }else
+    {
+        fseek(fileOut, offset, SEEK_SET);
+        fputc(k, fileOut);
+    }
 }
