@@ -1,0 +1,13 @@
+Ces informations sont rassemblées dans une structure dont le type, FILE, est défini dans stdio.h. Un
+objet de type FILE * est appelé flot de données (en anglais, stream).
+Avant de lire ou d’écrire dans un fichier, un programme doit demander l’initialisation d’une telle structure de
+données par la commande fopen(). Cette fonction prend comme arguments le nom du fichier et le mode
+d’accès, négocie avec le système d’exploitation et initialise un flot de données, qui sera ensuite utilisé lors
+de l’écriture ou de la lecture. Ces lectures/écritures seront réalisées via diverses fonctions que vous verrez
+dans la suite du TP. La taille minimale d’un accès par ces fonctions est l’octet (8 bits).
+Après les traitements, on annule la liaison entre le fichier et le flot de données grâce à la fonction fclose().
+Pour utiliser toutes les fonctions d’entrées-sorties, vous devez inclure <stdio.h>. Dans la suite du TP,
+pour avoir des détails sur le fonctionnement de ces fonctions, n’hésitez pas à utiliser la commande man
+(dans un terminal). Exemple : man fopen.
+Les accès à l’entrée (resp. la sortie) standard peuvent se faire de la même manière qu’à un fichier, via le
+stream stdin (resp. stdout).
