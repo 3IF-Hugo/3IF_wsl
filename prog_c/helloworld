@@ -1,8 +1,0 @@
-#include <stdio.h>
-
-int main()
-{
-    printf("HelloWorld");
-    printf("deuxième essai")
-    return 0;
-}
