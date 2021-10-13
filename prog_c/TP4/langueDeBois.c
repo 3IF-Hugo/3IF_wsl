@@ -15,7 +15,7 @@ int nbLines(FILE* stream)
     return cpt;
 }
 
-void lectureLigneAlea(FILE* stream, int numberL)
+void lectureLigneAlea(FILE* stream, int numberL, FILE* streamOut)
 {
     int cptligne=0;
     char * ligne=(char *)malloc(100*sizeof(char));
@@ -23,7 +23,7 @@ void lectureLigneAlea(FILE* stream, int numberL)
         fgets(ligne,99,stream);
         cptligne++;
     }
-
+    fputs(ligne,streamOut);
     fputs(ligne,stdout);
     free(ligne);
 }
@@ -33,7 +33,9 @@ int main(int argc, char * argv[])
     int i;
     char str[200];
     srandom(time(NULL)); // initialisation de la graine d’aléa
-    
+    FILE* fichierOut = NULL;
+    fichierOut = fopen("discours.txt", "w");
+
     for(i=1;i<argc;i++)
     {
         
@@ -44,7 +46,8 @@ int main(int argc, char * argv[])
         
         long tirage = random()%nbline;
         //printf("nb aléa %ld\n",tirage);
-        lectureLigneAlea(fichier, tirage);
+        lectureLigneAlea(fichier, tirage, fichierOut);
         fclose(fichier);
     }
+    fclose(fichierOut);
 }
