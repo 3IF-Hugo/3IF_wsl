@@ -30,6 +30,8 @@ int ExtractMax(BinaryHeap * heap, int * val);
 /* Destroy frees the structure and the array */
 void Destroy(BinaryHeap * heap);
 
+void Print(BinaryHeap * heap);
+
 int main(void) 
 {
   char lecture[100];
@@ -49,6 +51,7 @@ int main(void)
         printf("%d\r\n",val);
       }
     }
+   //Print(heap);
     fscanf(stdin,"%99s",lecture);
   }
   Destroy(heap);
@@ -57,75 +60,84 @@ int main(void)
 
 BinaryHeap * Init(int size)
 {
-  BinaryHeap * heap = (BinaryHeap*) malloc(sizeof(BinaryHeap));
-  heap -> allocated = size;
-  heap -> filled = 0;
-  heap -> array = (int*) malloc(sizeof(int)*size);
+  BinaryHeap * heap;
+  heap = (BinaryHeap*) malloc(sizeof(BinaryHeap));
+  heap->allocated = size;
+  heap->filled = 0;
+  heap->array = (int*) malloc(sizeof(int)*size);
   return heap;
 }
 
+void Swap(int *a, int *b) {
+   int tmp;
+   tmp = *a;
+   *a = *b;
+   *b = tmp;
+}
+
+#define swap(x,y) int _tmp;_tmp=(x);(x)=(y);(y)=_tmp
+
 void InsertValue(BinaryHeap * heap, int value)
 {
-    if(heap->allocated == heap->filled)
-    {
-        heap->allocated*=2;
-        heap->array = (int*) realloc(heap->array, sizeof(int) * heap->allocated);
-    }
-    int tmp;    //valeur intermédiaire
-    int i;      //indice de position
-    heap -> array[heap->filled] = value;
-    i = heap->filled;
-    heap->filled++;
-    if(heap->filled-1>0)
-    {
-        while((i-1)/2 >= 0 && heap->array[i] > heap->array[(i-1)/2])
-        {
-            tmp = heap->array[i];
-            heap-> array[i] = heap->array[(i-1)/2];
-            heap->array[(i-1)/2] = tmp;
-            i = (i-1)/2;
-        }
-    }
+   if (heap->filled==heap->allocated) 
+   {
+      heap->allocated*=2;
+      heap->array = (int*) realloc(heap->array,sizeof(int)*heap->allocated);
+   }
+   int * a = heap->array;
+   int fils = heap->filled;
+   int pere = (fils-1)/2;
+   a[fils] = value;
+   while (pere>=0 && a[fils]>a[pere]) {
+      swap(a[pere], a[fils]);
+      /*Swap(&(a[pere]), &(a[fils]));*/
+      /*int tmp = a[fils];
+      a[fils] = a[pere];
+      a[pere] = tmp;*/
+      fils = pere;
+      pere = (fils-1)/2;
+   }
+   heap->filled++;
+}
+
+void Print(BinaryHeap * heap) {
+   printf("Allocated : %d\n",heap->allocated);
+   printf("Filled    : %d\n",heap->filled);
+   int i;
+   for (i=0;i<heap->filled;i++) {
+      printf("  %d",heap->array[i]);
+   }
+   printf("\n");
 }
 
 int ExtractMax(BinaryHeap * heap, int *res)
 {
-    if(heap->filled ==0 )
-    {
-         return 0;
-    }
-  
-  int droit,gauche,tmp,i;
-  *res= heap->array[0];
-  heap-> array[0]= heap->array[heap->filled-1];
-  heap->array[heap->filled-1]=0;
-  heap->filled--;
-  i = 0;
-  while((2*i+1<heap->filled && heap->array[i]<heap->array[2*i+1]) || (2*i+2<heap->filled && heap->array[i]<heap->array[2*i+2]))
-  {
-      droit = heap->array[2*i+2];
-      gauche = heap->array[2*i+1];
-      if(gauche>droit)
-      {
-          tmp = heap->array[i];
-          heap->array[i]= heap->array[2*i+1];
-          heap->array[2*i+1]= tmp;
-          i=2*i+1;
+   if (heap->filled==0)
+      return 0;
+   int * a = heap->array;
+   *res = a[0];
+   heap->filled--;
+   a[0] = a[heap->filled];
+   int pere = 0;
+   int g = 1;
+   int d = 2;
+   while ((g<heap->filled && a[g]>a[pere]) || (d<heap->filled && a[d]>a[pere])) {
+      int iswap = g;
+      if (d<heap->filled && a[d]>a[g]) {
+         iswap = d;
       }
-      if(gauche<droit)
-      {
-          tmp = heap->array[i];
-          heap->array[i]= heap->array[2*i+2];
-          heap->array[2*i+2]= tmp;
-          i=2*i+2;
-      }
-  }
-  return 1;
-  
+      int tmp = a[iswap];
+      a[iswap] = a[pere];
+      a[pere] = tmp;
+      pere = iswap;
+      g = pere*2+1;
+      d = pere*2+2;
+   }
+   return 1;
 }
 
 void Destroy(BinaryHeap * heap)
 {
-  free(heap->array);
-  free(heap);
+   free(heap->array);
+   free(heap);
 }
