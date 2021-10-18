@@ -16,6 +16,7 @@
 const unsigned int CARD_MAX = 5;
 //------------------------------------------------------------------ Types
 enum crduEstInclus {NON_INCLUSION,INCLUSION_LARGE, INCLUSION_STRICTE};
+enum crduAjouter{DEJA_PRESENT,PLEIN,AJOUTE};
 //------------------------------------------------------------------------
 // Rôle de la classe <Ensemble>
 //
@@ -39,9 +40,15 @@ public:
 
    void Afficher(void);
 
+   void tri(void);
+
    bool EstEgal(const Ensemble & unEnsemble) const;
 
    crduEstInclus EstInclus(const Ensemble & unEnsemble)const;
+   
+   crduAjouter Ajouter(int aAjouter);
+
+   unsigned int Ajuster(int delta);
 
 //------------------------------------------------- Surcharge d'opérateurs
  /*   Ensemble & operator = ( const Ensemble & unEnsemble );

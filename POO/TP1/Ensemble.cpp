@@ -22,15 +22,8 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Ensemble::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
- void Ensemble::Afficher(void)
- {
-
+ void Ensemble::tri(void){	
+	//Algorithme : Tri à bulles
     for(int i=cardActuelle-1; i>0; i--)
     {
         for(int j=0; j<i; j++){
@@ -42,7 +35,11 @@ using namespace std;
             }
         }
     }
+ }
 
+ void Ensemble::Afficher(void)
+ {
+    this->tri();
     unsigned int i=0;
     cout << cardActuelle << "\r\n";
 	cout << cardMax << "\r\n";
@@ -109,25 +106,71 @@ crduEstInclus Ensemble::EstInclus(const Ensemble & unEnsemble)const
         }else return NON_INCLUSION;
     }
 }
-//------------------------------------------------- Surcharge d'opérateurs
-/*Ensemble & Ensemble::operator = ( const Ensemble & unEnsemble )
-// Algorithme :
-//
-{
-} //----- Fin de operator =*/
 
-
-//-------------------------------------------- Constructeurs - destructeur
-/*
-Ensemble::Ensemble ( const Ensemble & unEnsemble )
-// Algorithme :
-//
+crduAjouter Ensemble::Ajouter(int aAjouter)
 {
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Ensemble>" << endl;
-#endif
-} //----- Fin de Ensemble (constructeur de copie)
-*/
+    for(unsigned int i=0; i<cardActuelle; i++)
+    {
+        if(elements[i] == aAjouter)
+        {
+            return DEJA_PRESENT;
+            
+        }/*else if(aAjouter<elements[i] && cardActuelle<cardMax)
+        {
+            elements[cardActuelle] = aAjouter;
+            cardActuelle++;
+            this->tri();
+            return AJOUTE;
+        }*/
+    }
+    if(cardActuelle<cardMax)
+    {
+        elements[cardActuelle]=aAjouter;
+        cardActuelle++;
+        this->tri();
+        return AJOUTE;
+    }
+    return PLEIN;
+}
+
+unsigned int Ensemble::Ajuster(int delta)
+{
+    if(delta>0)
+    {
+        int *new_elements = new int [cardMax+delta];
+        for(int i =0;i<cardActuelle;i++){
+            new_elements[i]=elements[i];
+        }
+        elements=new_elements;
+        cardMax+=delta;
+    }else if(delta<0)
+    {
+        int ecart = cardMax - cardActuelle;
+        if((-delta)<=ecart)
+        {
+            int *new_elements = new int [cardMax+delta];
+            for(int i =0;i<cardActuelle;i++){
+                new_elements[i]=elements[i];
+            }
+            elements=new_elements;
+            cardMax+=delta;
+        }
+        if((-delta)>ecart)
+        {
+            int *new_elements = new int [cardMax-ecart];
+            for(int i =0;i<cardActuelle;i++){
+                new_elements[i]=elements[i];
+            }
+            elements=new_elements;
+            cardMax-=ecart;
+        }
+    }else if(delta == 0)
+    {
+        return cardMax;
+    }
+    return cardMax;
+}
+
 Ensemble::Ensemble ( unsigned int cardMax )
 {
 #ifdef MAP
@@ -148,10 +191,10 @@ Ensemble::Ensemble ( int valeur[], unsigned int nbElements )
     cardActuelle = 0;
     cardMax = nbElements;
     elements = new int[nbElements];
-    for(int i=0; i<nbElements; i++)
+    for(unsigned int i=0; i<nbElements; i++)
     {
         bool trouve = false;
-        for(int j=0; j<cardActuelle; j++)
+        for(unsigned int j=0; j<cardActuelle; j++)
         {
             if(elements[j] == valeur[i])
             {
@@ -176,9 +219,4 @@ Ensemble::~Ensemble ( )
 #endif
 delete[] elements;
 } //----- Fin de ~Ensemble
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
 

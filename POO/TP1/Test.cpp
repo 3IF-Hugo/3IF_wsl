@@ -51,21 +51,27 @@ int main ()
     Ensemble *e3 = new Ensemble(valeur,5);
     Ensemble *e4 = new Ensemble(valeur,2);
     Ensemble *e5 = new Ensemble(valeur,2);
-    //3->Afficher();
+    //e3->Afficher();
     //e4->Afficher();
     bool estEgal = e3->EstEgal(*e5);
     //cout << "est égal : " << estEgal <<"\r\n";
 
     Ensemble *e6 = new Ensemble(valeurBis,5);
     Ensemble *e7 = new Ensemble(valeurTer,3);
-    cout << e6->EstInclus(*e7) << "\r\n";
+    //cout << e6->EstInclus(*e7) << "\r\n";
+    //e4->Ajouter(4);
+    //cout << e4->Ajouter(3) << "\r\n";
+    //e3->Afficher();
 
+    cout << e7->Ajuster(2)<<"\r\n";
+    
     delete e1;
     delete e2;
     delete e3;
     delete e4;
     delete e5;
-    
+    delete e6;
+    delete e7;
 
 return 0;
 } //----- fin de Nom
