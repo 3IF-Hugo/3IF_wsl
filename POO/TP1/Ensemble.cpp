@@ -60,20 +60,53 @@ using namespace std;
 
 bool Ensemble::EstEgal(const Ensemble & unEnsemble)const
 {
-    bool egaux = false;
-    bool testPresent = false;
+    unsigned int nbPresent=0;
     if(unEnsemble.cardActuelle == cardActuelle )
     {
-        for(int i=0; i<unEnsemble.cardActuelle; i++)
+        for(unsigned int i=0; i<cardActuelle; i++)
         {
-            for(int j=0; j<cardActuelle;j++)
+            for(unsigned int j=0; j<unEnsemble.cardActuelle;j++)
             {
-                if(elements[j]==unEnsemble.elements[i])
+                if(elements[i]==unEnsemble.elements[j])
                 {
-                    testPresent = true;
+                    nbPresent++;
+                    continue;
                 }
             }
         }
+        if(nbPresent == cardActuelle)
+        {
+            return true;
+        }else return false;
+    }else return false;
+}
+
+crduEstInclus Ensemble::EstInclus(const Ensemble & unEnsemble)const
+{
+    unsigned int nbPresent=0;
+    if(this->EstEgal(unEnsemble))
+    {
+        return INCLUSION_LARGE;
+    }
+    else if(this->cardActuelle>unEnsemble.cardActuelle)
+    {
+        return NON_INCLUSION;
+    }else{
+        for(unsigned int i=0; i<cardActuelle; i++)
+        {
+            for(unsigned int j=0; j<unEnsemble.cardActuelle;j++)
+            {
+                if(elements[i]==unEnsemble.elements[j])
+                {
+                    nbPresent++;
+                    continue;
+                }
+            }
+        }
+        if(nbPresent==cardActuelle)
+        {
+            return INCLUSION_STRICTE;
+        }else return NON_INCLUSION;
     }
 }
 //------------------------------------------------- Surcharge d'opérateurs

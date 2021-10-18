@@ -15,7 +15,7 @@
 //------------------------------------------------------------- Constantes
 const unsigned int CARD_MAX = 5;
 //------------------------------------------------------------------ Types
-
+enum crduEstInclus {NON_INCLUSION,INCLUSION_LARGE, INCLUSION_STRICTE};
 //------------------------------------------------------------------------
 // Rôle de la classe <Ensemble>
 //
@@ -40,6 +40,8 @@ public:
    void Afficher(void);
 
    bool EstEgal(const Ensemble & unEnsemble) const;
+
+   crduEstInclus EstInclus(const Ensemble & unEnsemble)const;
 
 //------------------------------------------------- Surcharge d'opérateurs
  /*   Ensemble & operator = ( const Ensemble & unEnsemble );
