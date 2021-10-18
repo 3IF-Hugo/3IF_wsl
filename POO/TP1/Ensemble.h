@@ -39,6 +39,8 @@ public:
 
    void Afficher(void);
 
+   bool EstEgal(const Ensemble & unEnsemble) const;
+
 //------------------------------------------------- Surcharge d'opérateurs
  /*   Ensemble & operator = ( const Ensemble & unEnsemble );
     // Mode d'emploi :

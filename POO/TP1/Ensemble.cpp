@@ -30,26 +30,20 @@ using namespace std;
 
  void Ensemble::Afficher(void)
  {
-    unsigned int i=0;
-    unsigned int t;
-    int inversion,valint;
 
-    do
+    for(int i=cardActuelle-1; i>0; i--)
     {
-       inversion=0;
-       for(t=0;t<cardMax-1;t++)
-        {
-          if (elements[t] > elements[t+1])
+        for(int j=0; j<i; j++){
+            if(elements[j+1] < elements[j])
             {
-            valint = elements[t];
-            elements[t]=elements[t+1];
-            elements[t+1]=valint;
-            inversion=1;
+                int temp = elements[j+1];
+                elements[j+1] = elements[j];
+                elements[j] = temp;
             }
-          }
-       }
-     while(inversion);
+        }
+    }
 
+    unsigned int i=0;
     cout << cardActuelle << "\r\n";
 	cout << cardMax << "\r\n";
     if(cardActuelle == 0){
@@ -64,6 +58,24 @@ using namespace std;
 	}
  }
 
+bool Ensemble::EstEgal(const Ensemble & unEnsemble)const
+{
+    bool egaux = false;
+    bool testPresent = false;
+    if(unEnsemble.cardActuelle == cardActuelle )
+    {
+        for(int i=0; i<unEnsemble.cardActuelle; i++)
+        {
+            for(int j=0; j<cardActuelle;j++)
+            {
+                if(elements[j]==unEnsemble.elements[i])
+                {
+                    testPresent = true;
+                }
+            }
+        }
+    }
+}
 //------------------------------------------------- Surcharge d'opérateurs
 /*Ensemble & Ensemble::operator = ( const Ensemble & unEnsemble )
 // Algorithme :
@@ -100,33 +112,27 @@ Ensemble::Ensemble ( int valeur[], unsigned int nbElements )
     #ifdef MAP
         cout << "Appel au constructeur de <Ensemble>" << endl;
     #endif
-
+    cardActuelle = 0;
     cardMax = nbElements;
-    unsigned int i,j;
-    int res=0;
-    unsigned int cpt=0;
-    unsigned int cptBis=1;
-    elements = new int[cardMax];
-    elements[0] = valeur[0];
-    for(i=1;i<nbElements+1;i++)
+    elements = new int[nbElements];
+    for(int i=0; i<nbElements; i++)
     {
-        for(j=0;j<cptBis;j++)
+        bool trouve = false;
+        for(int j=0; j<cardActuelle; j++)
         {
-            if(valeur[i]==elements[j])
+            if(elements[j] == valeur[i])
             {
-                res++;
+                trouve = true;
+                break;
             }
         }
-        if(res==0)
+        if(!trouve)
         {
-            cpt++;
-            elements[cpt] = valeur[i];
-            cptBis++;
+            elements[cardActuelle] = valeur[i];
+            cardActuelle++;
         }
-        res = 0;
     }
-    cardActuelle = cpt;
-} //----- Fin de Ensemble*/
+} //----- Fin de Ensemble
 
 Ensemble::~Ensemble ( )
 // Algorithme :
