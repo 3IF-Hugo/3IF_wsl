@@ -63,7 +63,10 @@ int main ()
     //cout << e4->Ajouter(3) << "\r\n";
     //e3->Afficher();
 
-    cout << e7->Ajuster(2)<<"\r\n";
+    //cout << e7->Ajuster(2)<<"\r\n";
+
+    //cout << e3->Retirer(3)<<"\r\n";
+    e3->Afficher();
     
     delete e1;
     delete e2;

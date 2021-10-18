@@ -50,6 +50,8 @@ public:
 
    unsigned int Ajuster(int delta);
 
+   bool Retirer(int element);
+
 //------------------------------------------------- Surcharge d'opérateurs
  /*   Ensemble & operator = ( const Ensemble & unEnsemble );
     // Mode d'emploi :

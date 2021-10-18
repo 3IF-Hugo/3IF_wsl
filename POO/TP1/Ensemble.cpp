@@ -115,13 +115,7 @@ crduAjouter Ensemble::Ajouter(int aAjouter)
         {
             return DEJA_PRESENT;
             
-        }/*else if(aAjouter<elements[i] && cardActuelle<cardMax)
-        {
-            elements[cardActuelle] = aAjouter;
-            cardActuelle++;
-            this->tri();
-            return AJOUTE;
-        }*/
+        }
     }
     if(cardActuelle<cardMax)
     {
@@ -138,7 +132,7 @@ unsigned int Ensemble::Ajuster(int delta)
     if(delta>0)
     {
         int *new_elements = new int [cardMax+delta];
-        for(int i =0;i<cardActuelle;i++){
+        for(unsigned int i =0;i<cardActuelle;i++){
             new_elements[i]=elements[i];
         }
         elements=new_elements;
@@ -149,7 +143,7 @@ unsigned int Ensemble::Ajuster(int delta)
         if((-delta)<=ecart)
         {
             int *new_elements = new int [cardMax+delta];
-            for(int i =0;i<cardActuelle;i++){
+            for(unsigned int i =0;i<cardActuelle;i++){
                 new_elements[i]=elements[i];
             }
             elements=new_elements;
@@ -158,7 +152,7 @@ unsigned int Ensemble::Ajuster(int delta)
         if((-delta)>ecart)
         {
             int *new_elements = new int [cardMax-ecart];
-            for(int i =0;i<cardActuelle;i++){
+            for(unsigned int i =0;i<cardActuelle;i++){
                 new_elements[i]=elements[i];
             }
             elements=new_elements;
@@ -169,6 +163,54 @@ unsigned int Ensemble::Ajuster(int delta)
         return cardMax;
     }
     return cardMax;
+}
+
+bool Ensemble::Retirer(int element)
+{
+    for(unsigned int i=0; i<cardActuelle; i++)
+    {
+        if(elements[i] == element)
+        {
+            int inter = elements[i];
+            elements[i]=elements[cardActuelle];
+            elements[cardActuelle]=inter;
+            cardActuelle--;
+            this->tri();
+            this->Ajuster(-1);
+            return true;
+        }
+    }
+    this->Ajuster(-1);
+    return false;
+
+
+
+    /*
+    bool estPresent = false;
+    for(unsigned int i=0; i<cardActuelle; i++)
+    {
+        if(elements[i] == element)
+        {
+            estPresent = true;
+        }
+    }
+    if(estPresent==false)
+    {
+        cardMax=cardActuelle;
+        return false;
+    }else{
+        int *new_elements = new int [cardActuelle];
+        for(unsigned int i=0; i<cardActuelle; i++)
+        {
+            if(elements[i]==element)
+            {
+                continue;
+            }
+            new_elements[i]=elements[i];
+        }
+        cardMax=cardActuelle;
+        return true;
+    }*/
 }
 
 Ensemble::Ensemble ( unsigned int cardMax )
