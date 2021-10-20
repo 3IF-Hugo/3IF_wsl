@@ -67,8 +67,8 @@ int main(void)
 File * Init()
 {
   File * file = (File*) malloc(sizeof(File));
-  file->debut = 0;
-  file->fin = 0;
+  file->debut = NULL;
+  file->fin = NULL;
   return file;
 }
 
@@ -76,25 +76,29 @@ void InsertValue(File * file, int value)
 {
     Element * element = (Element*) malloc(sizeof(Element));
     element->valeur = value;
-    if(file->debut== 0)
+    element->next=NULL;
+    if(file->debut == NULL)
     {
         file->debut= element;
         file->fin=element;
-        element->next=0;
     }else{
-        file->fin=element;
-        element->next=0;
+        file->fin->next=element;
+        file->fin = file->fin->next;
     }
-    
 }
 
 int ExtractMax(File * file, int *res)
 {
+    if(file->fin == NULL)
+    {
+      return 0;
+    }
     Element * elem = (Element*) malloc(sizeof(Element));
     elem = file->debut; 
-    file->debut=file->debut->next;
     *res = elem->valeur;
+    file->debut=file->debut->next;
     free(elem);
+    return 1;
 }
 
 void Destroy(File * file)
