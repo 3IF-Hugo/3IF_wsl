@@ -172,46 +172,67 @@ bool Ensemble::Retirer(int element)
         if(elements[i] == element)
         {
             int inter = elements[i];
-            elements[i]=elements[cardActuelle];
-            elements[cardActuelle]=inter;
+            elements[i]=elements[cardActuelle-1];
+            elements[cardActuelle-1]=inter;
             cardActuelle--;
             this->tri();
-            this->Ajuster(-1);
+            this->Ajuster(-cardMax);
             return true;
         }
     }
-    this->Ajuster(-1);
+    this->Ajuster(-cardMax);
     return false;
+}
 
+unsigned int Ensemble::Retirer (const Ensemble & unEnsemble)
+{
+    int cpt=0;
+    unsigned int localCardMax = cardMax;
+    unsigned int localCardActUnElem = unEnsemble.cardActuelle;
+    unsigned int taille = unEnsemble.cardActuelle;
+    int *valUnElem = new int [taille];
 
-
-    /*
-    bool estPresent = false;
-    for(unsigned int i=0; i<cardActuelle; i++)
+    for(unsigned int i=0;i<localCardActUnElem;i++)
     {
-        if(elements[i] == element)
+        valUnElem[i]= unEnsemble.elements[i];
+    }
+
+    for(unsigned int j=0;j < localCardActUnElem;j++)
+    {
+        if(Retirer(valUnElem[j]))
         {
-            estPresent = true;
+            cpt++;
         }
     }
-    if(estPresent==false)
-    {
-        cardMax=cardActuelle;
-        return false;
-    }else{
-        int *new_elements = new int [cardActuelle];
-        for(unsigned int i=0; i<cardActuelle; i++)
-        {
-            if(elements[i]==element)
-            {
-                continue;
-            }
-            new_elements[i]=elements[i];
-        }
-        cardMax=cardActuelle;
-        return true;
-    }*/
+    cardMax=localCardMax;
+    return cpt;
 }
+
+int Ensemble::Reunir(const Ensemble & unEnsemble)
+{
+    int count = 0;
+	bool reajust = false;
+	for(int i = 0 ; i < unEnsemble.cardActuelle;i++)
+    {
+		int a = Ajouter(unEnsemble.elements[i]);
+		if(a == 1)
+        {
+			reajust = true;
+			cardMax++;
+			count++;
+			Ajouter(unEnsemble.elements[i]);
+		}
+		else if(a == 2){
+			count++;
+		}
+	
+	}
+	
+	if(reajust)
+        count = -count;
+	return count;
+}
+
 
 Ensemble::Ensemble ( unsigned int cardMax )
 {

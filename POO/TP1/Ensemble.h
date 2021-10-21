@@ -52,6 +52,10 @@ public:
 
    bool Retirer(int element);
 
+   unsigned int Retirer(const Ensemble & unEnsemble);
+
+   int Reunir(const Ensemble & unEnsemble);
+
 //------------------------------------------------- Surcharge d'opérateurs
  /*   Ensemble & operator = ( const Ensemble & unEnsemble );
     // Mode d'emploi :

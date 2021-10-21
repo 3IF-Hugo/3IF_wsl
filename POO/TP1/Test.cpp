@@ -48,6 +48,7 @@ int main ()
     int valeur[] = {0,8,4,4,-3,5,7,1};
     int valeurBis[] = {1,2,3,4,5};
     int valeurTer[] = {1,2,3};
+    int valeur4[] = {4,4,4,4};
     Ensemble *e3 = new Ensemble(valeur,5);
     Ensemble *e4 = new Ensemble(valeur,2);
     Ensemble *e5 = new Ensemble(valeur,2);
@@ -58,16 +59,23 @@ int main ()
 
     Ensemble *e6 = new Ensemble(valeurBis,5);
     Ensemble *e7 = new Ensemble(valeurTer,3);
+    Ensemble *e8 = new Ensemble(valeur4,4);
     //cout << e6->EstInclus(*e7) << "\r\n";
     //e4->Ajouter(4);
     //cout << e4->Ajouter(3) << "\r\n";
     //e3->Afficher();
 
     //cout << e7->Ajuster(2)<<"\r\n";
-
-    //cout << e3->Retirer(3)<<"\r\n";
+    /*
     e3->Afficher();
-    
+    e4->Afficher();
+    cout << e3->Retirer(*e4)<<"\r\n";
+    e3->Afficher();
+    */
+    e8->Afficher();
+    cout<< e8->Reunir(*e3)<<"\r\n";
+    e8->Afficher();
+
     delete e1;
     delete e2;
     delete e3;
