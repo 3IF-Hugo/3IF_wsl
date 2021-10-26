@@ -233,6 +233,43 @@ int Ensemble::Reunir(const Ensemble & unEnsemble)
 	return count;
 }
 
+unsigned int Ensemble::Intersection(const Ensemble & unEnsemble)
+{
+    unsigned int cpt =0;
+    unsigned int stockCardAct = cardActuelle;
+    int copieTab[cardActuelle];
+    for(int i=0; i<cardActuelle; i++)
+    {
+        copieTab[i]=elements[i];
+    }
+
+    //Cas simple : intersection avec ensemble vide
+    if(unEnsemble.cardActuelle==0)
+    {
+        for(int i=0; i<stockCardAct; i++)
+        {
+            Retirer(copieTab[i]);
+            cpt++;
+        }
+        Ajuster(-cardMax);
+        return cpt;
+    }
+
+    Ensemble *tmp = new Ensemble(1);
+    tmp->cardActuelle = 1;
+    for(unsigned int i=0; i<stockCardAct; i++)
+    {
+        tmp->elements[0]=copieTab[i];
+        bool inclus = tmp->EstInclus(unEnsemble);
+        if(inclus == 0)
+        {
+            Retirer(copieTab[i]);
+            cpt++;
+        }
+    }
+    Ajuster(-cardMax);
+    return cpt;
+}
 
 Ensemble::Ensemble ( unsigned int cardMax )
 {

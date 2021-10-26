@@ -72,9 +72,15 @@ int main ()
     cout << e3->Retirer(*e4)<<"\r\n";
     e3->Afficher();
     */
-    e8->Afficher();
-    cout<< e8->Reunir(*e3)<<"\r\n";
-    e8->Afficher();
+   /*
+    e7->Afficher();
+    cout<< e7->Reunir(*e3)<<"\r\n";
+    e7->Afficher();*/
+
+    e6->Afficher();
+    e7->Afficher();
+    cout<<e6->Intersection(*e7)<<"\r\n";
+    e6->Afficher();
 
     delete e1;
     delete e2;
