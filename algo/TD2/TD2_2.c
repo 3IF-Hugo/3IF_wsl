@@ -1,3 +1,9 @@
+/*
+Problème : Sac à dos - 1
+Pour un ensemble d'objets de poids connus (entiers) et pour un sac à dos avec
+une capacité connue (nombre entier), trouvez si c'est possible de remplir exactement le sac avec des objets existants.
+*/
+
 #include <stdio.h>
 
 int main(){

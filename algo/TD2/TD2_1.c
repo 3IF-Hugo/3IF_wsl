@@ -1,3 +1,10 @@
+/*
+Pour deux entiers A et B, avec 1 ≤ A, B ≤ 50000 énumérer tous les entiers x, y
+respectant les contraintes suivantes :
+x*x + y*y = A et 
+x*x*x + y*y*y = B
+*/
+
 #include <stdio.h>
 
 int main(){

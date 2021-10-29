@@ -1,3 +1,49 @@
+/*
+Problème 3 : sous-séquence contigüe de somme maximale
+-----------------------------------------------------
+
+Pour une séquence de n nombres réels (0 < n <= 5000), nous vous demandons de trouver
+la somme maximale d'une sous-séquence contigüe. 
+Exemple 1 : pour la séquence 1 -2 10 -14 2 5 7 -1 le résultat 
+est 14 (correspondant à la sous-séquence 2 5 7).
+
+Exemple 2 : pour la séquence 1 -2 10 -2 2 5 7 -1 le résultat 
+est 22 (correspondant à la sous-séquence 10 -2 2 5 7).
+
+Observation : pour ce problème vous pouvez obtenir une erreur de type TIMELIMIT,
+correspondant à une durée d'exécution trop importante de votre algorithme !
+
+Format d'entrée
+---------------
+
+L'entrée standard sera composée d'une série de nombres :
+- un nombre entier indiquant le nombre de valeurs à analyser noté n
+- n nombres réels correspondants aux valeurs à analyser
+
+Le format en entrée est respecté, vous n'avez pas à faire de test pour le vérifier.
+
+Format de sortie
+----------------
+
+Un nombre réel correspondant à la valeur recherchée.
+
+
+Exemple
+-------
+
+Entrée :
+8
+1
+-2
+10
+-14
+2
+5
+7
+-1
+
+Sortie :
+14*/
 #include <stdio.h>
 
 int main(){
