@@ -30,6 +30,7 @@ typedef struct {
 HashTable * Init(int size);
 void Insert(HashTable *ht, Key key, Value value);
 void Supprimer(HashTable *ht, Key key);
+void Query(HashTable *ht, Key key);
 int Requete(HashTable *ht, Key key, Value *v);
 void Stat(HashTable *ht);
 void Destroy(HashTable *ht);
@@ -81,14 +82,16 @@ int main(void)
          if (fscanf(stdin,"%99s",lecture)!=1)
             error();
          /* mettre ici le code de recherche et traitement/affichage du résultat */
-         if(Requete(ht, key, &val))
+         key = strdup(lecture);
+         Query(ht, key);
+         /*if(Requete(ht, key, &val))
 			{
 				printf("%s\r\n", val);
 			}
 			else
 			{
 				printf("Not found\r\n");
-			}
+			}*/
       }
       else if (strcmp(lecture,"destroy")==0)
       {
@@ -100,10 +103,10 @@ int main(void)
          /* mettre ici le code de statistiques */
          Stat(ht);
       }
-      else if (strcmp(lecture,"aff")==0)
+      /*else if (strcmp(lecture,"aff")==0)
       {
           Afficher(ht);
-      }
+      }*/
 
       if (fscanf(stdin,"%99s",lecture)!=1)
          error();
@@ -176,7 +179,7 @@ void Insert(HashTable *ht, Key key, Value value)
 {
     int cpt = 0;
     int indice = HashFunction(key, ht->size);
-    printf("Indice départ = %d\n", indice);
+    //printf("Indice départ = %d\n", indice);
     int indiceRemoved = 0;
     int indicePrec = 0;
     unsigned int removedFound = 0;
@@ -251,7 +254,7 @@ void Supprimer(HashTable *ht, Key key)
    }
    int indiceInit = indice++;
    indice %= ht->size;
-   printf("%d",indice);
+   //printf("%d",indice);
    while(ht->tab[indice].status != EMPTY && indice != indiceInit)
    {
       if(strcmp(ht->tab[indice].key,key) == 0)
@@ -267,10 +270,35 @@ void Supprimer(HashTable *ht, Key key)
    
 }
 
+void Query(HashTable *ht, Key key)
+{
+   int indice = HashFunction(key, ht->size);
+   
+   if(strcmp(ht->tab[indice].key, key) == 0)
+   {
+      printf("%s\r\n", ht->tab[indice].val);
+      return;
+   }
+   
+   int indiceInit = indice++;
+   indice %= ht->size;
+   while(ht->tab[indice].status != EMPTY && indice != indiceInit)
+   {
+      if(strcmp(ht->tab[indice].key,key) == 0)
+      {
+         printf("%s\r\n", ht->tab[indice].val);
+         return;
+      }
+      indice++;
+      indice %= ht->size;
+   }
+   printf("Not found\r\n");
+}
+
 int Requete(HashTable *ht, Key key, Value *v)
 {
    int indice = HashFunction(key, ht->size);
-   printf("Indice début : %d",indice);
+   //printf("Indice début : %d",indice);
 
    if(strcmp(ht->tab[indice].key, key) == 0)
    {
@@ -290,32 +318,36 @@ int Requete(HashTable *ht, Key key, Value *v)
       indice++;
       indice %= ht->size;
    }
-/*
-   while(ht->tab[indice].status != EMPTY && cpt < ht->size)
-   {
-      if(!strcmp(ht->tab[indice].key, key))
-      {
-         printf("%s\r\n", ht->tab[indice].val);
-         return;
-      }
-      indice++;
-      indice %= ht->size;
-      cpt++;
-   }*/
    return 0;
 }
 
 void Stat(HashTable *ht)
 {
-   printf("    : %d\r\n",ht->size);
+   printf("size    : %d\r\n",ht->size);
    int cpt=0;
    int vide=0;
    int supr = 0;
    int used = 0;
+
    while(cpt < ht->size)
    {
-      
+      if(ht->tab[cpt].status == EMPTY)
+      {
+         vide++;
+      }
+      if(ht->tab[cpt].status == REMOVED)
+      {
+         supr++;
+      }
+      if(ht->tab[cpt].status == SET)
+      {
+         used++;
+      }
+      cpt++;
    }
+   printf("empty   : %d\r\n",vide);
+   printf("deleted : %d\r\n",supr);
+   printf("used    : %d\r\n",used);
 }
 
 void Destroy(HashTable *ht)
