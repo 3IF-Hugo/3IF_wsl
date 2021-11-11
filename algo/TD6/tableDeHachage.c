@@ -217,7 +217,6 @@ void Insert(HashTable *ht, Key key, Value value)
 
             }
             
-            indicePrec = indice;
             if(indice == ht->size-1)
                 indice = 0;
             else
