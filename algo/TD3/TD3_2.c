@@ -19,15 +19,76 @@ La ligne de sortie sera finalisée par un retour à la ligne de type "\r\n".
 */
 #define _CRT_SECURE_NO_WARNINGS //pour Visual Studio
 #include <stdio.h>
+#define MaxN 100
+
+int nbChemin(int arrGrid[MaxN][MaxN], int size)
+{
+    arrGrid[0][0] = 1;
+    for(int i = 1; i <size; i++)
+    {
+        if(arrGrid[0][i] != -1)
+        {
+            arrGrid[0][i] = 1;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    for(int i = 1; i <size; i++)
+    {
+        if(arrGrid[i][0] != -1)
+        {
+            arrGrid[i][0] = 1;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    for(int i = 1; i<size; i++)
+    {
+        for(int j = 1; j<size; j++)
+        {
+            if(arrGrid[i][j] != -1)
+            {
+                if(arrGrid[i-1][j] != -1 && arrGrid[i][j-1] != -1)
+                {
+                    arrGrid[i][j] = arrGrid[i-1][j] + arrGrid[i][j-1];
+                }
+                else
+                {
+                    if(arrGrid[i-1][j] > arrGrid[i][j-1])
+                    {
+                        arrGrid[i][j] = arrGrid[i-1][j];
+                    }else
+                    {
+                        arrGrid[i][j] = arrGrid[i][j-1];
+                    }
+                }
+            }
+        }
+    }
+    for (int nPosI = 0; nPosI < size; nPosI++) 
+    {
+		for (int nPosJ = 0; nPosJ < size; nPosJ++) 
+        {
+            printf("%d ", arrGrid[nPosI][nPosJ]);
+        }
+        printf("\n");
+    }
+    return arrGrid[size-1][size-1];
+}
 
 int main(){
     
     int n;
-    int nbChemin=0;
 	scanf("%d", &n);
 	int arrGrid[100][100];
 	char temp;
-    int cellVisit[100][100];
+    int nbchemin=0;
 
 	for (int nPosI = 0; nPosI < n; nPosI++) {
 		for (int nPosJ = 0; nPosJ < n; nPosJ++) {
@@ -43,34 +104,15 @@ int main(){
         }
         printf("\n");
     }
+    printf("----");
+    printf("\n");
 
-    int nPosI=0;
-    int nPosJ=1;
-    while (nPosI != n-1 && nPosJ != n-1 && nPosJ<n && nPosI<n)
+    nbchemin = nbChemin(arrGrid, n);
+
+    if(nbchemin==-1)
     {
-        if(arrGrid[nPosI][nPosJ] == 0 && cellVisit[nPosI][nPosJ]!=1)
-        {
-            if(nPosJ>=n)
-            {
-                printf("j'augmente les lignes, je vais vers le bas\n");
-                nPosI++;
-            }else{
-                printf("j'augmente les colonnes, je me déplace vers la droite\n");
-                nPosJ++;
-            }
-            cellVisit[nPosI][nPosJ]=1;
-        }else if(arrGrid[nPosI][nPosJ] ==-1)
-        {
-            cellVisit[nPosI][nPosJ]=1;
-            continue;
-        }
+        nbchemin == 0;
     }
-    for (int nPosI = 0; nPosI < n; nPosI++) 
-    {
-		for (int nPosJ = 0; nPosJ < n; nPosJ++) 
-        {
-            printf("%d ", cellVisit[nPosI][nPosJ]);
-        }
-        printf("\n");
-    }
+
+    printf("%d\r\n", nbchemin);
 }
