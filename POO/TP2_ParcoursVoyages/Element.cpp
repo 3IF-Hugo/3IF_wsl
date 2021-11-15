@@ -43,11 +43,11 @@ Element::Element ( Trajet *unTrajet, Trajet *next )
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au constructeur de <Element>" << endl;
-#endif
-trajet = unTrajet;
-trajetNext = next;
+    #ifdef MAP
+        cout << "Appel au constructeur de <Element>" << endl;
+    #endif
+    trajet = unTrajet;
+    trajetNext = next;
 } //----- Fin du constructeur de Element
 
 
@@ -55,21 +55,23 @@ Element::Element ( )
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au constructeur de <Element>" << endl;
-#endif
-trajet = NULL;
-trajetNext = NULL;
-} //----- Fin de Element
+    #ifdef MAP
+        cout << "Appel au constructeur de <Element>" << endl;
+    #endif
+    trajet = NULL;
+    trajetNext = NULL;
+} //----- Fin du constructeur par défaut de Element
 
 
 Element::~Element ( )
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au destructeur de <Element>" << endl;
-#endif
+    #ifdef MAP
+        cout << "Appel au destructeur de <Element>" << endl;
+    #endif
+    delete [] trajet;
+    delete [] trajetNext;
 } //----- Fin de ~Element
 
 

@@ -36,26 +36,31 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
+    /*
     Trajet & operator = ( const Trajet & unTrajet );
     // Mode d'emploi :
     //
     // Contrat :
     //
-
+*/
 
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( const char* villeDep, const char* villeArr );
 
+    Trajet ( const Trajet & unTrajet );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
+    
     Trajet ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
+    
+    
 
     virtual ~Trajet ( );
     // Mode d'emploi :

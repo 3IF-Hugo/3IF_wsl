@@ -26,12 +26,15 @@ void TrajetSimple::Afficher() const
 // Algorithme :
 //
 {
+    cout << "Trajet de " << villeDepart << " à " << villeArrivee << " en " << moyenTransport << endl;
+    /*
     Trajet::Afficher();
     for(long unsigned int i=0; i < strlen(moyenTransport); i++)
     {
         cout << moyenTransport[i];
     }
     cout << endl;
+    */
 } //----- Fin de Méthode
 
 
@@ -45,16 +48,24 @@ void TrajetSimple::Afficher() const
 
 
 //-------------------------------------------- Constructeurs - destructeur
-TrajetSimple::TrajetSimple (const char *villeDep, const char *villeArr, const char *moyTrans)
+TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
+#endif
+} //----- Fin de TrajetSimple (constructeur de copie)
+
+TrajetSimple::TrajetSimple (const char *villeDep, const char *villeArr, const char *moyTrans) : Trajet(villeDep, villeArr)
 {
     #ifdef MAP
         cout << "Appel au constructeur de <TrajetSimple>" << endl;
     #endif
-    Trajet(villeDep, villeArr);
-    this->moyenTransport = new char [strlen(moyTrans)];
+    //Trajet(villeDep, villeArr);
+    this->moyenTransport = new char [strlen(moyTrans) + 1];
     strcpy(moyenTransport, moyTrans);
 } //----- Fin du constructeur de TrajetSimple
-
 
 TrajetSimple::TrajetSimple ( )
 // Algorithme :
@@ -63,7 +74,7 @@ TrajetSimple::TrajetSimple ( )
     #ifdef MAP
         cout << "Appel au constructeur de <TrajetSimple>" << endl;
     #endif
-    moyenTransport = NULL;
+    //moyenTransport = NULL;
 } //----- Fin de TrajetSimple
 
 
@@ -72,7 +83,7 @@ TrajetSimple::~TrajetSimple ( )
     #ifdef MAP
         cout << "Appel au destructeur de <TrajetSimple>" << endl;
     #endif
-    delete[] moyenTransport;
+    delete [] moyenTransport;
 } //----- Fin de ~TrajetSimple
 
 

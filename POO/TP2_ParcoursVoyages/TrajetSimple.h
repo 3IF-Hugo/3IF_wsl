@@ -37,26 +37,31 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
+   /*
     TrajetSimple & operator = ( const TrajetSimple & unTrajetSimple );
     // Mode d'emploi :
     //
     // Contrat :
     //
+    */
 
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple (const char *villeDep, const char *villeArr, const char* moyTrans);
 
+    TrajetSimple ( const TrajetSimple & unTrajetSimple );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
+    
     TrajetSimple ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
+    
 
     virtual ~TrajetSimple ( );
     // Mode d'emploi :

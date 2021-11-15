@@ -10,9 +10,9 @@
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
 #include <cstring>
+using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -26,6 +26,8 @@ void Trajet::Afficher() const
 // Algorithme :
 //
 {
+    cout << "Trajet de " << villeDepart << " à " << villeArrivee << endl;
+    /*
     for(long unsigned int i=0; i < strlen(villeDepart); i++)
     {
         cout << villeDepart[i];
@@ -36,6 +38,7 @@ void Trajet::Afficher() const
         cout << villeArrivee[i];
     }
     cout << endl;
+    */
 } //----- Fin de Méthode
 
 
@@ -49,19 +52,27 @@ void Trajet::Afficher() const
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Trajet::Trajet ( const char *villeDep, const char *villeArr)
+Trajet::Trajet ( const Trajet & unTrajet )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Trajet>" << endl;
+    cout << "Appel au constructeur de copie de <Trajet>" << endl;
 #endif
-this->villeDepart = new char [strlen(villeDep)];
-this->villeArrivee = new char [strlen(villeArr)];
-strcpy(villeDepart, villeDep);
-strcpy(villeArrivee, villeArr);
-} //----- Fin du constructeur de Trajet
+} //----- Fin de Trajet (constructeur de copie)
 
+Trajet::Trajet ( const char *villeDep, const char *villeArr)
+// Algorithme :
+//
+{
+    #ifdef MAP
+        cout << "Appel au constructeur de <Trajet>" << endl;
+    #endif
+    villeDepart = new char [strlen(villeDep)+1];
+    villeArrivee = new char [strlen(villeArr)+1];
+    strcpy(villeDepart, villeDep);
+    strcpy(villeArrivee, villeArr);
+} //----- Fin du constructeur de Trajet
 
 Trajet::Trajet ( )
 // Algorithme :
@@ -70,20 +81,19 @@ Trajet::Trajet ( )
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
-villeDepart = NULL;
-villeArrivee = NULL;
+//villeDepart = NULL;
+//villeArrivee = NULL;
 } //----- Fin de Trajet
-
 
 Trajet::~Trajet ( )
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au destructeur de <Trajet>" << endl;
-#endif
-delete[] villeDepart;
-delete[] villeArrivee;
+    #ifdef MAP
+        cout << "Appel au destructeur de <Trajet>" << endl;
+    #endif
+    delete [] villeDepart;
+    delete [] villeArrivee;
 } //----- Fin de ~Trajet
 
 
