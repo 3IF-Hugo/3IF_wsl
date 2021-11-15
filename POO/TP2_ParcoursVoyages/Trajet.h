@@ -28,7 +28,7 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    virtual void Afficher () const;
     // Mode d'emploi :
     //
     // Contrat :
@@ -44,7 +44,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Trajet ( char* villeDep, char* villeArr );
+    Trajet ( const char* villeDep, const char* villeArr );
 
     // Mode d'emploi (constructeur de copie) :
     //

@@ -29,7 +29,7 @@ class TrajetSimple : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    void Afficher() const;
     // Mode d'emploi :
     //
     // Contrat :
@@ -45,7 +45,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    TrajetSimple (char *villeDep, char *villeArr, char* moyTrans);
+    TrajetSimple (const char *villeDep, const char *villeArr, const char* moyTrans);
 
     // Mode d'emploi (constructeur de copie) :
     //

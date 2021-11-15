@@ -22,11 +22,21 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Trajet::Méthode ( liste des paramètres )
+void Trajet::Afficher() const
 // Algorithme :
 //
-//{
-//} //----- Fin de Méthode
+{
+    for(long unsigned int i=0; i < strlen(villeDepart); i++)
+    {
+        cout << villeDepart[i];
+    }
+    cout << endl;
+    for(long unsigned int i=0; i < strlen(villeArrivee); i++)
+    {
+        cout << villeArrivee[i];
+    }
+    cout << endl;
+} //----- Fin de Méthode
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -39,15 +49,15 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Trajet::Trajet ( char *villeDep, char *villeArr)
+Trajet::Trajet ( const char *villeDep, const char *villeArr)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
-this->villeDepart = new char [strlen(villeDep)+1];
-this->villeArrivee = new char [strlen(villeArr)+1];
+this->villeDepart = new char [strlen(villeDep)];
+this->villeArrivee = new char [strlen(villeArr)];
 strcpy(villeDepart, villeDep);
 strcpy(villeArrivee, villeArr);
 } //----- Fin du constructeur de Trajet
