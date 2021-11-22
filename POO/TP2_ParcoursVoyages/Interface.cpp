@@ -6,6 +6,8 @@ using namespace std;
 #include "TrajetSimple.h"
 #include "Catalogue.h"
 
+//valgrind --leak-check=full -s ./Interface
+
 void Ajouter_trajet_simple(Catalogue *catalogueAcreer);
 
 TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueAcreer);

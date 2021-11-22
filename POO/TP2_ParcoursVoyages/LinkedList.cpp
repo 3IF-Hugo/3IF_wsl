@@ -48,11 +48,15 @@ void LinkedList::afficher()
 //
 {
     Element *parcours = elemDebut;
+    int n = 1;
     while(parcours != NULL)
     {
+        cout << n << ". ";
+        n++;
         parcours->getTrajet()->Afficher();
         parcours = parcours->getElemNext();
     }
+    cout << endl;
 } //----- Fin de Méthode
 
 // type LinkedList::Méthode ( LinkedListe des paramètres )

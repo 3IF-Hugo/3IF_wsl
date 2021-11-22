@@ -33,11 +33,11 @@ void TrajetCompose::ajouter (Trajet *unTrajet)
     list->ajouter(unTrajet);
 } //----- Fin de Méthode
 
-void TrajetCompose::Afficher()
+void TrajetCompose::Afficher() const
 // Algorithme :
 //
 {
-    cout << "Trajet de " << villeDepart << " à " << villeArrivee << " comportant les sous-trajets suivants :" << endl;
+    cout << "Trajet composé de " << villeDepart << " à " << villeArrivee << " comportant les sous-trajets suivants :" << endl;
     list->afficher();
 } //----- Fin de Méthode
 
@@ -84,7 +84,7 @@ TrajetCompose::~TrajetCompose ( )
     #endif
     delete[] villeDepart;
     delete[] villeArrivee;
-    delete[] list;
+    delete list;
 } //----- Fin de ~TrajetCompose
 
 /////////////TEST/////////////
