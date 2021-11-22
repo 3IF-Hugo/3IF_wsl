@@ -145,7 +145,7 @@ void Rechercher_trajet()
 
 }
 
-void Afficher(Catalogue *catalogueAcreer)
+void Afficher(Catalogue *catalogueAAfficher)
 {
-    catalogueAcreer->Afficher();
+    catalogueAAfficher->Afficher();
 }
