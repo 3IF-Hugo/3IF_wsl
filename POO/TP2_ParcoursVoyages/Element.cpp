@@ -98,8 +98,11 @@ Element::~Element ( )
     #ifdef MAP
         cout << "Appel au destructeur de <Element>" << endl;
     #endif
-    delete [] trajet;
-    delete [] elemNext;
+    delete[] trajet;
+    if(elemNext != NULL)
+    {
+        delete elemNext;
+    }
 } //----- Fin de ~Element
 
 
