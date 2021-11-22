@@ -2,11 +2,11 @@
 #include <string.h>
 
 int main() {
-    char dest[20]="Hello";
-    char src[20]="World";
+    char dest[7]="Hello";
+    char src[7]="World";
     strncat(dest,src,10);
     printf("%s\n",dest);
-    strncat(dest,src,20);
+    strncat(dest,src,2);
     printf("%s\n",dest);
 return 0;
 }
