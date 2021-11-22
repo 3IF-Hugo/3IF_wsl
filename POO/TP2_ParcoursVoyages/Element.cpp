@@ -22,6 +22,34 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+Trajet * Element::getTrajet()
+// Algorithme :
+//
+{
+    return trajet;
+} //----- Fin de Méthode
+
+void Element::setTrajet (Trajet *unTrajet)
+// Algorithme :
+//
+{
+    trajet = unTrajet;
+} //----- Fin de Méthode
+
+Element * Element::getElemNext()
+// Algorithme :
+//
+{
+    return elemNext;
+} //----- Fin de Méthode
+
+void Element::setElemNext (Element *unElem)
+// Algorithme :
+//
+{
+    elemNext = unElem;
+} //----- Fin de Méthode
+
 // type Element::Méthode ( liste des paramètres )
 // Algorithme :
 //
@@ -39,7 +67,7 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Element::Element ( Trajet *unTrajet, Trajet *next )
+Element::Element ( Trajet *unTrajet )
 // Algorithme :
 //
 {
@@ -47,7 +75,7 @@ Element::Element ( Trajet *unTrajet, Trajet *next )
         cout << "Appel au constructeur de <Element>" << endl;
     #endif
     trajet = unTrajet;
-    trajetNext = next;
+    elemNext = NULL;
 } //----- Fin du constructeur de Element
 
 
@@ -59,7 +87,7 @@ Element::Element ( )
         cout << "Appel au constructeur de <Element>" << endl;
     #endif
     trajet = NULL;
-    trajetNext = NULL;
+    elemNext = NULL;
 } //----- Fin du constructeur par défaut de Element
 
 
@@ -71,7 +99,7 @@ Element::~Element ( )
         cout << "Appel au destructeur de <Element>" << endl;
     #endif
     delete [] trajet;
-    delete [] trajetNext;
+    delete [] elemNext;
 } //----- Fin de ~Element
 
 

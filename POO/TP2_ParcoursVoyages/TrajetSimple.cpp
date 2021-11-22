@@ -67,7 +67,7 @@ TrajetSimple::TrajetSimple (const char *villeDep, const char *villeArr, const ch
     strcpy(moyenTransport, moyTrans);
 } //----- Fin du constructeur de TrajetSimple
 
-TrajetSimple::TrajetSimple ( )
+TrajetSimple::TrajetSimple ( ) : Trajet()
 // Algorithme :
 //
 {
@@ -83,6 +83,8 @@ TrajetSimple::~TrajetSimple ( )
     #ifdef MAP
         cout << "Appel au destructeur de <TrajetSimple>" << endl;
     #endif
+    delete[] villeDepart;
+    delete[] villeArrivee;
     delete [] moyenTransport;
 } //----- Fin de ~TrajetSimple
 

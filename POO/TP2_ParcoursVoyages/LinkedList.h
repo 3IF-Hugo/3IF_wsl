@@ -1,14 +1,14 @@
 /*************************************************************************
-                           TrajetCompose  -  description
+                           Trajet  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
-#if ! defined ( TrajetCompose_H )
-#define TrajetCompose_H
+//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
+#if ! defined ( LIST_H )
+#define LIST_H
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -17,29 +17,30 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <TrajetCompose>
+// Rôle de la classe <Trajet>
 //
 //
 //------------------------------------------------------------------------
 
-class TrajetCompose : public Trajet
+class LinkedList
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void ajouter (Trajet *unTrajet);
+
+    void ajouter(Trajet *unTrajet);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual void Afficher ();
+    void afficher();
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
@@ -48,7 +49,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    TrajetCompose & operator = ( const TrajetCompose & unTrajetCompose );
+    //Trajet & operator = ( const Trajet & unTrajet );
     // Mode d'emploi :
     //
     // Contrat :
@@ -56,20 +57,20 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    TrajetCompose (const char *villeDep, const char *villeArr);
+    LinkedList ();
 
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    TrajetCompose ( );
+    //LinkedList ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~TrajetCompose ( );
+    virtual ~LinkedList ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -81,10 +82,12 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-LinkedList *list;
+Element *elemDebut;
+Element *elemFin;
+
 };
 
-//-------------------------------- Autres définitions dépendantes de <TrajetCompose>
+//-------------------------------- Autres définitions dépendantes de <Trajet>
 
-#endif // TrajetCompose_H
+#endif // LIST_H
 

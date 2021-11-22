@@ -1,14 +1,20 @@
 /*************************************************************************
-                           TrajetCompose  -  description
+                           Catalogue  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
-#if ! defined ( TrajetCompose_H )
-#define TrajetCompose_H
+//---------- Interface de la classe <Catalogue> (fichier Catalogue.h) ----------------
+#if ! defined ( Catalogue_H )
+#define Catalogue_H
+
+#include "Trajet.h"
+#include "TrajetSimple.h"
+#include "Element.h"
+#include "LinkedList.h"
+#include "TrajetCompose.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -17,38 +23,28 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <TrajetCompose>
+// Rôle de la classe <Catalogue>
 //
 //
 //------------------------------------------------------------------------
 
-class TrajetCompose : public Trajet
+class Catalogue
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void ajouter (Trajet *unTrajet);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+   void AjouterTrajetSimple ( const char* villeDepart, const char* villeArrivee, const char* moyenTransport );
 
-    virtual void Afficher ();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+  TrajetCompose* AjouterTrajetCompose ( const char* villeDepart, const char* villeArrivee );
 
+    void AjouterSousTrajetSimple(const char* villeDepart, const char* villeArrivee, const char* moyenTransport, TrajetCompose *unTrajetComp);
 
+    void Rechercher(const char* depart, const char* arrivee);
+
+   void Afficher();
 //------------------------------------------------- Surcharge d'opérateurs
-    TrajetCompose & operator = ( const TrajetCompose & unTrajetCompose );
+    Catalogue & operator = ( const Catalogue & unCatalogue );
     // Mode d'emploi :
     //
     // Contrat :
@@ -56,20 +52,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    TrajetCompose (const char *villeDep, const char *villeArr);
-
+    Catalogue ( const Catalogue & unCatalogue );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    TrajetCompose ( );
+    Catalogue ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~TrajetCompose ( );
+    virtual ~Catalogue ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -81,10 +76,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-LinkedList *list;
+LinkedList *catalogueTrajet;
 };
 
-//-------------------------------- Autres définitions dépendantes de <TrajetCompose>
+//-------------------------------- Autres définitions dépendantes de <Catalogue>
 
-#endif // TrajetCompose_H
+#endif // Catalogue_H
 
