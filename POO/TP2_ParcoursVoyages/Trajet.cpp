@@ -95,8 +95,6 @@ Trajet::~Trajet ( )
     delete [] villeDepart;
     delete [] villeArrivee;
 } //----- Fin de ~Trajet
-
-
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées

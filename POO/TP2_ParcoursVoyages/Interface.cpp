@@ -1,9 +1,12 @@
-#include <iostream>
 using namespace std;
+#include <iostream>
+#include <cstring>
 
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "Catalogue.h"
+
+//valgrind --leak-check=full -s ./Interface
 
 void Ajouter_trajet_simple(Catalogue *catalogueAcreer);
 
@@ -63,7 +66,7 @@ int main()
 				Rechercher_trajet();
 				break;
             case 4: 
-				Afficher(notreCatalogue);
+				notreCatalogue->Afficher();
 				break;
 			default:
                 cout << "choix incorrect" << endl;
@@ -72,6 +75,7 @@ int main()
 	}
 	fin:
     cout << "Au revoir" << endl;
+    delete notreCatalogue;
 /*
     const char* lyon = "Lyon";
     const char* Marseille = "Marseille";
@@ -93,17 +97,23 @@ void Ajouter_trajet_simple(Catalogue *catalogueAcreer)
     char *lecture = new char[100];
     cout << "Ville de départ : ";
     cin >> lecture;
-    const char* villeDepart = lecture;
+    char* villeDepart = new char [sizeof(lecture)+1];
+    strcpy(villeDepart, lecture);
     cout << "Ville d'arrivée : ";
     cin >> lecture;
-    const char* villeArr = lecture;
+    char* villeArr = new char [sizeof(lecture)+1];
+    strcpy(villeArr, lecture);
     cout << "Moyen de transport : ";
     cin >> lecture;
-    const char* moyenTransport = lecture;
+    char* moyenTransport = new char [sizeof(lecture)+1];
+    strcpy(moyenTransport, lecture);
 
     catalogueAcreer->AjouterTrajetSimple(villeDepart, villeArr, moyenTransport);
     
     delete[] lecture;
+    delete[] villeDepart;
+    delete[] villeArr;
+    delete[] moyenTransport;
 }
 
 TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueAcreer)
@@ -111,14 +121,19 @@ TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueAcreer)
     char *lecture = new char[100];
     cout << "Ville de départ : ";
     cin >> lecture;
-    const char* villeDepart = lecture;
-    cout << "Arrivée finale : ";
+    char* villeDepart = new char [sizeof(lecture)+1];
+    strcpy(villeDepart, lecture);
+    cout << "Ville d'arrivée : ";
     cin >> lecture;
-    const char* villeArr = lecture;
+    char* villeArr = new char [sizeof(lecture)+1];
+    strcpy(villeArr, lecture);
     
     delete[] lecture;
 
     return catalogueAcreer->AjouterTrajetCompose(villeDepart, villeArr);
+
+    delete[] villeDepart;
+    delete[] villeArr;
 }
 
 void Ajouter_sous_trajet_simple(Catalogue *catalogueAcreer, TrajetCompose* unTrajet)
@@ -126,26 +141,27 @@ void Ajouter_sous_trajet_simple(Catalogue *catalogueAcreer, TrajetCompose* unTra
     char *lecture = new char[100];
     cout << "Ville de départ : ";
     cin >> lecture;
-    const char* villeDepart = lecture;
+    char* villeDepart = new char [sizeof(lecture)+1];
+    strcpy(villeDepart, lecture);
     cout << "Ville d'arrivée : ";
     cin >> lecture;
-    const char* villeArr = lecture;
+    char* villeArr = new char [sizeof(lecture)+1];
+    strcpy(villeArr, lecture);
     cout << "Moyen de transport : ";
     cin >> lecture;
-    const char* moyenTransport = lecture;
+    char* moyenTransport = new char [sizeof(lecture)+1];
+    strcpy(moyenTransport, lecture);
 
     catalogueAcreer->AjouterSousTrajetSimple(villeDepart, villeArr, moyenTransport, unTrajet);
 
-    delete lecture;
+    delete[] lecture;
+    delete[] villeDepart;
+    delete[] villeArr;
+    delete[] moyenTransport;
 }
 
 
 void Rechercher_trajet()
 {
 
-}
-
-void Afficher(Catalogue *catalogueAAfficher)
-{
-    catalogueAAfficher->Afficher();
 }

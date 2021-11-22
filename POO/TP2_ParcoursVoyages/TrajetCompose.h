@@ -34,7 +34,7 @@ public:
     // Contrat :
     //
 
-    virtual void Afficher ();
+    void Afficher () const;
     // Mode d'emploi :
     //
     // Contrat :

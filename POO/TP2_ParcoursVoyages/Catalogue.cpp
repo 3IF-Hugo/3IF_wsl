@@ -26,6 +26,7 @@ using namespace std;
 void Catalogue::AjouterTrajetSimple ( const char* villeDepart, const char* villeArrivee, const char* moyenTransport )
 {
     TrajetSimple *nouveauTrajet = new TrajetSimple ( villeDepart, villeArrivee, moyenTransport );
+    // nouveauTrajet->Afficher();
     catalogueTrajet->ajouter ( nouveauTrajet );
 } //----- Fin de Méthode
 
