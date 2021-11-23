@@ -5,8 +5,10 @@ int main(int argc, char** argv){
         int i,j,n_diviseurs;
 	int valeur = atoi(argv[1]);
 	if(argv[2] != NULL)
-		printf("il faut le nom de l'éxécutable et UN param : ./tp2 34");
-
+	{
+		printf("il faut le nom de l'éxécutable et UN param : ./tp2 34\n");
+		return 0;
+	}
 	printf("%d\n",1);
 	for(i=1;i<=valeur;i++) 
 	{ 
