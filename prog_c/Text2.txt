@@ -1,0 +1,4 @@
+-----------------Ces informations sont rassemblées dans une structure dont le type, FILE, est défini dans stdio.h. Un
+objet de type FILE * est appelé flot de données (en anglais, stream).
+Avant de lire ou d’écrire dans un fichier, un programme doit demander l’initialisation d’une telle structure de
+donné-------------------

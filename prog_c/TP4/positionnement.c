@@ -72,9 +72,9 @@ void remplacer(FILE* fileOut, long offset, int k)
     fseek(fileOut, offset, SEEK_SET);
     if(fgetc(fileOut) == '\n'&& offset<=820)
     {
-        fseek(fileOut, offset, SEEK_SET);
+        fseek(fileOut, offset+1, SEEK_SET);
         fputc(k, fileOut);
-        fputc('\n',fileOut);
+        //fputc('\n',fileOut);
     }else
     {
         fseek(fileOut, offset, SEEK_SET);
