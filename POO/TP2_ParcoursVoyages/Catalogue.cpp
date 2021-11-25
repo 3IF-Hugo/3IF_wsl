@@ -50,7 +50,8 @@ void Catalogue::Afficher()
 
 void Catalogue::Rechercher(const char* depart, const char* arrivee)
 {
-
+    Trajet *trajetRecherche = new Trajet(depart, arrivee);
+    catalogueTrajet->Rechercher(trajetRecherche);
 }
 //------------------------------------------------- Surcharge d'opérateurs
 // Catalogue & Catalogue::operator = ( const Catalogue & unCatalogue )

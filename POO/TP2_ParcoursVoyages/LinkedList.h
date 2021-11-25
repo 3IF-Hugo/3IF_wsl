@@ -47,6 +47,11 @@ public:
     // Contrat :
     //
 
+    void Rechercher(Trajet *unTrajet);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
 //------------------------------------------------- Surcharge d'opérateurs
     //Trajet & operator = ( const Trajet & unTrajet );

@@ -34,7 +34,9 @@ public:
     // Contrat :
     //
 
+    char* getVilleDepart();
 
+    char* getVilleArrivee();
 //------------------------------------------------- Surcharge d'opérateurs
     /*
     Trajet & operator = ( const Trajet & unTrajet );

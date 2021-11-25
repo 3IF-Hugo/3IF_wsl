@@ -14,7 +14,7 @@ TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueAcreer);
 
 void Ajouter_sous_trajet_simple(Catalogue *catalogueAcreer, TrajetCompose *unTrajet);
 
-void Rechercher_trajet();
+void Rechercher_trajet(Catalogue *catalogueRecherche);
 
 void Afficher(Catalogue *catalogueAcreer);
 
@@ -63,7 +63,7 @@ int main()
 				break;
             }
 			case 3:
-				Rechercher_trajet();
+				Rechercher_trajet(notreCatalogue);
 				break;
             case 4: 
 				notreCatalogue->Afficher();
@@ -161,7 +161,19 @@ void Ajouter_sous_trajet_simple(Catalogue *catalogueAcreer, TrajetCompose* unTra
 }
 
 
-void Rechercher_trajet()
+void Rechercher_trajet(Catalogue *catalogueRecherche)
 {
+    cout << "Veuillez saisir la ville de départ et d'arrivée :" <<endl;
+    char *lecture = new char[100];
+    cout << "Ville de départ : ";
+    cin >> lecture;
+    char* villeDepart = new char [sizeof(lecture)+1];
+    strcpy(villeDepart, lecture);
+    cout << "Ville d'arrivée : ";
+    cin >> lecture;
+    char* villeArr = new char [sizeof(lecture)+1];
+    strcpy(villeArr, lecture);
+
+    catalogueRecherche->Rechercher(villeDepart, villeArr);
 
 }

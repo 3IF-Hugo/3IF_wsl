@@ -41,6 +41,15 @@ void Trajet::Afficher() const
     */
 } //----- Fin de Méthode
 
+char* Trajet::getVilleDepart()
+{
+    return villeDepart;
+}
+
+char* Trajet::getVilleArrivee()
+{
+    return villeArrivee;
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 /*Trajet & Trajet::operator = ( const Trajet & unTrajet )

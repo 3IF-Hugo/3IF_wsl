@@ -12,6 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <cstring>
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -58,6 +59,36 @@ void LinkedList::afficher()
     }
     cout << endl;
 } //----- Fin de Méthode
+
+void LinkedList::Rechercher(Trajet *unTrajet)
+{
+    int cpt = 0;
+	Element *elemSearch = elemDebut;
+    // cout << "trajet en param" << endl;
+    // unTrajet->Afficher();
+    // cout << "trajet courant" << endl;
+    // elemSearch->getTrajet()->Afficher();
+    // cout << "debut while" << endl;
+    cout << "égal ?" << endl;
+	while(elemSearch != NULL)
+	{
+		if(!strcmp(elemSearch->getTrajet()->getVilleDepart(),unTrajet->getVilleDepart()) && !strcmp(elemSearch->getTrajet()->getVilleArrivee(), unTrajet->getVilleArrivee()))
+		{
+            cout << "Nous avons trouvé votre trajet : " << endl;
+            elemSearch->getTrajet()->Afficher();
+            cpt++;
+		}
+
+		elemSearch = elemSearch->getElemNext();
+        //cout << "après le getNext" << endl;
+		//elemSearch->getTrajet()->Afficher();
+		if(elemSearch == NULL && cpt == 0)							
+		{
+            cout << "Nous n'avons pas trouvé le trajet demandé" << endl;
+			break;
+		}
+	}	
+}
 
 // type LinkedList::Méthode ( LinkedListe des paramètres )
 // Algorithme :
