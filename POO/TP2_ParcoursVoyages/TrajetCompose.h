@@ -1,12 +1,12 @@
 /*************************************************************************
                            TrajetCompose  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 15/11/2021
+    copyright            : VOTE Robin et GREL Hugo
+    e-mail               : robin.vote@insa-lyon.fr et hugo.grel@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
+//--- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ---
 #if ! defined ( TrajetCompose_H )
 #define TrajetCompose_H
 
@@ -84,7 +84,7 @@ protected:
 LinkedList *list;
 };
 
-//-------------------------------- Autres définitions dépendantes de <TrajetCompose>
+//---------------------- Autres définitions dépendantes de <TrajetCompose>
 
 #endif // TrajetCompose_H
 

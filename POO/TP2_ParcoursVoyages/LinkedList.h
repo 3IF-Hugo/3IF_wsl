@@ -6,9 +6,11 @@
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
+//------- Interface de la classe <Trajet> (fichier Trajet.h) -------------
 #if ! defined ( LIST_H )
 #define LIST_H
+
+//#include "Element.h"
 
 //--------------------------------------------------- Interfaces utilisées
 

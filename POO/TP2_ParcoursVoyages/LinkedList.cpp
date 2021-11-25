@@ -6,7 +6,7 @@
     e-mail               : robin.vote@insa-lyon.fr et hugo.grel@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <LinkedList> (fichier LinkedList.cpp) ------------
+//-- Réalisation de la classe <LinkedList> (fichier LinkedList.cpp) ------
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
@@ -64,12 +64,12 @@ void LinkedList::Rechercher(Trajet *unTrajet)
 {
     int cpt = 0;
 	Element *elemSearch = elemDebut;
-    // cout << "trajet en param" << endl;
-    // unTrajet->Afficher();
-    // cout << "trajet courant" << endl;
-    // elemSearch->getTrajet()->Afficher();
-    // cout << "debut while" << endl;
-    cout << "égal ?" << endl;
+    
+    if(elemSearch == NULL)							
+	{
+        cout << "Liste vide, aucun trajet disponible." << endl;
+	}
+
 	while(elemSearch != NULL)
 	{
 		if(!strcmp(elemSearch->getTrajet()->getVilleDepart(),unTrajet->getVilleDepart()) && !strcmp(elemSearch->getTrajet()->getVilleArrivee(), unTrajet->getVilleArrivee()))
@@ -80,11 +80,10 @@ void LinkedList::Rechercher(Trajet *unTrajet)
 		}
 
 		elemSearch = elemSearch->getElemNext();
-        //cout << "après le getNext" << endl;
-		//elemSearch->getTrajet()->Afficher();
+
 		if(elemSearch == NULL && cpt == 0)							
 		{
-            cout << "Nous n'avons pas trouvé le trajet demandé" << endl;
+            cout << "Nous n'avons pas trouvé le trajet demandé." << endl;
 			break;
 		}
 	}	

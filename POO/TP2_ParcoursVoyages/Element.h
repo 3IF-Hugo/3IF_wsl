@@ -1,23 +1,24 @@
 /*************************************************************************
-                           Trajet  -  description
+                           Element  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
+//------ Interface de la classe <Element> (fichier Element.h) --------------
 #if ! defined ( ELEMENT_H )
 #define ELEMENT_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Trajet>
+// Rôle de la classe <Element>
 //
 //
 //------------------------------------------------------------------------

@@ -15,7 +15,9 @@ using namespace std;
 #include <cstring>
 
 //------------------------------------------------------ Include personnel
+#include "Trajet.h"
 #include "TrajetSimple.h"
+
 
 //------------------------------------------------------------- Constantes
 
@@ -83,8 +85,6 @@ TrajetSimple::~TrajetSimple ( )
     #ifdef MAP
         cout << "Appel au destructeur de <TrajetSimple>" << endl;
     #endif
-    delete[] villeDepart;
-    delete[] villeArrivee;
     delete [] moyenTransport;
 } //----- Fin de ~TrajetSimple
 

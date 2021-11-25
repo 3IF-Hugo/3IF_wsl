@@ -1,23 +1,21 @@
 /*************************************************************************
                            Catalogue  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 15/11/2021
+    copyright            : VOTE Robin et GREL Hugo
+    e-mail               : robin.vote@insa-lyon.fr et hugo.grel@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <Catalogue> (fichier Catalogue.h) ----------------
+//---- Interface de la classe <Catalogue> (fichier Catalogue.h) ----------
 #if ! defined ( Catalogue_H )
 #define Catalogue_H
 
+//--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "Element.h"
 #include "LinkedList.h"
 #include "TrajetCompose.h"
-
-//--------------------------------------------------- Interfaces utilisées
-
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types

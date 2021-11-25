@@ -9,8 +9,8 @@
 //---------- Interface de la classe <TrajetSimple> (fichier TrajetSimple.h) ----------------
 #if ! defined ( TrajetSimple_H )
 #define TrajetSimple_H
-#include "Trajet.h"
 
+#include "Trajet.h"
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes

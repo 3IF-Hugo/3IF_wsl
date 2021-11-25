@@ -6,7 +6,7 @@
     e-mail               : robin.vote@insa-lyon.fr et hugo.grel@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <Element> (fichier Element.cpp) ------------
+//---- Réalisation de la classe <Element> (fichier Element.cpp) ----------
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
@@ -98,7 +98,7 @@ Element::~Element ( )
     #ifdef MAP
         cout << "Appel au destructeur de <Element>" << endl;
     #endif
-    delete[] trajet;
+    delete trajet;
     if(elemNext != NULL)
     {
         delete elemNext;

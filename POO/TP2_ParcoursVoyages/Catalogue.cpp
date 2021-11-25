@@ -1,12 +1,12 @@
 /*************************************************************************
                            Catalogue  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 15/11/2021
+    copyright            : VOTE Robin et GREL Hugo
+    e-mail               : robin.vote@insa-lyon.fr et hugo.grel@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) ------------
+//----- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) -----
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -17,6 +17,11 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
+// #include "Trajet.h"
+// #include "TrajetSimple.h"
+// #include "Element.h"
+// #include "LinkedList.h"
+// #include "TrajetCompose.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -52,7 +57,9 @@ void Catalogue::Rechercher(const char* depart, const char* arrivee)
 {
     Trajet *trajetRecherche = new Trajet(depart, arrivee);
     catalogueTrajet->Rechercher(trajetRecherche);
+    delete trajetRecherche;
 }
+
 //------------------------------------------------- Surcharge d'opérateurs
 // Catalogue & Catalogue::operator = ( const Catalogue & unCatalogue )
 // // Algorithme :
