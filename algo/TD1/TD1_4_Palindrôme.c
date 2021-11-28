@@ -6,7 +6,7 @@ et la sortie 0 en cas contraire. X est un palindrome s'il peut se lire dans les 
 sens avec la même valeur.
 Description de l'entrée (IN) : les nombres formant le vecteur X, un par ligne.
 La taille du vecteur X est limitée à 1000 éléments. Le tableau X en entrée est
-ni avec la valeur −1, qui ne fait pas partie du tableau. Description de la sortie
+fini avec la valeur −1, qui ne fait pas partie du tableau. Description de la sortie
 (OUT) : 0 ou 1. Observation : chaque ligne achée sera terminée par deux
 caractères (CR et LF), correspondant à la chaine "\r\n".
 */

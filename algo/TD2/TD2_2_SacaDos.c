@@ -15,6 +15,12 @@ int main(){
                 scanf("%d", &tObjets[nObjets]);
                 nObjets++;
         }while(tObjets[nObjets-1] != -1);
+
+        // for(int i=0; i<nObjets; i++)
+        // {
+        //         printf("%d\n", tObjets[i]);
+        // }
+
         nObjets -= 1;
         int tRes[tailleSac+1];
         tRes[0] = 1;
