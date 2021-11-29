@@ -29,11 +29,11 @@ int main(){
 
     int L[nbObjet][capacite+1];
 
-    for(int i = 0; i < capacite+1; i++)
+    for(int i = 1; i < capacite+1; i++)
     {
         L[0][i] = 0;
     }
-    for(int i = 1; i < nbObjet; i++)
+    for(int i = 0; i < nbObjet; i++)
     {
         L[i][0] = 1;
     }
@@ -51,11 +51,13 @@ int main(){
     {
         for(j = 1; j < capacite+1; j++)
         {
-            if((L[i-1][j] == 1) || (j - tabObjet[i]) >= 0 && L[i-1][j-tabObjet[i]] == 1)
+            if((L[i-1][j] == 1) || ((j - tabObjet[i-1]) >= 0 && L[i-1][j-tabObjet[i-1]] == 1))
             {
-                    L[i][j] = 1;
+                L[i][j] = 1;
+            }else 
+            {
+                L[i][j] = 0;
             }
-        
         }
     }
 
@@ -74,5 +76,5 @@ int main(){
     }else {
         printf("NON\r\n");
     }
-
+    return 0;
 }
