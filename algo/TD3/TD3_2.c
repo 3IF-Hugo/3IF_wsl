@@ -24,7 +24,8 @@ La ligne de sortie sera finalisée par un retour à la ligne de type "\r\n".
 int nbChemin(int arrGrid[MaxN][MaxN], int size)
 {
     arrGrid[0][0] = 1;
-    for(int i = 1; i <size; i++)
+    int i,j;
+    for(i = 1; i <size; i++)
     {
         if(arrGrid[0][i] != -1)
         {
@@ -36,7 +37,7 @@ int nbChemin(int arrGrid[MaxN][MaxN], int size)
         }
     }
 
-    for(int i = 1; i <size; i++)
+    for(i = 1; i <size; i++)
     {
         if(arrGrid[i][0] != -1)
         {
@@ -48,9 +49,9 @@ int nbChemin(int arrGrid[MaxN][MaxN], int size)
         }
     }
 
-    for(int i = 1; i<size; i++)
+    for(i = 1; i<size; i++)
     {
-        for(int j = 1; j<size; j++)
+        for(j = 1; j<size; j++)
         {
             if(arrGrid[i][j] != -1)
             {
@@ -71,14 +72,14 @@ int nbChemin(int arrGrid[MaxN][MaxN], int size)
             }
         }
     }
-    for (int nPosI = 0; nPosI < size; nPosI++) 
-    {
-		for (int nPosJ = 0; nPosJ < size; nPosJ++) 
-        {
-            printf("%d ", arrGrid[nPosI][nPosJ]);
-        }
-        printf("\n");
-    }
+    // for (int nPosI = 0; nPosI < size; nPosI++) 
+    // {
+	// 	for (int nPosJ = 0; nPosJ < size; nPosJ++) 
+    //     {
+    //         printf("%d ", arrGrid[nPosI][nPosJ]);
+    //     }
+    //     printf("\n");
+    // }
     return arrGrid[size-1][size-1];
 }
 
@@ -89,30 +90,33 @@ int main(){
 	int arrGrid[100][100];
 	char temp;
     int nbchemin=0;
+    int nPosI;
+    int nPosJ;
 
-	for (int nPosI = 0; nPosI < n; nPosI++) {
-		for (int nPosJ = 0; nPosJ < n; nPosJ++) {
+	for (nPosI = 0; nPosI < n; nPosI++) {
+		for (nPosJ = 0; nPosJ < n; nPosJ++) {
 			scanf("%d%c", &arrGrid[nPosI][nPosJ], &temp);
 		}
 	}
 
-    for (int nPosI = 0; nPosI < n; nPosI++) 
-    {
-		for (int nPosJ = 0; nPosJ < n; nPosJ++) 
-        {
-            printf("%d ", arrGrid[nPosI][nPosJ]);
-        }
-        printf("\n");
-    }
-    printf("----");
-    printf("\n");
+    // for (int nPosI = 0; nPosI < n; nPosI++) 
+    // {
+	// 	for (int nPosJ = 0; nPosJ < n; nPosJ++) 
+    //     {
+    //         printf("%d ", arrGrid[nPosI][nPosJ]);
+    //     }
+    //     printf("\n");
+    // }
+    // printf("----");
+    // printf("\n");
 
     nbchemin = nbChemin(arrGrid, n);
 
     if(nbchemin==-1)
     {
-        nbchemin == 0;
+        nbchemin = 0;
     }
 
     printf("%d\r\n", nbchemin);
+    return 0;
 }
