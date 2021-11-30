@@ -17,23 +17,25 @@ int main()
     int pdsRouges[nbRouges];
     int pdsBleus[nbBleus];
 
-    for(int i = 0; i<nbRouges; i++)
+    int i;
+
+    for(i = 0; i<nbRouges; i++)
     {
         fscanf(stdin,"%d",&pdsRouges[i]);
     }
 
-    for(int i = 0; i<nbBleus; i++)
+    for(i = 0; i<nbBleus; i++)
     {
         fscanf(stdin,"%d",&pdsBleus[i]);
     }
 
-    for(int i = 0; i<nbRouges; i++)
+    for(i = 0; i<nbRouges; i++)
     {
         sumRouges += pdsRouges[i];
     }
     moyRouges = sumRouges/nbRouges;
 
-    for(int i = 0; i<nbBleus; i++)
+    for(i = 0; i<nbBleus; i++)
     {
         sumBleus += pdsBleus[i];
     }

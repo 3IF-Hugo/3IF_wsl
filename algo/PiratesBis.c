@@ -5,17 +5,18 @@ void init(int nbObjet, int capacite, int *resultat, int tab[])
 {
     //Initialisation
     int LB1Ar[nbObjet+1][capacite+1];
-    for(int j = 1; j < capacite+1; j++)
+    int i;
+    int j;
+    for(j = 1; j < capacite+1; j++)
     {
         LB1Ar[0][j] = 0;
     }
 
-    for(int i = 0; i < nbObjet+1; i++)
+    for(i = 0; i < nbObjet+1; i++)
     {
         LB1Ar[i][0] = 1;
     }
 
-    int i,j;
     for(i = 1; i < nbObjet+1; i++)
     {
         for(j = 1; j < capacite+1; j++)
@@ -32,7 +33,7 @@ void init(int nbObjet, int capacite, int *resultat, int tab[])
 
     int resB1Ar = 0;
 
-    for(int i = 1; i < capacite+1; i++)
+    for(i = 1; i < capacite+1; i++)
     {
         if(LB1Ar[nbObjet][i] == 1)
         {
@@ -63,12 +64,12 @@ int main()
     int tabObjetArgent[nbObjetArgent];
     int tabObjetOr[nbObjetOr];
 
-    for(int i = 0; i < nbObjetArgent; i++)
+    for(i = 0; i < nbObjetArgent; i++)
     {
         fscanf(stdin,"%d",&tabObjetArgent[i]);
     }
 
-    for(int i = 0; i < nbObjetOr; i++)
+    for(i = 0; i < nbObjetOr; i++)
     {
         fscanf(stdin,"%d",&tabObjetOr[i]);
     }
