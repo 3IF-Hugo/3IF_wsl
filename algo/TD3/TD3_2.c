@@ -1,7 +1,11 @@
 /*
 Problème 3 : robot (6 points)
 --------------------------------------------------------
-Un robot dois se trouve dans la case (0, 0) correspondant au coin haut-gauche d’une grille carrée de taille NxN. Le robot peut se déplacer vers la droite ou en bas de la grille, dans une case voisine à la case où il se trouve. Quelques cases de la grille peuvent contenir également un obstacle, et dans ce cas le robot ne peut pas se déplacer sur cette case. L’objectif du robot est d’arriver dans la case (N-1, N-1) correspondant au coin bas-droite de la grille. Quel est le nombre de chemins distincts possibles que le robot peut emprunter pour y arriver ?
+Un robot dois se trouve dans la case (0, 0) correspondant au coin haut-gauche d’une grille carrée de taille NxN. 
+Le robot peut se déplacer vers la droite ou en bas de la grille, dans une case voisine à la case où il se trouve. 
+Quelques cases de la grille peuvent contenir également un obstacle, et dans ce cas le robot ne peut pas se déplacer sur cette case. 
+L’objectif du robot est d’arriver dans la case (N-1, N-1) correspondant au coin bas-droite de la grille. 
+Quel est le nombre de chemins distincts possibles que le robot peut emprunter pour y arriver ?
 
 Format en entrée
 ----------------
@@ -89,7 +93,7 @@ int main(){
 	scanf("%d", &n);
 	int arrGrid[100][100];
 	char temp;
-    int nbchemin=0;
+    int nbchemin = 0;
     int nPosI;
     int nPosJ;
 
