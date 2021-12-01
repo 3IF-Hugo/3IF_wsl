@@ -50,7 +50,8 @@ int main()
     {
         for(j = 1; j < N+1; j++)
         {
-            if((L[i-1][j] == 1) || ((j - tabTaches[i-1]) >= 0 && L[i-1][j-tabTaches[i-1]] == 1))
+            if( ((L[i-1][j] == 1) || (L[i-1][j] == 2)) || ((j - tabTaches[i-1]) >= 0 && (L[i-1][j-tabTaches[i-1]] == 1 || L[i-1][j-tabTaches[i-1]] == 2)))
+            //if((L[i-1][j] == 1) || ((j - tabTaches[i-1]) >= 0 && L[i-1][j-tabTaches[i-1]] == 1))
             {
                 L[i][j] = 2;
             }else 
@@ -59,8 +60,9 @@ int main()
             }
         }
     }
-    
-    if(L[nbB][N] == 1)
+
+        
+    if( (L[nbB][N] == 2) || (L[nbB][N] == 1) )
     {
         printf("%d\r\n", res);
         return 0;
@@ -70,7 +72,7 @@ int main()
     {
         for(j = 1; j < N+1; j++)
         {
-            if((L[i-1][j] == 1) || ((j - tabTaches[i-1]) >= 0 && (L[i-1][j-tabTaches[i-1]] == 1 || L[i-1][j-tabTaches[i-1]] == 2)))
+            if(((L[i-1][j] == 1) || (L[i-1][j] == 2)) || ((j - tabTaches[i-1]) >= 0 && (L[i-1][j-tabTaches[i-1]] == 1 || L[i-1][j-tabTaches[i-1]] == 2)))
             {
                 L[i][j] = 1;
             }else 
@@ -80,11 +82,23 @@ int main()
         }
     }
 
+    // //affichage debug
+    // printf("\n");
+    // for(i=0; i<nbTaches+1; i++)
+    // {
+    //     for(j=0; j < N+1; j++)
+    //     {
+    //         printf("%d ", L[i][j]);
+    //     }
+    //     printf("\n");
+    // }
+
     if(L[nbTaches][N] == 1)
     {
         res++;
         i = nbTaches;
         j = N;
+        //printf("il faut égale à 2 : %d\n", L[i-1][j-tabTaches[i-1]]);
         while(i != 0)
         {
             if(L[i-1][j] == 0 && ((j - tabTaches[i-1]) >= 0 && L[i-1][j-tabTaches[i-1]] == 1))
@@ -98,6 +112,12 @@ int main()
                 break;
             }else if((j - tabTaches[i-1]) >= 0 && L[i-1][j-tabTaches[i-1]] == 2)
             {
+                printf("%d\r\n", res);
+                return 0;
+            }
+            if(j == 0)
+            {
+                res--;
                 printf("%d\r\n", res);
                 return 0;
             }
