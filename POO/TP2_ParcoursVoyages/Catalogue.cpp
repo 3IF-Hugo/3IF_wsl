@@ -13,15 +13,9 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include <cstring>
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
-// #include "Trajet.h"
-// #include "TrajetSimple.h"
-// #include "Element.h"
-// #include "LinkedList.h"
-// #include "TrajetCompose.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -29,6 +23,8 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 void Catalogue::AjouterTrajetSimple ( const char* villeDepart, const char* villeArrivee, const char* moyenTransport )
+// Algorithme :
+//          Crée puis ajoute un nouveau trajet simple dans le catalogue de trajets
 {
     TrajetSimple *nouveauTrajet = new TrajetSimple ( villeDepart, villeArrivee, moyenTransport );
     // nouveauTrajet->Afficher();
@@ -36,6 +32,9 @@ void Catalogue::AjouterTrajetSimple ( const char* villeDepart, const char* ville
 } //----- Fin de Méthode
 
 TrajetCompose* Catalogue::AjouterTrajetCompose ( const char* villeDepart, const char* villeArrivee )
+// Algorithme :
+//          Crée puis ajoute un nouveau trajet composé dans le catalogue de trajets.
+//          Retourne le trajet créé. 
 {
     TrajetCompose *nouveauTrajet = new TrajetCompose ( villeDepart, villeArrivee );
     catalogueTrajet->ajouter ( nouveauTrajet );
@@ -43,6 +42,8 @@ TrajetCompose* Catalogue::AjouterTrajetCompose ( const char* villeDepart, const 
 } //----- Fin de Méthode
 
 void Catalogue::AjouterSousTrajetSimple(const char* villeDepart, const char* villeArrivee, const char* moyenTransport, TrajetCompose *unTrajetComp)
+// Algorithme :
+//          Crée puis ajoute un nouveau trajet simple dans le trajet composé correspondant.
 {
     TrajetSimple *nouveauTrajet = new TrajetSimple ( villeDepart, villeArrivee, moyenTransport );
     unTrajetComp->ajouter(nouveauTrajet);
@@ -54,6 +55,8 @@ void Catalogue::Afficher()
 }
 
 void Catalogue::Rechercher(const char* depart, const char* arrivee)
+// Algorithme :
+//          Crée un trajet avec les paramètres de recherche puis recherche ce trajet dans le catalogue
 {
     Trajet *trajetRecherche = new Trajet(depart, arrivee);
     catalogueTrajet->Rechercher(trajetRecherche);
@@ -86,7 +89,6 @@ Catalogue::Catalogue ( )
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-
 catalogueTrajet = new LinkedList();
 } //----- Fin de Catalogue
 
@@ -100,9 +102,4 @@ Catalogue::~Catalogue ( )
 #endif
 delete catalogueTrajet;
 } //----- Fin de ~Catalogue
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
 

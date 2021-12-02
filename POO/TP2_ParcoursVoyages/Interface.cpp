@@ -21,15 +21,13 @@ using namespace std;
 
 //----------------------------------------------- Déclaration des méthodes
 
-void Ajouter_trajet_simple(Catalogue *catalogueAcreer);
+void Ajouter_trajet_simple(Catalogue *catalogueInput);
 
-TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueAcreer);
+TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueInput);
 
-void Ajouter_sous_trajet_simple(Catalogue *catalogueAcreer, TrajetCompose *unTrajet);
+void Ajouter_sous_trajet_simple(Catalogue *catalogueInput, TrajetCompose *unTrajet);
 
 void Rechercher_trajet(Catalogue *catalogueRecherche);
-
-//void Afficher(Catalogue *catalogueAcreer);
 
 //------------------------------------------------ Définition des méthodes
 int main()
@@ -97,7 +95,14 @@ int main()
     return 0;
 }
 
-void Ajouter_trajet_simple(Catalogue *catalogueAcreer)
+void Ajouter_trajet_simple(Catalogue *catalogueInput)
+/* Méthode pour ajouter un trajet simple à partir du clavier :
+        @param Catalogue* : le catalogue dans lequel on veut ajouter ce trajet
+        @read1 char* : ville de départ
+        @read2 char* : ville d'arrivée
+        @read3 char* : moyen de transport
+        @call AjouterTrajetSimple : méthode de <Catalogue> 
+*/
 {
     char *lecture = new char[100];
 
@@ -119,7 +124,7 @@ void Ajouter_trajet_simple(Catalogue *catalogueAcreer)
     char moyenTransport[sizeof(lecture)+1];
     strcpy(moyenTransport, lecture);
 
-    catalogueAcreer->AjouterTrajetSimple(villeDepart, villeArr, moyenTransport);
+    catalogueInput->AjouterTrajetSimple(villeDepart, villeArr, moyenTransport);
     
     delete[] lecture;
     // delete[] villeDepart;
@@ -127,7 +132,14 @@ void Ajouter_trajet_simple(Catalogue *catalogueAcreer)
     // delete[] moyenTransport;
 }
 
-TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueAcreer)
+TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueInput)
+/* Méthode pour ajouter un trajet composé à partir du clavier :
+        @param Catalogue* : le catalogue dans lequel on veut ajouter ce trajet
+        @read1 char* : ville de départ globale
+        @read2 char* : ville d'arrivée globale
+        @call AjouterTrajetCompose : méthode de <Catalogue> 
+        @return TrajetCompose* : le trajet composé que l'on vient d'ajouter dans le catalogue
+*/
 {
     char *lecture = new char[100];
 
@@ -145,10 +157,18 @@ TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueAcreer)
     
     delete[] lecture;
 
-    return catalogueAcreer->AjouterTrajetCompose(villeDepart, villeArr);
+    return catalogueInput->AjouterTrajetCompose(villeDepart, villeArr);
 }
 
-void Ajouter_sous_trajet_simple(Catalogue *catalogueAcreer, TrajetCompose* unTrajet)
+void Ajouter_sous_trajet_simple(Catalogue *catalogueInput, TrajetCompose* unTrajet)
+/* Méthode pour ajouter un trajet simple faisant parti d'un trajet composé à partir du clavier :
+        @param1 Catalogue* : le catalogue dans lequel on veut ajouter ce trajet
+        @param2 TrajetCompose* : le trajet composé dans lequel on veut ajouter une étape
+        @read1 char* : ville de départ
+        @read2 char* : ville d'arrivée
+        @read3 char* : moyen de transport
+        @call AjouterSousTrajetSimple : méthode de <Catalogue> 
+*/
 {
     char *lecture = new char[100];
 
@@ -170,7 +190,7 @@ void Ajouter_sous_trajet_simple(Catalogue *catalogueAcreer, TrajetCompose* unTra
     char moyenTransport[sizeof(lecture)+1];
     strcpy(moyenTransport, lecture);
 
-    catalogueAcreer->AjouterSousTrajetSimple(villeDepart, villeArr, moyenTransport, unTrajet);
+    catalogueInput->AjouterSousTrajetSimple(villeDepart, villeArr, moyenTransport, unTrajet);
 
     delete[] lecture;
     // delete[] villeDepart;
@@ -180,6 +200,12 @@ void Ajouter_sous_trajet_simple(Catalogue *catalogueAcreer, TrajetCompose* unTra
 
 
 void Rechercher_trajet(Catalogue *catalogueRecherche)
+/* Méthode pour rechercher un trajet à partir de la ville de départ et d'arrivée (Recherche simple)
+        @param1 Catalogue* : le catalogue dans lequel on veut rechercher un trajet
+        @read1 char* : ville de départ
+        @read2 char* : ville d'arrivée
+        @call Rechercher : méthode de <Catalogue>
+*/
 {
     char *lecture = new char[100];
 

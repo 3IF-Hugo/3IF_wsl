@@ -32,41 +32,46 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-   void AjouterTrajetSimple ( const char* villeDepart, const char* villeArrivee, const char* moyenTransport );
+    void AjouterTrajetSimple ( const char* villeDepart, const char* villeArrivee, const char* moyenTransport );
+    /* Méthode pour ajouter un trajet simple :
+        @param1 const char* : ville de départ
+        @param2 const char* : ville d'arrivée
+        @param3 const char* : moyen de transport
+    */
 
-  TrajetCompose* AjouterTrajetCompose ( const char* villeDepart, const char* villeArrivee );
+    TrajetCompose* AjouterTrajetCompose ( const char* villeDepart, const char* villeArrivee );
+    /* Méthode pour ajouter un trajet composé :
+        @param1 const char* : ville de départ globale
+        @param2 const char* : ville d'arrivée globale
+        @return TrajetCompose* : le trajet composé qui vient d'être créé et ajouté dans le catalogue
+    */
 
     void AjouterSousTrajetSimple(const char* villeDepart, const char* villeArrivee, const char* moyenTransport, TrajetCompose *unTrajetComp);
+    /* Méthode pour ajouter une étape à un trajet composé :
+        @param1 const char* : ville de départ de l'étape
+        @param2 const char* : ville d'arrivée de l'étape
+        @param3 const char* : moyen de transport
+        @param4 TrajetCompose* : le trajet composé dans lequel ajouter l'étape
+    */
 
     void Rechercher(const char* depart, const char* arrivee);
+    /* Méthode pour rechercher un trajet :
+        @param1 const char* : ville de départ
+        @param2 const char* : ville d'arrivée
+    */
 
-   void Afficher();
+    void Afficher();
+
 //------------------------------------------------- Surcharge d'opérateurs
     Catalogue & operator = ( const Catalogue & unCatalogue );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
+ 
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( const Catalogue & unCatalogue );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
+    // Constructeur de copie
+ 
     Catalogue ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+    
     virtual ~Catalogue ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE
 
@@ -76,8 +81,6 @@ protected:
 //----------------------------------------------------- Attributs protégés
 LinkedList *catalogueTrajet;
 };
-
-//-------------------------------- Autres définitions dépendantes de <Catalogue>
 
 #endif // Catalogue_H
 
