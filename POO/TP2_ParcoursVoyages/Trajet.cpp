@@ -6,7 +6,7 @@
     e-mail               : robin.vote@insa-lyon.fr et hugo.grel@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
+//---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
@@ -16,29 +16,14 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
-
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
 void Trajet::Afficher() const
-// Algorithme :
-//
 {
     cout << "Trajet de " << villeDepart << " à " << villeArrivee << endl;
-    /*
-    for(long unsigned int i=0; i < strlen(villeDepart); i++)
-    {
-        cout << villeDepart[i];
-    }
-    cout << endl;
-    for(long unsigned int i=0; i < strlen(villeArrivee); i++)
-    {
-        cout << villeArrivee[i];
-    }
-    cout << endl;
-    */
 } //----- Fin de Méthode
 
 char* Trajet::getVilleDepart()
@@ -62,8 +47,6 @@ char* Trajet::getVilleArrivee()
 
 //-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet ( const Trajet & unTrajet )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Trajet>" << endl;
@@ -71,8 +54,10 @@ Trajet::Trajet ( const Trajet & unTrajet )
 } //----- Fin de Trajet (constructeur de copie)
 
 Trajet::Trajet ( const char *villeDep, const char *villeArr)
-// Algorithme :
-//
+/* Constructeur de Trajet
+        @param1 const char* : ville de départ
+        @param2 const char* : ville d'arrivée
+*/
 {
     #ifdef MAP
         cout << "Appel au constructeur de <Trajet>" << endl;
@@ -84,8 +69,6 @@ Trajet::Trajet ( const char *villeDep, const char *villeArr)
 } //----- Fin du constructeur de Trajet
 
 Trajet::Trajet ( )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
@@ -95,16 +78,13 @@ Trajet::Trajet ( )
 } //----- Fin de Trajet
 
 Trajet::~Trajet ( )
-// Algorithme :
-//
+// Destructeur de Trajet
 {
     #ifdef MAP
         cout << "Appel au destructeur de <Trajet>" << endl;
     #endif
     delete [] villeDepart;
     delete [] villeArrivee;
-} //----- Fin de ~Trajet
-//------------------------------------------------------------------ PRIVE
+} //--- Fin de ~Trajet
 
-//----------------------------------------------------- Méthodes protégées
 

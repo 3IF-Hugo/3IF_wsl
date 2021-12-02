@@ -18,8 +18,12 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetCompose>
-//
-//
+//      Classe fille de Trajet.
+//      Permet de créer des trajets composés sous la forme d'un enchainement
+//      de trajets simples.
+//      Elle permet l'affichage des composantes d'un trajet composé sous la
+//      forme de la ville de départ et d'arrivée globale puis la composition
+//      des trajets simples.
 //------------------------------------------------------------------------
 
 class TrajetCompose : public Trajet
@@ -30,22 +34,9 @@ public:
 //----------------------------------------------------- Méthodes publiques
     void ajouter (Trajet *unTrajet);
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    //          @param Trajet* : un trajet
 
     void Afficher () const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //------------------------------------------------- Surcharge d'opérateurs
     TrajetCompose & operator = ( const TrajetCompose & unTrajetCompose );
@@ -57,23 +48,15 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetCompose (const char *villeDep, const char *villeArr);
-
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+    // Mode d'emploi :
+    //          @param1 const char* : ville de départ
+    //          @param2 const char* : ville d'arrivée
+    //          @using constructeur de <Trajet>
 
     TrajetCompose ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     virtual ~TrajetCompose ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    //Destructeur de <TrajetCompose>
 
 //------------------------------------------------------------------ PRIVE
 
@@ -83,8 +66,6 @@ protected:
 //----------------------------------------------------- Attributs protégés
 LinkedList *list;
 };
-
-//---------------------- Autres définitions dépendantes de <TrajetCompose>
 
 #endif // TrajetCompose_H
 

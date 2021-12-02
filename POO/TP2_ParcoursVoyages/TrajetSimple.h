@@ -19,8 +19,10 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetSimple>
-//
-//
+//      Classe fille de Trajet.
+//      Cette classe possède un attribut de plus que Trajet : 
+//      le moyen de transport.
+//      Elle permet l'affichage des composantes d'un trajet simple.
 //------------------------------------------------------------------------
 
 class TrajetSimple : public Trajet
@@ -30,11 +32,6 @@ class TrajetSimple : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     void Afficher() const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //------------------------------------------------- Surcharge d'opérateurs
    /*
@@ -47,27 +44,20 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    TrajetSimple (const char *villeDep, const char *villeArr, const char* moyTrans);
-
     TrajetSimple ( const TrajetSimple & unTrajetSimple );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+    // Constructeur de copie
 
-    
-    TrajetSimple ( );
+    TrajetSimple (const char *villeDep, const char *villeArr, const char* moyTrans);
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    
+    //          @param1 const char* : ville de départ
+    //          @param2 const char* : ville d'arrivée
+    //          @param3 const char* : moyen de transport
+    //          @using constructeur de <Trajet>
+        
+    TrajetSimple ( );
 
     virtual ~TrajetSimple ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    //Destructeur de <TrajetSimple>
 
 //------------------------------------------------------------------ PRIVE
 
@@ -78,8 +68,6 @@ protected:
 char *moyenTransport;
 
 };
-
-//-------------------------------- Autres définitions dépendantes de <TrajetSimple>
 
 #endif // TrajetSimple_H
 

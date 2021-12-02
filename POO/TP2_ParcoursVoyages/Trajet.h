@@ -18,8 +18,9 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
-//
-//
+//      Classe mère de l'arbre d'héritage des trajets.
+//      Elle permet d'afficher les composantes du trajet
+//      Elle permet d'accéder aux attributs en cas de besoin
 //------------------------------------------------------------------------
 
 class Trajet
@@ -29,14 +30,13 @@ class Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     virtual void Afficher () const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     char* getVilleDepart();
+    //Méthode qui renvoie la ville de départ.
 
     char* getVilleArrivee();
+    //Méthode qui renvoie la ville d'arrivée
+
 //------------------------------------------------- Surcharge d'opérateurs
     /*
     Trajet & operator = ( const Trajet & unTrajet );
@@ -47,22 +47,20 @@ public:
 */
 
 //-------------------------------------------- Constructeurs - destructeur
-    Trajet ( const char* villeDep, const char* villeArr );
-
     Trajet ( const Trajet & unTrajet );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    
-    Trajet ( );
+    Trajet ( const char* villeDep, const char* villeArr );
     // Mode d'emploi :
-    //
+    //          @param1 const char* : ville de départ
+    //          @param2 const char* : ville d'arrivée
     // Contrat :
     //
-    
-    
+
+    Trajet ( );
 
     virtual ~Trajet ( );
     // Mode d'emploi :
@@ -78,10 +76,7 @@ protected:
 //----------------------------------------------------- Attributs protégés
 char *villeDepart;
 char *villeArrivee;
-
 };
-
-//-------------------------------- Autres définitions dépendantes de <Trajet>
 
 #endif // Trajet_H
 

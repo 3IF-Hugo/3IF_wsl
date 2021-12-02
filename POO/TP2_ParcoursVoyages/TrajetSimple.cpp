@@ -6,7 +6,7 @@
     e-mail               : robin.vote@insa-lyon.fr et hugo.grel@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ------------
+//-- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
@@ -25,18 +25,8 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 void TrajetSimple::Afficher() const
-// Algorithme :
-//
 {
     cout << "Trajet de " << villeDepart << " à " << villeArrivee << " en " << moyenTransport << endl;
-    /*
-    Trajet::Afficher();
-    for(long unsigned int i=0; i < strlen(moyenTransport); i++)
-    {
-        cout << moyenTransport[i];
-    }
-    cout << endl;
-    */
 } //----- Fin de Méthode
 
 
@@ -51,8 +41,6 @@ void TrajetSimple::Afficher() const
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
@@ -60,18 +48,21 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
 } //----- Fin de TrajetSimple (constructeur de copie)
 
 TrajetSimple::TrajetSimple (const char *villeDep, const char *villeArr, const char *moyTrans) : Trajet(villeDep, villeArr)
+/* Constructeur de <TrajetSimple>
+        @param1 const char* : ville de départ
+        @param2 const char* : ville d'arrivée
+        @param3 const char* : moyen de transport
+        @using constructeur de <Trajet>
+*/
 {
     #ifdef MAP
         cout << "Appel au constructeur de <TrajetSimple>" << endl;
     #endif
-    //Trajet(villeDep, villeArr);
     this->moyenTransport = new char [strlen(moyTrans) + 1];
     strcpy(moyenTransport, moyTrans);
 } //----- Fin du constructeur de TrajetSimple
 
 TrajetSimple::TrajetSimple ( ) : Trajet()
-// Algorithme :
-//
 {
     #ifdef MAP
         cout << "Appel au constructeur de <TrajetSimple>" << endl;
@@ -87,9 +78,4 @@ TrajetSimple::~TrajetSimple ( )
     #endif
     delete [] moyenTransport;
 } //----- Fin de ~TrajetSimple
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
 
