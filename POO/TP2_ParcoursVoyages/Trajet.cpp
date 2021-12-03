@@ -87,4 +87,6 @@ Trajet::~Trajet ( )
     delete [] villeArrivee;
 } //--- Fin de ~Trajet
 
+//un commentaire
+
 
