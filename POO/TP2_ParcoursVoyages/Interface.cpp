@@ -29,6 +29,8 @@ void Ajouter_sous_trajet_simple(Catalogue *catalogueInput, TrajetCompose *unTraj
 
 void Rechercher_trajet(Catalogue *catalogueRecherche);
 
+void Rechercher_trajet_avance(Catalogue *catalogueRecherche);
+
 //------------------------------------------------ Définition des méthodes
 int main()
 {
@@ -39,7 +41,8 @@ int main()
         cout << "\t1: Ajouter un trajet simple" << endl;
         cout << "\t2: Ajouter un trajet composé" << endl;
         cout << "\t3: Rechercher un trajet" << endl;
-        cout << "\t4: Afficher" << endl;
+        cout << "\t4: Recherche avancée d'un trajet" << endl;
+        cout << "\t5: Afficher" << endl;
         cout << "\t0: quitter" << endl;
 		
         int choix;
@@ -81,7 +84,9 @@ int main()
 			case 3:
 				Rechercher_trajet(notreCatalogue);
 				break;
-            case 4: 
+            case 4:
+                Rechercher_trajet_avance(notreCatalogue);
+            case 5: 
 				notreCatalogue->Afficher();
 				break;
 			default:
@@ -225,4 +230,33 @@ void Rechercher_trajet(Catalogue *catalogueRecherche)
     catalogueRecherche->Rechercher(villeDepart, villeArr);
 
     delete[] lecture;
+}
+
+void Rechercher_trajet_avance(Catalogue *catalogueRecherche)
+/* Méthode pour rechercher un trajet à partir de la ville de départ et d'arrivée (Recherche avancée)
+        @param1 Catalogue* : le catalogue dans lequel on veut rechercher un trajet
+        @read1 char* : ville de départ
+        @read2 char* : ville d'arrivée
+        @call Rechercher : méthode de <Catalogue>
+*/
+{
+    char *lecture = new char[100];
+
+    cout << "Veuillez saisir la ville de départ et d'arrivée :" <<endl;
+    cout << "Ville de départ : ";
+    cin >> lecture;
+    //char* villeDepart = new char [sizeof(lecture)+1];
+    char villeDepart[sizeof(lecture)+1];
+    strcpy(villeDepart, lecture);
+
+    cout << "Ville d'arrivée : ";
+    cin >> lecture;
+    //char* villeArr = new char [sizeof(lecture)+1];
+    char villeArr[sizeof(lecture)+1];
+    strcpy(villeArr, lecture);
+
+    catalogueRecherche->RechercheAvancee(villeDepart, villeArr);
+
+    delete[] lecture;
+
 }

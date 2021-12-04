@@ -30,7 +30,7 @@ void TrajetCompose::ajouter (Trajet *unTrajet)
 // Algorithme :
 //          Ajoute un nouveau trajet dans le catalogue de trajets
 {
-    list->ajouter(unTrajet);
+    list->ajouter(unTrajet, 0);
 } //----- Fin de Méthode
 
 void TrajetCompose::Afficher() const

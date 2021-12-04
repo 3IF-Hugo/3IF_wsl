@@ -19,9 +19,9 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Trajet>
-//
-//
+// Rôle de la classe <LinkedList>
+//      Permet de crée une liste de trajets simples ou composés
+//      Permet l'affichage des trajets de la liste
 //------------------------------------------------------------------------
 
 class LinkedList
@@ -31,29 +31,25 @@ class LinkedList
 public:
 //----------------------------------------------------- Méthodes publiques
 
-    void ajouter(Trajet *unTrajet);
+    void ajouter(Trajet *unTrajet, int tri);
     // Mode d'emploi :
-    //
+    //      @param1 Trajet* : un trajet
+    //      @param2 int : ajout trié ou non
     // Contrat :
     //
 
     void afficher();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     void Rechercher(Trajet *unTrajet);
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    //      @param1 Trajet* : un trajet
+
+    //void RechercheAvancee(const char* depart, const char* arrivee, int init, LinkedList * listeTrajet);
+    // Mode d'emploi :
+    //      @param1 const char* : ville de départ
+    //      @param2 const char* : ville d'arrivée
+    //      @param3 int : déjà initialisé ou non
+    //      @param4 LinkedList* : liste des trajets
 
 //------------------------------------------------- Surcharge d'opérateurs
     //Trajet & operator = ( const Trajet & unTrajet );
@@ -66,22 +62,8 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     LinkedList ();
 
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    //LinkedList ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
     virtual ~LinkedList ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Destructeur de <LinkedList>
 
 //------------------------------------------------------------------ PRIVE
 

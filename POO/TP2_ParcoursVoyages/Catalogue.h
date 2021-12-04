@@ -60,6 +60,12 @@ public:
         @param2 const char* : ville d'arrivée
     */
 
+   void RechercheAvancee(const char* depart, const char* arrivee);
+    /* Méthode pour rechercher un trajet avec la possibilité de constituer un nouveau trajet à partir de ceux existants:
+        @param1 const char* : ville de départ
+        @param2 const char* : ville d'arrivée
+    */
+
     void Afficher();
 
 //------------------------------------------------- Surcharge d'opérateurs

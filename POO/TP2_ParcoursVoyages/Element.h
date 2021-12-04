@@ -30,34 +30,16 @@ class Element
 public:
 //----------------------------------------------------- Méthodes publiques
     Trajet * getTrajet ();
-    //Mode d'emploi :
-    //
-    //Contrat :
-    //
 
     void setTrajet (Trajet *unTrajet);
     //Mode d'emploi :
-    //
-    //Contrat :
-    //
+    //      @param1 Trajet*: un trajet 
 
     Element * getElemNext ();
-    //Mode d'emploi :
-    //
-    //Contrat :
-    //
 
     void setElemNext (Element *unElem);
     //Mode d'emploi :
-    //
-    //Contrat :
-    //
-
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    //      @param1 Element* : l'élément suivant
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -70,23 +52,12 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
     Element ( Trajet *unTrajet);
-
     // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+    //      @param1 Trajet* : un trajet
 
     Element ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     virtual ~Element ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE
 

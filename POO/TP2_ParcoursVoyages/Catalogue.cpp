@@ -28,7 +28,7 @@ void Catalogue::AjouterTrajetSimple ( const char* villeDepart, const char* ville
 {
     TrajetSimple *nouveauTrajet = new TrajetSimple ( villeDepart, villeArrivee, moyenTransport );
     // nouveauTrajet->Afficher();
-    catalogueTrajet->ajouter ( nouveauTrajet );
+    catalogueTrajet->ajouter ( nouveauTrajet, 1);
 } //----- Fin de Méthode
 
 TrajetCompose* Catalogue::AjouterTrajetCompose ( const char* villeDepart, const char* villeArrivee )
@@ -37,7 +37,7 @@ TrajetCompose* Catalogue::AjouterTrajetCompose ( const char* villeDepart, const 
 //          Retourne le trajet créé. 
 {
     TrajetCompose *nouveauTrajet = new TrajetCompose ( villeDepart, villeArrivee );
-    catalogueTrajet->ajouter ( nouveauTrajet );
+    catalogueTrajet->ajouter ( nouveauTrajet, 1 );
     return nouveauTrajet;
 } //----- Fin de Méthode
 
@@ -61,6 +61,16 @@ void Catalogue::Rechercher(const char* depart, const char* arrivee)
     Trajet *trajetRecherche = new Trajet(depart, arrivee);
     catalogueTrajet->Rechercher(trajetRecherche);
     delete trajetRecherche;
+}
+
+void Catalogue::RechercheAvancee(const char* depart, const char* arrivee)
+// Algorithme :
+//          Crée un trajet avec les paramètres de recherche puis recherche ce trajet dans le catalogue
+{
+    //LinkedList * resultat = new LinkedList();
+    //catalogueTrajet->RechercheAvancee(depart, arrivee, 0, resultat);
+    //resultat->afficher();
+    //delete resultat;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs

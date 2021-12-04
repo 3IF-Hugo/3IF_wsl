@@ -24,38 +24,31 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 Trajet * Element::getTrajet()
 // Algorithme :
-//
+//      Renvoie le trajet correspondant à l'élément
 {
     return trajet;
-} //----- Fin de Méthode
+} //----- Fin de getTrajet
 
 void Element::setTrajet (Trajet *unTrajet)
 // Algorithme :
-//
+//      Modifie le trajet correspondant à l'élément
 {
     trajet = unTrajet;
-} //----- Fin de Méthode
+} //----- Fin de setTrajet  
 
 Element * Element::getElemNext()
 // Algorithme :
-//
+//      Renvoie l'élément suivant
 {
     return elemNext;
-} //----- Fin de Méthode
+} //----- Fin de getElemNext
 
 void Element::setElemNext (Element *unElem)
 // Algorithme :
-//
+//      Modifie l'élément suivant
 {
     elemNext = unElem;
-} //----- Fin de Méthode
-
-// type Element::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
+} //----- Fin de setElemNext
 
 //------------------------------------------------- Surcharge d'opérateurs
 /*Element & Element::operator = ( const Element & unElement )
@@ -69,7 +62,7 @@ void Element::setElemNext (Element *unElem)
 //-------------------------------------------- Constructeurs - destructeur
 Element::Element ( Trajet *unTrajet )
 // Algorithme :
-//
+//      Initialise un élement avec un trajet
 {
     #ifdef MAP
         cout << "Appel au constructeur de <Element>" << endl;
@@ -81,7 +74,7 @@ Element::Element ( Trajet *unTrajet )
 
 Element::Element ( )
 // Algorithme :
-//
+//      Initialise un élement vide
 {
     #ifdef MAP
         cout << "Appel au constructeur de <Element>" << endl;
@@ -93,7 +86,7 @@ Element::Element ( )
 
 Element::~Element ( )
 // Algorithme :
-//
+//      Delete l'élement et son élement suivant s'il existe
 {
     #ifdef MAP
         cout << "Appel au destructeur de <Element>" << endl;
