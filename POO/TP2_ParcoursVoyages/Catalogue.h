@@ -46,6 +46,7 @@ public:
         @return TrajetCompose* : le trajet composé qui vient d'être créé et ajouté dans le catalogue
     */
 
+    //void AjouterSousTrajetSimple(const char* villeArrivee, const char* moyenTransport, TrajetCompose *unTrajetComp);
     void AjouterSousTrajetSimple(const char* villeDepart, const char* villeArrivee, const char* moyenTransport, TrajetCompose *unTrajetComp);
     /* Méthode pour ajouter une étape à un trajet composé :
         @param1 const char* : ville de départ de l'étape
