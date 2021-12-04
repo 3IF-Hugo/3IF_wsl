@@ -53,6 +53,7 @@ Trajet::Trajet ( const Trajet & unTrajet )
 #endif
 } //----- Fin de Trajet (constructeur de copie)
 
+//test
 Trajet::Trajet ( const char *villeDep, const char *villeArr)
 /* Constructeur de Trajet
         @param1 const char* : ville de départ
