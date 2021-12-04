@@ -42,12 +42,10 @@ TrajetCompose* Catalogue::AjouterTrajetCompose ( const char* villeDepart, const 
 } //----- Fin de Méthode
 
 void Catalogue::AjouterSousTrajetSimple(const char* villeDepart, const char* villeArrivee, const char* moyenTransport, TrajetCompose *unTrajetComp)
-//void Catalogue::AjouterSousTrajetSimple(const char* villeArrivee, const char* moyenTransport, TrajetCompose *unTrajetComp)
 // Algorithme :
 //          Crée puis ajoute un nouveau trajet simple dans le trajet composé correspondant.
 {
     TrajetSimple *nouveauTrajet = new TrajetSimple ( villeDepart, villeArrivee, moyenTransport );
-    //TrajetSimple *nouveauTrajet = new TrajetSimple ( villeDepart, villeArrivee, moyenTransport );
     unTrajetComp->ajouter(nouveauTrajet);
 }
 

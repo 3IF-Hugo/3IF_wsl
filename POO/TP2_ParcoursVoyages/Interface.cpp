@@ -176,25 +176,21 @@ TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueInput)
     return catalogueInput->AjouterTrajetCompose(villeDepart, villeArr);
 }
 
-//void Ajouter_sous_trajet_simple(Catalogue *catalogueInput, TrajetCompose* unTrajet)
 void Ajouter_sous_trajet_simple(Catalogue *catalogueInput, TrajetCompose* unTrajet, char* villeDepart, char* villememoire)
 /* Méthode pour ajouter un trajet simple faisant parti d'un trajet composé à partir du clavier :
         @param1 Catalogue* : le catalogue dans lequel on veut ajouter ce trajet
         @param2 TrajetCompose* : le trajet composé dans lequel on veut ajouter une étape
-        @read1 char* : ville de départ
-        @read2 char* : ville d'arrivée
-        @read3 char* : moyen de transport
+        @param3 char* : la ville d'arrivée de l'étape d'avant pour devenir la ville de départ de l'étape en cours
+        @param4 char* : ville dans laquelle on va stocker la ville d'arrivée de cette étape
+        @read1 char* : ville d'arrivée
+        @read2 char* : moyen de transport
         @call AjouterSousTrajetSimple : méthode de <Catalogue> 
 */
 {
     char *lecture = new char[100];
 
-    // cout << "Ville de départ : ";
-    // cin >> lecture;
-    // //char* villeDepart = new char [sizeof(lecture)+1];
-    // char villeDepart[sizeof(lecture)+1];
-    // strcpy(villeDepart, lecture);
     cout << "Ville de départ de l'étape: " << villeDepart << endl;
+
     cout << "Ville d'arrivée de l'étape: ";
     cin >> lecture;
     //char* villeArr = new char [sizeof(lecture)+1];
@@ -214,9 +210,6 @@ void Ajouter_sous_trajet_simple(Catalogue *catalogueInput, TrajetCompose* unTraj
     {
         villememoire[i] = villeArr[i];
     }
-    // delete[] villeDepart;
-    // delete[] villeArr;
-    // delete[] moyenTransport;
 }
 
 
