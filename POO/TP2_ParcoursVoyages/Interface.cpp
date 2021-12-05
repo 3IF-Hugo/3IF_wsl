@@ -97,6 +97,7 @@ int main()
 				break;
             case 4:
                 Rechercher_trajet_avance(notreCatalogue);
+                break;
             case 5: 
 				notreCatalogue->Afficher();
 				break;

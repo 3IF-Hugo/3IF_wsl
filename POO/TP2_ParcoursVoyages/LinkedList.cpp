@@ -133,27 +133,88 @@ void LinkedList::Rechercher(Trajet *unTrajet)
 	}	
 } //----- Fin de Rechercher
 
-/*void LinkedList::RechercheAvancee(const char* depart, const char* arrivee, int init, LinkedList * listeTrajet)
+int LinkedList::RechercheAvancee(const char* depart, const char* arrivee, int init, LinkedList * listeTrajet)
+//Algorithme :
+//      Parcours l'ensemble des trajets disponibles autant de fois que nécessaire pour trouver une succession de trajets
+//      permettant d'aller du depart à l'arrivée voulus si possible
 {
     Element * parcours = elemDebut;
-    int fini = 0;
+    int fini = 0, cpt = 0;                              // fini : 0 si on doit continuer à chercher 1 sinon
+                                                        // cpt : si cpt = 0 après un parcours complet des trajets, on s'arrête
+    //Parcours de la liste des trajets disponibles
     while(parcours != NULL && fini == 0)
     {
-        if(strcmp(parcours->getTrajet()->getVilleDepart(), depart) == 0 && init == 0)
+        //Si on n'a pas encore trouvé de trajet correspondant au départ
+        if(init == 0 && strcmp(parcours->getTrajet()->getVilleDepart(), depart) == 0)
         {
+            //DEBUG parcours->getTrajet()->Afficher(); //
+            //DEBUG cout << "initialisation trouvée" << endl; //
             listeTrajet->ajouter(parcours->getTrajet(), 0);
-        }else if(strcmp(listeTrajet->elemFin->getTrajet()->getVilleArrivee(), parcours->getTrajet()->getVilleDepart()) == 0)
-        {
-            listeTrajet->ajouter(parcours->getTrajet(), 0);
+            init = 1;
+            ++cpt;
             if(strcmp(parcours->getTrajet()->getVilleArrivee(), arrivee) == 0)
             {
+                //DEBUG cout << "fin trouvée" << endl; //
                 fini = 1;
+                break;
             }
-            RechercheAvancee(depart, arrivee, 1, listeTrajet);
+        }
+        if(init == 1 && strcmp(listeTrajet->elemFin->getTrajet()->getVilleArrivee(), parcours->getTrajet()->getVilleDepart()) == 0)
+        {
+            //DEBUG parcours->getTrajet()->Afficher(); //
+            //DEBUG cout << "trajet hors init trouvé" << endl; //
+            listeTrajet->ajouter(parcours->getTrajet(), 0);
+            ++cpt;
+            //DEBUG cout << "compare arrivee " << strcmp(parcours->getTrajet()->getVilleArrivee(), arrivee) << endl; //
+            if(strcmp(parcours->getTrajet()->getVilleArrivee(), arrivee) == 0)
+            {
+                //DEBUG cout << "fin trouvée" << endl; //
+                fini = 1;
+                break;
+            }
         }
         parcours = parcours->getElemNext();
     }
-}*/
+    ///DEBUG cout << "sortie while" << endl; //
+    //DEBUG cout << "verif init : " << init << endl; //
+    //DEBUG cout << "verif fini : " << fini << endl; //
+    //DEBUG cout << "verif cpt : " << cpt << endl; //
+    // Si trajet complet trouvé
+    if(fini == 1)
+    {
+        cout << "Voici le trajet trouvé :" << endl;
+    }
+    // Si on a trouvé des trajets mais pas jusqu'à l'arrivée voulue, on reprend la rechercher depuis le début de la liste
+    if(fini == 0 && cpt > 0)
+    {
+        //DEBUG cout << "C'est reparti pour une recherche" << endl;
+        fini = RechercheAvancee(depart, arrivee, init, listeTrajet);
+    }
+    // Si on n'a trouvé aucun trajet possible, on s'arrête
+    if(cpt == 0 && fini == 0)
+    {
+        cout << "Nous n'avons pas pu trouver votre trajet" << endl;
+    }
+    return fini;
+} //----- Fin de RechercheAvancee
+
+void LinkedList::vider()
+//Algorithme :
+//      Supprime les pointeurs vers les trajets pour tous les éléments de la liste
+{
+    Element *parcours = elemDebut;
+    while(parcours != NULL)
+    {
+        //parcours->getTrajet()->vider();
+        parcours->setTrajet(NULL);
+        parcours = parcours->getElemNext();
+    }
+} //----- Fin de vider
+
+Element * LinkedList::getElemDebut()
+{
+    return elemDebut;
+}
 
 // type LinkedList::Méthode ( LinkedListe des paramètres )
 // Algorithme :

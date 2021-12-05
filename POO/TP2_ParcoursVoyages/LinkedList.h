@@ -40,16 +40,20 @@ public:
 
     void afficher();
 
+    void vider();
+
     void Rechercher(Trajet *unTrajet);
     // Mode d'emploi :
     //      @param1 Trajet* : un trajet
 
-    //void RechercheAvancee(const char* depart, const char* arrivee, int init, LinkedList * listeTrajet);
+    int RechercheAvancee(const char* depart, const char* arrivee, int init, LinkedList * listeTrajet);
     // Mode d'emploi :
     //      @param1 const char* : ville de départ
     //      @param2 const char* : ville d'arrivée
     //      @param3 int : déjà initialisé ou non
     //      @param4 LinkedList* : liste des trajets
+
+    Element * getElemDebut();
 
 //------------------------------------------------- Surcharge d'opérateurs
     //Trajet & operator = ( const Trajet & unTrajet );

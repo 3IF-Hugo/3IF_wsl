@@ -67,10 +67,13 @@ void Catalogue::RechercheAvancee(const char* depart, const char* arrivee)
 // Algorithme :
 //          Crée un trajet avec les paramètres de recherche puis recherche ce trajet dans le catalogue
 {
-    //LinkedList * resultat = new LinkedList();
-    //catalogueTrajet->RechercheAvancee(depart, arrivee, 0, resultat);
-    //resultat->afficher();
-    //delete resultat;
+    LinkedList * resultat = new LinkedList();
+    if(catalogueTrajet->RechercheAvancee(depart, arrivee, 0, resultat))
+    {
+        resultat->afficher();
+    }
+    resultat->vider();
+    delete resultat;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
