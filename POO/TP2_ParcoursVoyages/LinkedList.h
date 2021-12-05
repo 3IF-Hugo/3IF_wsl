@@ -50,10 +50,10 @@ public:
     // Mode d'emploi :
     //      @param1 const char* : ville de départ
     //      @param2 const char* : ville d'arrivée
-    //      @param3 int : déjà initialisé ou non
+    //      @param3 int : premier trajet trouvé ou non
     //      @param4 LinkedList* : liste des trajets
 
-    Element * getElemDebut();
+    //Element * getElemDebut();
 
 //------------------------------------------------- Surcharge d'opérateurs
     //Trajet & operator = ( const Trajet & unTrajet );

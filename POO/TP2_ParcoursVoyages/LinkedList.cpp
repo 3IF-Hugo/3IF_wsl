@@ -211,10 +211,10 @@ void LinkedList::vider()
     }
 } //----- Fin de vider
 
-Element * LinkedList::getElemDebut()
-{
-    return elemDebut;
-}
+// Element * LinkedList::getElemDebut()
+// {
+//     return elemDebut;
+// }
 
 // type LinkedList::Méthode ( LinkedListe des paramètres )
 // Algorithme :
