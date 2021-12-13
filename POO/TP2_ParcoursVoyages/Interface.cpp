@@ -58,6 +58,7 @@ int main()
 				Ajouter_trajet_simple(notreCatalogue);
 				break;
 			case 2: 
+            //Ajout d'un trajet composé (sous menu)
             {
                 TrajetCompose *nouveauTrajet = Ajouter_trajet_compose(notreCatalogue);
                 debut = 1;
@@ -125,28 +126,22 @@ void Ajouter_trajet_simple(Catalogue *catalogueInput)
 
     cout << "Ville de départ : ";
     cin >> lecture;
-    //char* villeDepart = new char [sizeof(lecture)+1];
     char villeDepart[sizeof(lecture)+1];
     strcpy(villeDepart, lecture);
 
     cout << "Ville d'arrivée : ";
     cin >> lecture;
-    //char* villeArr = new char [sizeof(lecture)+1];
     char villeArr[sizeof(lecture)+1];
     strcpy(villeArr, lecture);
 
     cout << "Moyen de transport : ";
     cin >> lecture;
-    //char* moyenTransport = new char [sizeof(lecture)+1];
     char moyenTransport[sizeof(lecture)+1];
     strcpy(moyenTransport, lecture);
 
     catalogueInput->AjouterTrajetSimple(villeDepart, villeArr, moyenTransport);
     
     delete[] lecture;
-    // delete[] villeDepart;
-    // delete[] villeArr;
-    // delete[] moyenTransport;
 }
 
 TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueInput)
@@ -162,13 +157,13 @@ TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueInput)
 
     cout << "Ville de départ : ";
     cin >> lecture;
-    //char* villeDepart = new char [sizeof(lecture)+1];
+
     char villeDepart[sizeof(lecture)+1];
     strcpy(villeDepart, lecture);
 
     cout << "Ville d'arrivée : ";
     cin >> lecture;
-    //char* villeArr = new char [sizeof(lecture)+1];
+
     char villeArr[sizeof(lecture)+1];
     strcpy(villeArr, lecture);
     
@@ -194,13 +189,13 @@ void Ajouter_sous_trajet_simple(Catalogue *catalogueInput, TrajetCompose* unTraj
 
     cout << "Ville d'arrivée de l'étape: ";
     cin >> lecture;
-    //char* villeArr = new char [sizeof(lecture)+1];
+
     char villeArr[sizeof(lecture)+1];
     strcpy(villeArr, lecture);
 
     cout << "Moyen de transport : ";
     cin >> lecture;
-    //char* moyenTransport = new char [sizeof(lecture)+1];
+
     char moyenTransport[sizeof(lecture)+1];
     strcpy(moyenTransport, lecture);
 
@@ -227,13 +222,13 @@ void Rechercher_trajet(Catalogue *catalogueRecherche)
     cout << "Veuillez saisir la ville de départ et d'arrivée :" <<endl;
     cout << "Ville de départ : ";
     cin >> lecture;
-    //char* villeDepart = new char [sizeof(lecture)+1];
+
     char villeDepart[sizeof(lecture)+1];
     strcpy(villeDepart, lecture);
 
     cout << "Ville d'arrivée : ";
     cin >> lecture;
-    //char* villeArr = new char [sizeof(lecture)+1];
+
     char villeArr[sizeof(lecture)+1];
     strcpy(villeArr, lecture);
 
@@ -255,13 +250,13 @@ void Rechercher_trajet_avance(Catalogue *catalogueRecherche)
     cout << "Veuillez saisir la ville de départ et d'arrivée :" <<endl;
     cout << "Ville de départ : ";
     cin >> lecture;
-    //char* villeDepart = new char [sizeof(lecture)+1];
+
     char villeDepart[sizeof(lecture)+1];
     strcpy(villeDepart, lecture);
 
     cout << "Ville d'arrivée : ";
     cin >> lecture;
-    //char* villeArr = new char [sizeof(lecture)+1];
+
     char villeArr[sizeof(lecture)+1];
     strcpy(villeArr, lecture);
 

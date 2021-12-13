@@ -20,10 +20,6 @@ using namespace std;
 #include "Element.h"
 #include "LinkedList.h"
 
-//------------------------------------------------------------- Constantes
-
-//----------------------------------------------------------------- PUBLIC
-
 //----------------------------------------------------- Méthodes publiques
 
 void LinkedList::ajouter ( Trajet *unTrajet, int tri )
@@ -133,6 +129,8 @@ void LinkedList::Rechercher(Trajet *unTrajet)
 	}	
 } //----- Fin de Rechercher
 
+
+// !! Ne fonctionne qu'avec un catalogue de trajets simples !! 
 int LinkedList::RechercheAvancee(const char* depart, const char* arrivee, int init, LinkedList * listeTrajet)
 //Algorithme :
 //      Parcours l'ensemble des trajets disponibles autant de fois que nécessaire pour trouver une succession de trajets
@@ -147,38 +145,30 @@ int LinkedList::RechercheAvancee(const char* depart, const char* arrivee, int in
         //Si on n'a pas encore trouvé de trajet correspondant au départ
         if(init == 0 && strcmp(parcours->getTrajet()->getVilleDepart(), depart) == 0)
         {
-            //DEBUG parcours->getTrajet()->Afficher(); //
-            //DEBUG cout << "initialisation trouvée" << endl; //
             listeTrajet->ajouter(parcours->getTrajet(), 0);
             init = 1;
             ++cpt;
+            //Si on a un trajet direct
             if(strcmp(parcours->getTrajet()->getVilleArrivee(), arrivee) == 0)
             {
-                //DEBUG cout << "fin trouvée" << endl; //
                 fini = 1;
                 break;
             }
         }
+        //Sinon, si on a déjà trouvé le départ et que l'arrivée du dernier trajet trouvé correspond au départ du trajet qu'on regarde
         if(init == 1 && strcmp(listeTrajet->elemFin->getTrajet()->getVilleArrivee(), parcours->getTrajet()->getVilleDepart()) == 0)
         {
-            //DEBUG parcours->getTrajet()->Afficher(); //
-            //DEBUG cout << "trajet hors init trouvé" << endl; //
             listeTrajet->ajouter(parcours->getTrajet(), 0);
             ++cpt;
-            //DEBUG cout << "compare arrivee " << strcmp(parcours->getTrajet()->getVilleArrivee(), arrivee) << endl; //
+            //Si on a trouvé l'arrivée
             if(strcmp(parcours->getTrajet()->getVilleArrivee(), arrivee) == 0)
             {
-                //DEBUG cout << "fin trouvée" << endl; //
                 fini = 1;
                 break;
             }
         }
         parcours = parcours->getElemNext();
     }
-    ///DEBUG cout << "sortie while" << endl; //
-    //DEBUG cout << "verif init : " << init << endl; //
-    //DEBUG cout << "verif fini : " << fini << endl; //
-    //DEBUG cout << "verif cpt : " << cpt << endl; //
     // Si trajet complet trouvé
     if(fini == 1)
     {
@@ -187,7 +177,6 @@ int LinkedList::RechercheAvancee(const char* depart, const char* arrivee, int in
     // Si on a trouvé des trajets mais pas jusqu'à l'arrivée voulue, on reprend la rechercher depuis le début de la liste
     if(fini == 0 && cpt > 0)
     {
-        //DEBUG cout << "C'est reparti pour une recherche" << endl;
         fini = RechercheAvancee(depart, arrivee, init, listeTrajet);
     }
     // Si on n'a trouvé aucun trajet possible, on s'arrête
@@ -211,27 +200,6 @@ void LinkedList::vider()
     }
 } //----- Fin de vider
 
-// Element * LinkedList::getElemDebut()
-// {
-//     return elemDebut;
-// }
-
-// type LinkedList::Méthode ( LinkedListe des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-/*LinkedList & LinkedList::operator = ( const LinkedList & unLinkedList )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-*/
-
-
 //-------------------------------------------- Constructeurs - destructeur
 LinkedList::LinkedList()
 // Algorithme :
@@ -243,19 +211,6 @@ LinkedList::LinkedList()
     elemDebut = NULL;
     elemFin = NULL;
 } //----- Fin du constructeur de LinkedList
-
-
-// LinkedList::LinkedList ( )
-// Algorithme :
-//
-// {
-//     #ifdef MAP
-//         cout << "Appel au constructeur de <LinkedList>" << endl;
-//     #endif
-//     trajet = NULL;
-//     trajetNext = NULL;
-//} //----- Fin du constructeur par défaut de LinkedList
-
 
 LinkedList::~LinkedList ( )
 // Algorithme :

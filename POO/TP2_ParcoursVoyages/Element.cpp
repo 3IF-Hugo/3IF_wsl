@@ -17,8 +17,6 @@ using namespace std;
 #include "Trajet.h"
 #include "Element.h"
 
-//------------------------------------------------------------- Constantes
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -49,15 +47,6 @@ void Element::setElemNext (Element *unElem)
 {
     elemNext = unElem;
 } //----- Fin de setElemNext
-
-//------------------------------------------------- Surcharge d'opérateurs
-/*Element & Element::operator = ( const Element & unElement )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-*/
-
 
 //-------------------------------------------- Constructeurs - destructeur
 Element::Element ( Trajet *unTrajet )
@@ -97,9 +86,3 @@ Element::~Element ( )
         delete elemNext;
     }
 } //----- Fin de ~Element
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-

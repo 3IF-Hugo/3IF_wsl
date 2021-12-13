@@ -12,10 +12,6 @@
 
 //--------------------------------------------------- Interfaces utilisées
 
-//------------------------------------------------------------- Constantes
-
-//------------------------------------------------------------------ Types
-
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
 //      Classe mère de l'arbre d'héritage des trajets.
@@ -30,6 +26,7 @@ class Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     virtual void Afficher () const;
+    //Méthode qui affiche les caractéritiques du trajet
 
     char* getVilleDepart();
     //Méthode qui renvoie la ville de départ.
@@ -37,28 +34,13 @@ public:
     char* getVilleArrivee();
     //Méthode qui renvoie la ville d'arrivée
 
-//------------------------------------------------- Surcharge d'opérateurs
-    /*
-    Trajet & operator = ( const Trajet & unTrajet );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-*/
-
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( const Trajet & unTrajet );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     Trajet ( const char* villeDep, const char* villeArr );
     // Mode d'emploi :
     //          @param1 const char* : ville de départ
     //          @param2 const char* : ville d'arrivée
-    // Contrat :
-    //
 
     Trajet ( );
 

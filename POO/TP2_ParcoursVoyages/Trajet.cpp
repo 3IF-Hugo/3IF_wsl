@@ -16,8 +16,6 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
-//------------------------------------------------------------- Constantes
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -36,15 +34,6 @@ char* Trajet::getVilleArrivee()
     return villeArrivee;
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
-/*Trajet & Trajet::operator = ( const Trajet & unTrajet )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-*/
-
-
 //-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet ( const Trajet & unTrajet )
 {
@@ -53,7 +42,6 @@ Trajet::Trajet ( const Trajet & unTrajet )
 #endif
 } //----- Fin de Trajet (constructeur de copie)
 
-//test
 Trajet::Trajet ( const char *villeDep, const char *villeArr)
 /* Constructeur de Trajet
         @param1 const char* : ville de départ
@@ -72,10 +60,8 @@ Trajet::Trajet ( const char *villeDep, const char *villeArr)
 Trajet::Trajet ( )
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Trajet>" << endl;
+    cout << "Appel au constructeur par défaut de <Trajet>" << endl;
 #endif
-//villeDepart = NULL;
-//villeArrivee = NULL;
 } //----- Fin de Trajet
 
 Trajet::~Trajet ( )

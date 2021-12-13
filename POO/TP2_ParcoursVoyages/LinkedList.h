@@ -22,6 +22,7 @@
 // Rôle de la classe <LinkedList>
 //      Permet de crée une liste de trajets simples ou composés
 //      Permet l'affichage des trajets de la liste
+//      Permet la recherche d'un trajet
 //------------------------------------------------------------------------
 
 class LinkedList
@@ -52,16 +53,9 @@ public:
     //      @param2 const char* : ville d'arrivée
     //      @param3 int : premier trajet trouvé ou non
     //      @param4 LinkedList* : liste des trajets
-
-    //Element * getElemDebut();
-
-//------------------------------------------------- Surcharge d'opérateurs
-    //Trajet & operator = ( const Trajet & unTrajet );
-    // Mode d'emploi :
-    //
+    //      @return int : 1 si la recherche est finie, 0 sinon
     // Contrat :
-    //
-
+    //      Ne fonctionne qu'avec un catalogue de trajets simples
 
 //-------------------------------------------- Constructeurs - destructeur
     LinkedList ();
@@ -72,8 +66,6 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
-
 //----------------------------------------------------- Attributs protégés
 Element *elemDebut;
 Element *elemFin;

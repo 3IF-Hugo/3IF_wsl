@@ -21,8 +21,6 @@ using namespace std;
 #include "LinkedList.h"
 #include "TrajetCompose.h"
 
-//------------------------------------------------------------- Constantes
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -41,15 +39,6 @@ void TrajetCompose::Afficher() const
     cout << "Trajet composé de " << villeDepart << " à " << villeArrivee << " comportant les sous-trajets suivants :" << endl;
     list->afficher();
 } //----- Fin de Méthode
-
-//------------------------------------------------- Surcharge d'opérateurs
-/*TrajetCompose & TrajetCompose::operator = ( const TrajetCompose & unTrajetCompose )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-*/
-
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::TrajetCompose (const char *villeDep, const char *villeArr) : Trajet(villeDep, villeArr)

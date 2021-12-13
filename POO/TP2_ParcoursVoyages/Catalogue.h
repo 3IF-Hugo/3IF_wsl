@@ -22,8 +22,8 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Catalogue>
-// 
-//
+// Crée les trajets et les insère dans une LinkedList
+// Appelle des méthodes de LinkedList pour la recherche de trajet
 //------------------------------------------------------------------------
 
 class Catalogue
@@ -82,7 +82,6 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
 LinkedList *catalogueTrajet;

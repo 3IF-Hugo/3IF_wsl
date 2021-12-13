@@ -19,8 +19,8 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Element>
-//
-//
+// Constitue un maillon de la liste chaînée
+// Contient un trajet et pointe sur l'élément suivant
 //------------------------------------------------------------------------
 
 class Element
@@ -30,25 +30,20 @@ class Element
 public:
 //----------------------------------------------------- Méthodes publiques
     Trajet * getTrajet ();
+    //Mode d'emploi :
+    //      @return Trajet*: le trajet correpsondant à l'élément
 
     void setTrajet (Trajet *unTrajet);
     //Mode d'emploi :
     //      @param1 Trajet*: un trajet 
 
     Element * getElemNext ();
+    //Mode d'emploi :
+    //      @return Element*: le prochain élément
 
     void setElemNext (Element *unElem);
     //Mode d'emploi :
     //      @param1 Element* : l'élément suivant
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-    //Trajet & operator = ( const Trajet & unTrajet );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //-------------------------------------------- Constructeurs - destructeur
     Element ( Trajet *unTrajet);
@@ -62,15 +57,12 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
 Trajet *trajet;
 Element *elemNext;
 
 };
-
-//-------------------------------- Autres définitions dépendantes de <Trajet>
 
 #endif // ELEMENT_H
 

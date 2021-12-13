@@ -76,18 +76,8 @@ void Catalogue::RechercheAvancee(const char* depart, const char* arrivee)
     delete resultat;
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
-// Catalogue & Catalogue::operator = ( const Catalogue & unCatalogue )
-// // Algorithme :
-// //
-// {
-// } //----- Fin de operator =
-
-
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue ( const Catalogue & unCatalogue )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Catalogue>" << endl;
@@ -97,7 +87,7 @@ Catalogue::Catalogue ( const Catalogue & unCatalogue )
 
 Catalogue::Catalogue ( )
 // Algorithme :
-//
+//      Initialise une LinkedList vide
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
@@ -107,8 +97,6 @@ catalogueTrajet = new LinkedList();
 
 
 Catalogue::~Catalogue ( )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;

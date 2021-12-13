@@ -29,16 +29,6 @@ void TrajetSimple::Afficher() const
     cout << "Trajet de " << villeDepart << " à " << villeArrivee << " en " << moyenTransport << endl;
 } //----- Fin de Méthode
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-/*TrajetSimple & TrajetSimple::operator = ( const TrajetSimple & unTrajetSimple )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-*/
-
-
 //-------------------------------------------- Constructeurs - destructeur
 TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
 {
@@ -67,7 +57,6 @@ TrajetSimple::TrajetSimple ( ) : Trajet()
     #ifdef MAP
         cout << "Appel au constructeur de <TrajetSimple>" << endl;
     #endif
-    //moyenTransport = NULL;
 } //----- Fin de TrajetSimple
 
 

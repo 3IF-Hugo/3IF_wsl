@@ -33,16 +33,6 @@ public:
 //----------------------------------------------------- Méthodes publiques
     void Afficher() const;
 
-//------------------------------------------------- Surcharge d'opérateurs
-   /*
-    TrajetSimple & operator = ( const TrajetSimple & unTrajetSimple );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    */
-
-
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const TrajetSimple & unTrajetSimple );
     // Constructeur de copie
@@ -62,7 +52,6 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
 char *moyenTransport;
