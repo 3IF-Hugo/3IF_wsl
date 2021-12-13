@@ -37,6 +37,10 @@ public:
     //          @param Trajet* : un trajet
 
     void Afficher () const;
+    
+    void Sauvegarder();
+
+    bool EstCompose();
 
 //------------------------------------------------- Surcharge d'opérateurs
     TrajetCompose & operator = ( const TrajetCompose & unTrajetCompose );

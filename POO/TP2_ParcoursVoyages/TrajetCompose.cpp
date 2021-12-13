@@ -10,6 +10,8 @@
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
+#define MAP
+
 using namespace std;
 #include <iostream>
 #include <cstring>
@@ -39,6 +41,25 @@ void TrajetCompose::Afficher() const
     cout << "Trajet composé de " << villeDepart << " à " << villeArrivee << " comportant les sous-trajets suivants :" << endl;
     list->afficher();
 } //----- Fin de Méthode
+
+void TrajetCompose::Sauvegarder()
+{
+    cout << "c" << endl;
+    cout << villeDepart << endl;
+    cout << villeArrivee << endl;
+    Element *parcours = list->getElemDebut();
+    while(parcours != NULL)
+    {
+        parcours->getTrajet()->Sauvegarder();
+        parcours = parcours->getElemNext();
+    }
+    cout << "_c" << endl;
+}
+
+bool TrajetCompose::EstCompose()
+{
+    return true;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::TrajetCompose (const char *villeDep, const char *villeArr) : Trajet(villeDep, villeArr)

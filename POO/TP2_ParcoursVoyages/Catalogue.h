@@ -66,6 +66,14 @@ public:
         @param2 const char* : ville d'arrivée
     */
 
+    void Sauvegarder(int mode, string nomDuFichier);
+
+    void Charger(int mode, string nomDuFichier, Catalogue *catalogueInput);
+
+    void ChargerMode1(string nomDuFichier, Catalogue *catalogueInput);
+
+    void ChargerMode2(string nomDuFichier, Catalogue *catalogueInput);
+
     void Afficher();
 
 //------------------------------------------------- Surcharge d'opérateurs

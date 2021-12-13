@@ -13,6 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
@@ -74,6 +75,181 @@ void Catalogue::RechercheAvancee(const char* depart, const char* arrivee)
     }
     resultat->vider();
     delete resultat;
+}
+
+void Catalogue::Sauvegarder(int mode, string nomDuFichier)
+{
+    catalogueTrajet->Sauvegarder(mode, nomDuFichier);
+}
+
+void Catalogue::ChargerMode1(string nomDuFichier, Catalogue *catalogueInput)
+{
+    ifstream fic; // input stream
+    fic.open (nomDuFichier);
+    string str;
+    string tmp[3]; 
+    if(fic)
+    {
+        while(!fic.eof())
+        {
+            getline(fic,str,'\n');
+            string number = str;
+            getline(fic,str,'\n');
+            str.c_str();
+            if(str == "s")
+            {
+                cout << "je passe par s"<<endl;
+                for(int i = 0; i < 3; ++i)
+                {
+                    getline(fic,str,'\n');
+                    tmp[i] = str;
+                }
+                catalogueInput->AjouterTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str());
+                getline(fic,str,'\n');
+            }else if(str == "c")
+            {
+                cout << "je passe par c"<<endl;
+                for(int i = 0; i < 2; ++i)
+                {
+                    getline(fic,str,'\n');
+                    tmp[i] = str;
+                }
+                TrajetCompose* newTrajetC = catalogueInput->AjouterTrajetCompose(tmp[0].c_str(), tmp[1].c_str());
+                // getline(fic,str,'\n');
+                // for(int i = 0; i < 3; ++i)
+                // {
+                //     getline(fic,str,'\n');
+                //     tmp[i] = str;
+                // }
+                // catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
+                //getline(fic,str,'\n');
+                getline(fic,str,'\n'); // s ?
+                do
+                {
+                    for(int i = 0; i < 3; ++i)
+                    {
+                        getline(fic,str,'\n');
+                        tmp[i] = str;
+                    }
+                    catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
+                    getline(fic,str,'\n'); // _s
+                    getline(fic,str,'\n'); // s ?
+                }while(str == "s");
+
+                //getline(fic,str,'\n'); // _c
+            }else {
+                cout << "Erreur dans la mise en forme du fichier" << endl;
+            }
+        }
+    }
+    else {
+        cerr << "Erreur d’ouverture de <test.txt>" << endl;
+    }
+    fic.close();
+
+}
+
+void Catalogue::ChargerMode2(string nomDuFichier, Catalogue *catalogueInput)
+{
+    cout << "Selon quel type de trajet souhaitez-vous sélectionner" << endl;
+    cout << "Trajet simple : tapez 1" << endl;
+    cout << "Trajet composé : tapez 2" << endl;
+    int typeTrajet;
+    cin >> typeTrajet;
+    ifstream fic; // input stream
+    fic.open (nomDuFichier);
+    string str;
+    string tmp[3]; 
+    if(fic)
+    {
+        while(!fic.eof())
+        {
+            getline(fic,str,'\n');
+            string number = str;
+            getline(fic,str,'\n');
+            str.c_str();
+            if(typeTrajet == 1)
+            {
+                if(str == "s")
+                {
+                    //cout << "je passe par s"<<endl;
+                    for(int i = 0; i < 3; ++i)
+                    {
+                        getline(fic,str,'\n');
+                        tmp[i] = str;
+                    }
+                    catalogueInput->AjouterTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str());
+                    getline(fic,str,'\n');
+                }else{
+                    while(str != "_c")
+                    {
+                        getline(fic,str,'\n');
+                    }
+                }
+            }else if(typeTrajet == 2)
+            {
+                if(str == "c")
+                {
+                    //cout << "je passe par c"<<endl;
+                    for(int i = 0; i < 2; ++i)
+                    {
+                        getline(fic,str,'\n');
+                        tmp[i] = str;
+                    }
+                    TrajetCompose* newTrajetC = catalogueInput->AjouterTrajetCompose(tmp[0].c_str(), tmp[1].c_str());
+                    // getline(fic,str,'\n');
+                    // for(int i = 0; i < 3; ++i)
+                    // {
+                    //     getline(fic,str,'\n');
+                    //     tmp[i] = str;
+                    // }
+                    // catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
+                    // getline(fic,str,'\n'); //_s
+                    // getline(fic,str,'\n'); // s ?
+                    do
+                    {
+                        getline(fic,str,'\n'); // s ?
+                        for(int i = 0; i < 3; ++i)
+                        {
+                            getline(fic,str,'\n');
+                            tmp[i] = str;
+                        }
+                        catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
+                        getline(fic,str,'\n'); // _s
+                        getline(fic,str,'\n'); // s ?
+                    }while(str == "s");
+                    getline(fic,str,'\n'); // _c
+                    // if(str == "s")
+                    // {
+                    //     for(int i = 0; i < 3; ++i)
+                    //     {
+                    //         getline(fic,str,'\n');
+                    //         tmp[i] = str;
+                    //     }
+                    //     catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
+                    //     getline(fic,str,'\n'); // _s
+                    // }
+                    // getline(fic,str,'\n'); // _c
+                }else {
+                    while(str != "_s")
+                    {
+                        getline(fic,str,'\n');
+                    }
+                }
+            }
+        }
+    }
+}
+
+void Catalogue::Charger(int mode, string nomDuFichier, Catalogue *catalogueInput)
+{
+    if(mode == 1)
+    {
+        ChargerMode1(nomDuFichier, catalogueInput);
+    }else if(mode == 2)
+    {
+        ChargerMode2(nomDuFichier, catalogueInput);
+    }
 }
 
 //-------------------------------------------- Constructeurs - destructeur

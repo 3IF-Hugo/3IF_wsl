@@ -11,6 +11,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 #include <cstring>
 
 //------------------------------------------------------ Include personnel
@@ -26,11 +27,14 @@ void Ajouter_trajet_simple(Catalogue *catalogueInput);
 TrajetCompose* Ajouter_trajet_compose(Catalogue *catalogueInput);
 
 void Ajouter_sous_trajet_simple(Catalogue *catalogueInput, TrajetCompose* unTrajet, char* villeDepart, char* villememoire);
-//void Ajouter_sous_trajet_simple(Catalogue *catalogueInput, TrajetCompose *unTrajet);
 
 void Rechercher_trajet(Catalogue *catalogueRecherche);
 
 void Rechercher_trajet_avance(Catalogue *catalogueRecherche);
+
+void Sauvegarder(int mode, Catalogue *catalogueToSave);
+
+void Charger(int mode, Catalogue *catalogueToSave);
 
 //------------------------------------------------ Définition des méthodes
 int main()
@@ -45,6 +49,8 @@ int main()
         cout << "\t3: Rechercher un trajet" << endl;
         cout << "\t4: Recherche avancée d'un trajet" << endl;
         cout << "\t5: Afficher" << endl;
+        cout << "\t6: Sauvegarde du catalogue (écriture dans fichier)" << endl;
+        cout << "\t7: Chargement du catalogue (lecture du fichier)" << endl;
         cout << "\t0: quitter" << endl;
 		
         int choix;
@@ -102,6 +108,84 @@ int main()
             case 5: 
 				notreCatalogue->Afficher();
 				break;
+            case 6:
+            {
+                while(1)
+                {
+                    cout << "menu type de sauvegarde:" << endl;
+                    cout << "\t1: Sans critère de sélection" << endl;
+                    cout << "\t2: Selon le type des trajets" << endl;
+                    cout << "\t3: Selon la ville de départ et/ou d'arrivée" << endl;
+                    cout << "\t3: Selon une sélection de trajets" << endl;
+                    cout << "\t0: revenir au menu principal" << endl;
+                    
+                    int choixSousMenu;
+                    cin >> choixSousMenu;
+                    
+                    switch(choixSousMenu)
+                    {
+                        case 0:
+                            goto finSousMenuSauvegarde;
+                        case 1:
+                            Sauvegarder(0, notreCatalogue);
+                            break;
+                        case 2 :
+                            cout << "Quel trajets voulez-vous suavegarder :" << endl;
+                            cout << "\t1: Trajets simples" << endl;
+                            cout << "\t2: Trajets composés" << endl;
+                            cin >> choix;
+                            Sauvegarder(choix, notreCatalogue);
+                            break;
+                        case 3 :
+                            Sauvegarder(3, notreCatalogue);
+                            break;
+                        case 4 :
+                            Sauvegarder(4, notreCatalogue);
+                            break;
+                        default:
+                            cout << "choix incorrect" << endl;
+                    }
+                }
+                finSousMenuSauvegarde:
+				break;
+            }
+            case 7:
+            {
+                while(1)
+                {
+                    cout << "menu type de chargement:" << endl;
+                    cout << "\t1: Sans critère de sélection" << endl;
+                    cout << "\t2: Selon le type des trajets" << endl;
+                    cout << "\t3: Selon la ville de départ et/ou d'arrivée" << endl;
+                    cout << "\t3: Selon une sélection de trajets" << endl;
+                    cout << "\t0: revenir au menu principal" << endl;
+                        
+                    int choixSousMenu;
+                    cin >> choixSousMenu;
+                        
+                    switch(choixSousMenu)
+                    {
+                        case 0:
+                            goto finSousMenuChargement;
+                        case 1:
+                            Charger(1, notreCatalogue);
+                            break;
+                        case 2 :
+                            Charger(2, notreCatalogue);
+                            break;
+                        case 3 :
+                            Charger(3, notreCatalogue);
+                            break;
+                        case 4 :
+                            Charger(4, notreCatalogue);
+                            break;
+                        default:
+                            cout << "choix incorrect" << endl;
+                    }
+                }
+                finSousMenuChargement:
+                break;
+            }
 			default:
                 cout << "choix incorrect" << endl;
 				continue ; // revenir au menu
@@ -264,4 +348,18 @@ void Rechercher_trajet_avance(Catalogue *catalogueRecherche)
 
     delete[] lecture;
 
+}
+
+void Sauvegarder(int mode, Catalogue *catalogueToSave)
+{
+    string nomDuFichier;
+    cin >> nomDuFichier;
+    catalogueToSave->Sauvegarder(mode, nomDuFichier);
+}
+
+void Charger(int mode, Catalogue *notreCatalogue)
+{
+    string nomDuFichier;
+    cin >> nomDuFichier;
+    notreCatalogue->Charger(mode, nomDuFichier, notreCatalogue);
 }

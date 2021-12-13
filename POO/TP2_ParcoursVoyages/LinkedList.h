@@ -57,6 +57,10 @@ public:
     // Contrat :
     //      Ne fonctionne qu'avec un catalogue de trajets simples
 
+    void Sauvegarder(int mode, string fileName);
+
+    Element *getElemDebut();
+
 //-------------------------------------------- Constructeurs - destructeur
     LinkedList ();
 

@@ -10,8 +10,11 @@
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
+#define MAP
+
 using namespace std;
 #include <iostream>
+#include <fstream>
 #include <cstring>
 
 //------------------------------------------------------ Include personnel
@@ -87,7 +90,7 @@ void LinkedList::afficher()
     while(parcours != NULL)
     {
         cout << n << ". ";
-        n++;
+        ++n;
         parcours->getTrajet()->Afficher();
         parcours = parcours->getElemNext();
     }
@@ -200,6 +203,31 @@ void LinkedList::vider()
     }
 } //----- Fin de vider
 
+void LinkedList::Sauvegarder(int mode, string fileName)
+{
+    Element *parcours = elemDebut;
+    int n = 1;
+    ofstream fic (fileName);
+    streambuf *oldCoutBuffer = cout.rdbuf ( fic.rdbuf ( ) );
+    while(parcours != NULL)
+    {
+        cout << n << endl;
+        //TrajetSimple *testPtr = dynamic_cast<TrajetSimple*>(parcours);
+        if(mode == 0 || (mode == 1 && !parcours->getTrajet()->EstCompose()) || (mode == 2 && parcours->getTrajet()->EstCompose()))
+        {
+            parcours->getTrajet()->Sauvegarder();
+            ++n;
+        }
+        parcours = parcours->getElemNext();
+    }
+    cout.rdbuf (oldCoutBuffer);
+    fic.close();
+}
+
+Element * LinkedList::getElemDebut()
+{
+    return elemDebut;
+}
 //-------------------------------------------- Constructeurs - destructeur
 LinkedList::LinkedList()
 // Algorithme :

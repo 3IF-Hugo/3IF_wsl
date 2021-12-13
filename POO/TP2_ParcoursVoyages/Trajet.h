@@ -28,6 +28,10 @@ public:
     virtual void Afficher () const;
     //Méthode qui affiche les caractéritiques du trajet
 
+    virtual void Sauvegarder();
+    
+    virtual bool EstCompose();
+
     char* getVilleDepart();
     //Méthode qui renvoie la ville de départ.
 

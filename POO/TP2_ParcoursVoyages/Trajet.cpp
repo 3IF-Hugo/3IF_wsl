@@ -10,6 +10,8 @@
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
+#define MAP
+
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -32,6 +34,13 @@ char* Trajet::getVilleDepart()
 char* Trajet::getVilleArrivee()
 {
     return villeArrivee;
+}
+
+void Trajet::Sauvegarder(){}
+
+bool Trajet::EstCompose()
+{
+    return false;
 }
 
 //-------------------------------------------- Constructeurs - destructeur

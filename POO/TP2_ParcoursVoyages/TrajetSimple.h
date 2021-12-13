@@ -33,6 +33,10 @@ public:
 //----------------------------------------------------- Méthodes publiques
     void Afficher() const;
 
+    void Sauvegarder();
+
+    bool EstCompose();
+
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const TrajetSimple & unTrajetSimple );
     // Constructeur de copie
