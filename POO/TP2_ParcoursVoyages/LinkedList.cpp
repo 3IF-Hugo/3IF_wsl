@@ -203,25 +203,36 @@ void LinkedList::vider()
     }
 } //----- Fin de vider
 
-void LinkedList::Sauvegarder(int mode, string fileName)
+void LinkedList::Sauvegarder(int mode, string fileName, const char * villeDep, const char * villeArr, int indiceDeb, int indiceFin)
 {
     Element *parcours = elemDebut;
     int n = 1;
+    int indiceTraj = 1;
     ofstream fic (fileName);
     streambuf *oldCoutBuffer = cout.rdbuf ( fic.rdbuf ( ) );
     while(parcours != NULL)
     {
-        cout << n << endl;
-        //TrajetSimple *testPtr = dynamic_cast<TrajetSimple*>(parcours);
-        if(mode == 0 || (mode == 1 && !parcours->getTrajet()->EstCompose()) || (mode == 2 && parcours->getTrajet()->EstCompose()))
+        if(mode == 0 
+        || (mode == 1 && !parcours->getTrajet()->EstCompose()) 
+        || (mode == 2 && parcours->getTrajet()->EstCompose()) 
+        || (mode == 3 && strcmp(parcours->getTrajet()->getVilleDepart(), villeDep) == 0)
+        || (mode == 4 && strcmp(parcours->getTrajet()->getVilleArrivee(), villeArr) == 0)
+        || (mode == 5 && strcmp(parcours->getTrajet()->getVilleDepart(), villeDep) == 0 && strcmp(parcours->getTrajet()->getVilleDepart(), villeDep) == 0)
+        || (mode == 6 && indiceDeb <= indiceTraj && indiceTraj <= indiceFin))
         {
+            cout << n << endl;
             parcours->getTrajet()->Sauvegarder();
             ++n;
         }
         parcours = parcours->getElemNext();
+        ++indiceTraj;
     }
     cout.rdbuf (oldCoutBuffer);
     fic.close();
+    if(n == 1)
+    {
+        cout << "Aucun trajet sauvegardé car ne correspondant pas aux critères" << endl;
+    }
 }
 
 Element * LinkedList::getElemDebut()

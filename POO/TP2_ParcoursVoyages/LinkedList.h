@@ -57,7 +57,7 @@ public:
     // Contrat :
     //      Ne fonctionne qu'avec un catalogue de trajets simples
 
-    void Sauvegarder(int mode, string fileName);
+    void Sauvegarder(int mode, string fileName, const char * villeDep, const char * villeArr, int indiceDeb, int indiceFin);
 
     Element *getElemDebut();
 

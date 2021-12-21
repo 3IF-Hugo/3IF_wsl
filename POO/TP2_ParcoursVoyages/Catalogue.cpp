@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
@@ -79,7 +80,42 @@ void Catalogue::RechercheAvancee(const char* depart, const char* arrivee)
 
 void Catalogue::Sauvegarder(int mode, string nomDuFichier)
 {
-    catalogueTrajet->Sauvegarder(mode, nomDuFichier);
+    char * lecture = new char[100];
+    char * villeDep;
+    char * villeArr;
+    int indiceDeb = 0;
+    int indiceFin = 0;
+    if(mode==3 || mode == 5)
+    {
+        cout << "Entrez le ville de départ : " << endl;
+        cin >> lecture;
+        villeDep = new char[sizeof(lecture)+1];
+        strcpy(villeDep, lecture);
+    }
+    if(mode == 4 || mode == 5)
+    {
+        cout << "Entrez le ville d'arrivée : " << endl;
+        cin >> lecture;
+        villeArr = new char[sizeof(lecture)+1];
+        strcpy(villeArr, lecture);
+    }
+    delete[] lecture;
+    if(mode == 6)
+    {
+        cout << "Entrez le numéro du premier trajet (inclu) que vous voulez sauvegarder : " << endl;
+        cin >> indiceDeb;
+        cout << "Entrez le numéro du dernier trajet (inclu) que vous voulez sauvegarder : " << endl;
+        cin >> indiceFin;
+    }
+    catalogueTrajet->Sauvegarder(mode, nomDuFichier, villeDep, villeArr, indiceDeb, indiceFin);
+    if(mode == 3 || mode == 5)
+    {
+        delete[] villeDep;
+    }
+    if(mode == 4 || mode == 5)
+    {
+        delete[] villeArr;
+    }
 }
 
 void Catalogue::ChargerMode1(string nomDuFichier, Catalogue *catalogueInput)

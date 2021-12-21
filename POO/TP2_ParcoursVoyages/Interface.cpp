@@ -116,7 +116,7 @@ int main()
                     cout << "\t1: Sans critère de sélection" << endl;
                     cout << "\t2: Selon le type des trajets" << endl;
                     cout << "\t3: Selon la ville de départ et/ou d'arrivée" << endl;
-                    cout << "\t3: Selon une sélection de trajets" << endl;
+                    cout << "\t4: Selon une sélection de trajets en fonction de leur numéros dans l'ordre de stockage" << endl;
                     cout << "\t0: revenir au menu principal" << endl;
                     
                     int choixSousMenu;
@@ -137,10 +137,15 @@ int main()
                             Sauvegarder(choix, notreCatalogue);
                             break;
                         case 3 :
-                            Sauvegarder(3, notreCatalogue);
+                            cout << "Voulez-vous sauvegarder en fonction de la ville de départ ou de la ville d'arrivée" << endl;
+                            cout << "\t1: Ville de départ" << endl;
+                            cout << "\t2: Ville d'arrivée" << endl;
+                            cout << "\t3: Ville de départ et ville d'arrivée" << endl;
+                            cin >> choix;
+                            Sauvegarder(choix+2, notreCatalogue);
                             break;
                         case 4 :
-                            Sauvegarder(4, notreCatalogue);
+                            Sauvegarder(6, notreCatalogue);
                             break;
                         default:
                             cout << "choix incorrect" << endl;
@@ -353,6 +358,7 @@ void Rechercher_trajet_avance(Catalogue *catalogueRecherche)
 void Sauvegarder(int mode, Catalogue *catalogueToSave)
 {
     string nomDuFichier;
+    cout << "Entrez le nom du fichier : " << endl;
     cin >> nomDuFichier;
     catalogueToSave->Sauvegarder(mode, nomDuFichier);
 }
