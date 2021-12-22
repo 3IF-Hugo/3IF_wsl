@@ -74,6 +74,14 @@ public:
 
     void ChargerMode2(string nomDuFichier, Catalogue *catalogueInput);
 
+    void ChargerMode3(string nomDuFichier, Catalogue *catalogueInput);
+
+    void ChargerMode4(string nomDuFichier, Catalogue *catalogueInput);
+
+    void ChargerMode5(string nomDuFichier, Catalogue *catalogueInput);
+
+    void ChargerMode6(string nomDuFichier, Catalogue *catalogueInput);
+
     void Afficher();
 
 //------------------------------------------------- Surcharge d'opérateurs
