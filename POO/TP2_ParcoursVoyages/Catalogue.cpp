@@ -121,6 +121,9 @@ void Catalogue::Sauvegarder(int mode, string nomDuFichier)
 }
 
 void Catalogue::ChargerMode1(string nomDuFichier, Catalogue *catalogueInput)
+// Algorithme :
+//              Charge dans le catalogue en entrée tous les trajets du fichier texte
+//              Si on récupére un "s", on crée un trajet simple sinon un trajet composé
 {
     ifstream fic; // input stream
     fic.open (nomDuFichier);
@@ -136,7 +139,6 @@ void Catalogue::ChargerMode1(string nomDuFichier, Catalogue *catalogueInput)
             str.c_str();
             if(str == "s")
             {
-                cout << "je passe par s"<<endl;
                 for(int i = 0; i < 3; ++i)
                 {
                     getline(fic,str,'\n');
@@ -146,21 +148,13 @@ void Catalogue::ChargerMode1(string nomDuFichier, Catalogue *catalogueInput)
                 getline(fic,str,'\n');
             }else if(str == "c")
             {
-                cout << "je passe par c"<<endl;
                 for(int i = 0; i < 2; ++i)
                 {
                     getline(fic,str,'\n');
                     tmp[i] = str;
                 }
                 TrajetCompose* newTrajetC = catalogueInput->AjouterTrajetCompose(tmp[0].c_str(), tmp[1].c_str());
-                // getline(fic,str,'\n');
-                // for(int i = 0; i < 3; ++i)
-                // {
-                //     getline(fic,str,'\n');
-                //     tmp[i] = str;
-                // }
-                // catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
-                //getline(fic,str,'\n');
+                
                 getline(fic,str,'\n'); // s ?
                 do
                 {
@@ -174,7 +168,6 @@ void Catalogue::ChargerMode1(string nomDuFichier, Catalogue *catalogueInput)
                     getline(fic,str,'\n'); // s ?
                 }while(str == "s");
 
-                //getline(fic,str,'\n'); // _c
             }else {
                 cout << "Erreur dans la mise en forme du fichier" << endl;
             }
@@ -188,6 +181,8 @@ void Catalogue::ChargerMode1(string nomDuFichier, Catalogue *catalogueInput)
 }
 
 void Catalogue::ChargerMode2(string nomDuFichier, Catalogue *catalogueInput)
+// Algorithme :
+//              Charge dans le catalogue en entrée tous les trajets suivant le type choisi par l'utilisateur
 {
     cout << "Selon quel type de trajet souhaitez-vous sélectionner" << endl;
     cout << "Trajet simple : tapez 1" << endl;
@@ -210,7 +205,6 @@ void Catalogue::ChargerMode2(string nomDuFichier, Catalogue *catalogueInput)
             {
                 if(str == "s")
                 {
-                    //cout << "je passe par s"<<endl;
                     for(int i = 0; i < 3; ++i)
                     {
                         getline(fic,str,'\n');
@@ -228,22 +222,14 @@ void Catalogue::ChargerMode2(string nomDuFichier, Catalogue *catalogueInput)
             {
                 if(str == "c")
                 {
-                    //cout << "je passe par c"<<endl;
                     for(int i = 0; i < 2; ++i)
                     {
                         getline(fic,str,'\n');
                         tmp[i] = str;
                     }
                     TrajetCompose* newTrajetC = catalogueInput->AjouterTrajetCompose(tmp[0].c_str(), tmp[1].c_str());
-                    // getline(fic,str,'\n');
-                    // for(int i = 0; i < 3; ++i)
-                    // {
-                    //     getline(fic,str,'\n');
-                    //     tmp[i] = str;
-                    // }
-                    // catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
-                    // getline(fic,str,'\n'); //_s
-                    getline(fic,str,'\n'); // s : Hypothèse forte qu'il y a forcément un trajet simple dans le trajet composé !!!
+                
+                    getline(fic,str,'\n'); // Hypothèse forte : il y a forcément un trajet simple composant le trajet composé !
                     do
                     {
                         // On récupére les 3 attributs d'un trajet simple
@@ -268,6 +254,10 @@ void Catalogue::ChargerMode2(string nomDuFichier, Catalogue *catalogueInput)
 }
 
 void Catalogue::ChargerMode3(string nomDuFichier, Catalogue *catalogueInput)
+// Algorithme :
+//              Charge dans le catalogue en entrée tous les trajets suivant la ville de départ sélectionnée
+//              En récupérant la ville de départ de chacun des trajets du fichier texte, on la compare avec 
+//              la ville sélectionnée, si c'est identique (attention à la casse), alors on charge le trajet
 {
     char * lecture = new char[100];
     cout << "Entrez le ville de départ : " << endl;
@@ -332,6 +322,10 @@ void Catalogue::ChargerMode3(string nomDuFichier, Catalogue *catalogueInput)
 }
 
 void Catalogue::ChargerMode4(string nomDuFichier, Catalogue *catalogueInput)
+// Algorithme :
+//              Charge dans le catalogue en entrée tous les trajets suivant la ville d'arrivée sélectionnée
+//              En récupérant la ville d'arrivée de chacun des trajets du fichier texte, on la compare avec 
+//              la ville sélectionnée, si c'est identique (attention à la casse), alors on charge le trajet
 {
     char * lecture = new char[100];
     cout << "Entrez la ville d'arrivée : " << endl;
@@ -396,6 +390,12 @@ void Catalogue::ChargerMode4(string nomDuFichier, Catalogue *catalogueInput)
 }
 
 void Catalogue::ChargerMode5(string nomDuFichier, Catalogue *catalogueInput)
+// Algorithme :
+//              Charge dans le catalogue en entrée tous les trajets suivant la ville de départ et d'arrivée
+//              sélectionnée.
+//              En récupérant la ville de départ et d'arrivée de chacun des trajets du fichier texte, on les 
+//              compare avec les villes sélectionnées, si c'est identique (attention à la casse), alors on charge
+//              le trajet.
 {
     char * lectureVilleDepart = new char[100];
     char * lectureVilleArr = new char[100];
@@ -464,6 +464,8 @@ void Catalogue::ChargerMode5(string nomDuFichier, Catalogue *catalogueInput)
 }
 
 void Catalogue::ChargerMode6(string nomDuFichier, Catalogue *catalogueInput)
+// Algorithme :
+//              Charge dans le catalogue en entrée les trajets suivant leur numéro
 {
     char * indiceDeb = new char[100];
     char * indiceFin = new char[100];

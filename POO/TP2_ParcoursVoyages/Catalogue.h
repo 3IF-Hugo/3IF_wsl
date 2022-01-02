@@ -74,8 +74,21 @@ public:
     */
 
     void Charger(int mode, string nomDuFichier, Catalogue *catalogueInput);
+    /* Méthode pour appeller la méthode spécifique au mode sélectionné
+        @param1 int : le mode de chargement qui implique des critères de sélection
+        @param2 string : le nom du fichier de chargement
+        @param3 Catalogue : le catalogue à mettre à jour
+        @call ChargerModeX : appelle la méthode correspondant au mode sélectionné
+    */
 
     void ChargerMode1(string nomDuFichier, Catalogue *catalogueInput);
+    /* Méthode spécifique à un mode pour charger les trajets d'un fichier texte dans le catalogue actuel
+        @param1 string : le nom du fichier de chargement
+        @param2 Catalogue : le catalogue à mettre à jour
+        @call AjouterTrajetSimple : méthode de <Catalogue>
+        @call AjouterTrajetCompose : méthode de <Catalogue>
+        @call AjouterSousTrajetSimple : méthode de <Catalogue>
+    */
 
     void ChargerMode2(string nomDuFichier, Catalogue *catalogueInput);
 

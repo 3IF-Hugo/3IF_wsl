@@ -375,6 +375,12 @@ void Sauvegarder(int mode, Catalogue *catalogueToSave)
 }
 
 void Charger(int mode, Catalogue *notreCatalogue)
+/* Méthode pour charger les trajets d'un fichier texte dans le catalogue actuel
+        @param1 int : le mode de chargement qui implique des critères de sélection
+        @param2 notreCatalogue* : le catalogue actuel à mettre à jour
+        @read1 string : nom du fichier de chargement
+        @call Charger : méthode de <Catalogue>
+*/
 {
     cout << "Mettez le nom du fichier à charger :" << endl;
     string nomDuFichier;
