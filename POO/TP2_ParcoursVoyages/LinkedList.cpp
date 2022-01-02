@@ -10,8 +10,6 @@
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
-#define MAP
-
 using namespace std;
 #include <iostream>
 #include <fstream>
@@ -204,41 +202,51 @@ void LinkedList::vider()
 } //----- Fin de vider
 
 void LinkedList::Sauvegarder(int mode, string fileName, const char * villeDep, const char * villeArr, int indiceDeb, int indiceFin)
+//Algorithme :
+//      Redirige le flux de sortie vers le fichier de sauvegarde
+//      Parcours tous les éléments et appelle la méthode sauvegarder de chaque trajet si il vérifie les critères de séléction en fonction du mode
+//      Ecrit le numéro du trajet dans le fichier de sauvegarde
 {
+    //Initialisation de l'élément de parcours et redirection du flux
     Element *parcours = elemDebut;
     int n = 1;
-    int indiceTraj = 1;
+    int indiceTraj = 1;         // Variable pour le mode 6 (en fonction du numéro de trajet)
     ofstream fic (fileName);
-    streambuf *oldCoutBuffer = cout.rdbuf ( fic.rdbuf ( ) );
+    streambuf *oldCoutBuffer = cout.rdbuf ( fic.rdbuf ( ) ); // Sauvegarde de l'ancien flux de sortie de cout et mise à jour
+    //Tant qu'il reste des élements dans la liste
     while(parcours != NULL)
     {
+        //Si les critères de sélection sont vérifiés en fonction du mode
         if(mode == 0 
         || (mode == 1 && !parcours->getTrajet()->EstCompose()) 
         || (mode == 2 && parcours->getTrajet()->EstCompose()) 
         || (mode == 3 && strcmp(parcours->getTrajet()->getVilleDepart(), villeDep) == 0)
         || (mode == 4 && strcmp(parcours->getTrajet()->getVilleArrivee(), villeArr) == 0)
         || (mode == 5 && strcmp(parcours->getTrajet()->getVilleDepart(), villeDep) == 0 && strcmp(parcours->getTrajet()->getVilleDepart(), villeDep) == 0)
-        || (mode == 6 && indiceDeb <= indiceTraj && indiceTraj <= indiceFin))
+        || (mode == 6 && indiceDeb <= indiceTraj && indiceTraj <= indiceFin)
+        )
         {
-            cout << n << endl;
-            parcours->getTrajet()->Sauvegarder();
+            cout << n << endl;                          // Ecriture du numéro du trajet
+            parcours->getTrajet()->Sauvegarder();       // Ecriture des informations du trajet
             ++n;
         }
         parcours = parcours->getElemNext();
         ++indiceTraj;
     }
+    //Redirection de cout sur la sortie initiale sauvegardée
     cout.rdbuf (oldCoutBuffer);
     fic.close();
     if(n == 1)
     {
         cout << "Aucun trajet sauvegardé car ne correspondant pas aux critères" << endl;
     }
-}
+} //----- Fin de Sauvegarder
 
 Element * LinkedList::getElemDebut()
 {
     return elemDebut;
-}
+} //----- Fin de getElemDebut
+
 //-------------------------------------------- Constructeurs - destructeur
 LinkedList::LinkedList()
 // Algorithme :

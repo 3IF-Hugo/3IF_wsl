@@ -79,6 +79,8 @@ void Catalogue::RechercheAvancee(const char* depart, const char* arrivee)
 }
 
 void Catalogue::Sauvegarder(int mode, string nomDuFichier)
+// Algorithme :
+//          Demande ou non à l'utilisateur des critères de sélection de sauvegarde en fonction du mode et appelle la méthode sauvegarder de LinkedList
 {
     char * lecture = new char[100];
     char * villeDep;

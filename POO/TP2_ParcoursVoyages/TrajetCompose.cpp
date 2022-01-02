@@ -10,8 +10,6 @@
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
-#define MAP
-
 using namespace std;
 #include <iostream>
 #include <cstring>
@@ -43,6 +41,8 @@ void TrajetCompose::Afficher() const
 } //----- Fin de Méthode
 
 void TrajetCompose::Sauvegarder()
+//Algorithme :
+//      Afficher les informations générales du trajet puis parcours les trajets le composant en appelant leur méthode Sauvegarder
 {
     cout << "c" << endl;
     cout << villeDepart << endl;
@@ -54,12 +54,12 @@ void TrajetCompose::Sauvegarder()
         parcours = parcours->getElemNext();
     }
     cout << "_c" << endl;
-}
+} //----- Fin de Sauvegarder
 
 bool TrajetCompose::EstCompose()
 {
     return true;
-}
+} //----- Fin de EstCompose
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::TrajetCompose (const char *villeDep, const char *villeArr) : Trajet(villeDep, villeArr)

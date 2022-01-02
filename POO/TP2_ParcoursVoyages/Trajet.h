@@ -29,8 +29,10 @@ public:
     //Méthode qui affiche les caractéritiques du trajet
 
     virtual void Sauvegarder();
+    //Méthode qui écrit les informations du trajet
     
     virtual bool EstCompose();
+    //Méthode qui renvoie true si le trajet est composé, false sinon
 
     char* getVilleDepart();
     //Méthode qui renvoie la ville de départ.

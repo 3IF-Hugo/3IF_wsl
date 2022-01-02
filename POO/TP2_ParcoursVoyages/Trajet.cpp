@@ -10,8 +10,6 @@
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
-#define MAP
-
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -41,7 +39,7 @@ void Trajet::Sauvegarder(){}
 bool Trajet::EstCompose()
 {
     return false;
-}
+} //----- Fin EstCompose
 
 //-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet ( const Trajet & unTrajet )

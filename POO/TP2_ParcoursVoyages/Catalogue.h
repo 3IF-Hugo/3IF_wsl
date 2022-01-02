@@ -67,6 +67,11 @@ public:
     */
 
     void Sauvegarder(int mode, string nomDuFichier);
+    /* Méthode pour sauvegarder le catalogue actuel dans un fichier txt
+        @param1 int : le mode de sauvegarde qui implique des critères de sélection
+        @param2 string : le nom du fichier de sauvegarde
+        @call Sauvegarder : méthode de <LinkedList>
+    */
 
     void Charger(int mode, string nomDuFichier, Catalogue *catalogueInput);
 

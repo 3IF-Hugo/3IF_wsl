@@ -10,8 +10,6 @@
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
-#define MAP
-
 using namespace std;
 #include <iostream>
 #include <cstring>
@@ -33,17 +31,18 @@ void TrajetSimple::Afficher() const
 
 void TrajetSimple::Sauvegarder()
 {
+    // Ecriture des différentes informations sur le trajet
     cout << "s" << endl;
     cout << villeDepart << endl;
     cout << villeArrivee << endl;
     cout << moyenTransport << endl;
     cout << "_s" << endl;
-}
+} //----- Fin de Sauvegarder
 
 bool TrajetSimple::EstCompose()
 {
     return false;
-}
+} //----- Fin de EstCompose
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )

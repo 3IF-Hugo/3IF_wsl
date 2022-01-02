@@ -58,8 +58,29 @@ public:
     //      Ne fonctionne qu'avec un catalogue de trajets simples
 
     void Sauvegarder(int mode, string fileName, const char * villeDep, const char * villeArr, int indiceDeb, int indiceFin);
+    /* Mode d'emploi :
+        @param1 int : le mode de sauvegarde qui implique des critères de sélection
+        @param2 string : le nom du fichier de sauvegarde
+        @param3 const char* : ville de départ comme critère de sélection
+        @param4 const char* : ville d'arrivée comme critère de sélection
+        @param5 int : numéro du premier trajet à sauvegarder (critère de sélection)
+        @param6 int : numéro du dernier trajet à sauvegarder (critère de sélection)
+        @call Sauvegarder : méthode de <LinkedList>
+       Modes de sauvegardes :
+        mode = 0 : Tout le catalogue sans critère de sélection
+        mode = 1 : Que les trajets simples
+        mode = 2 : Que les trajets composés
+        mode = 3 : En fonction de la ville de départ
+        mode = 4 : En fonction de la ville d'arrivée
+        mode = 5 : En fonction de la ville de départ et de la ville d'arrivée
+        mode = 6 : En fonction d'un intervalle d'indices de trajet
+    */
 
     Element *getElemDebut();
+    /* Mode d'emploi :
+        @return Element* : le premier élément de la LinkedList
+    */
+
 
 //-------------------------------------------- Constructeurs - destructeur
     LinkedList ();

@@ -361,9 +361,15 @@ void Rechercher_trajet_avance(Catalogue *catalogueRecherche)
 }
 
 void Sauvegarder(int mode, Catalogue *catalogueToSave)
+/* Méthode pour sauvegarder le catalogue actuel dans un fichier txt
+        @param1 int : le mode de sauvegarde qui implique des critères de sélection
+        @param2 Catalogue* : le catalogue actuel à sauvegarder
+        @read1 string : nom du fichier de sauvegarde
+        @call Sauvegarder : méthode de <Catalogue>
+*/
 {
     string nomDuFichier;
-    cout << "Entrez le nom du fichier : " << endl;
+    cout << "Entrez le nom du fichier de sauvegarde : " << endl;
     cin >> nomDuFichier;
     catalogueToSave->Sauvegarder(mode, nomDuFichier);
 }
