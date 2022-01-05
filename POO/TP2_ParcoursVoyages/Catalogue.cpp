@@ -120,6 +120,90 @@ void Catalogue::Sauvegarder(int mode, string nomDuFichier)
     }
 }
 
+void Catalogue::GetTrajetSimple(ifstream &fic, string str, Catalogue *catalogueInput)
+// Algorithme :
+//              Lecture systématique des lignes pour créer un trajet simple
+{
+    string tmp[3];
+    for(int i = 0; i < 3; ++i)
+    {
+        getline(fic,str,'\n');
+        tmp[i] = str;
+    }
+    catalogueInput->AjouterTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str());
+    getline(fic,str,'\n');
+}
+
+void Catalogue::GetTrajetSimpleCondition(ifstream &fic, string str, Catalogue *catalogueInput, char * ville1, char * ville2, int choix1,  int choix2)
+{
+    string tmp[3];
+    for(int i = 0; i < 3; ++i)
+    {
+        getline(fic,str,'\n');
+        tmp[i] = str;
+    }
+    if(strcmp(tmp[choix1].c_str(), ville1) == 0 && strcmp(tmp[choix2].c_str(), ville2) == 0)
+    {
+        catalogueInput->AjouterTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str());
+    }
+    getline(fic,str,'\n');
+}
+
+void Catalogue::GetTrajetCompose(ifstream &fic, string str, Catalogue *catalogueInput)
+{
+    string tmp[3];
+    for(int i = 0; i < 2; ++i)
+    {
+        getline(fic,str,'\n');
+        tmp[i] = str;
+    }
+    TrajetCompose* newTrajetC = catalogueInput->AjouterTrajetCompose(tmp[0].c_str(), tmp[1].c_str());
+    
+    getline(fic,str,'\n'); // s ?
+    do
+    {
+       for(int i = 0; i < 3; ++i)
+        {
+             getline(fic,str,'\n');
+            tmp[i] = str;
+        }
+        catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
+        getline(fic,str,'\n'); // _s
+        getline(fic,str,'\n'); // s ?
+    }while(str == "s");
+}
+
+void Catalogue::GetTrajetComposeCondition(ifstream &fic, string str, Catalogue *catalogueInput, char * ville1, char * ville2, int choix1,  int choix2)
+{
+    string tmp[3];
+    for(int i = 0; i < 2; ++i)
+    {
+        getline(fic,str,'\n');
+        tmp[i] = str;
+    }
+    if(strcmp(tmp[choix1].c_str(), ville1) == 0 && strcmp(tmp[choix2].c_str(), ville2) == 0)
+    {
+        TrajetCompose* newTrajetC = catalogueInput->AjouterTrajetCompose(tmp[0].c_str(), tmp[1].c_str());
+        getline(fic,str,'\n'); // s ?
+        do
+        {
+            for(int i = 0; i < 3; ++i)
+            {
+                getline(fic,str,'\n');
+                tmp[i] = str;
+            }
+            catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
+            getline(fic,str,'\n'); // _s
+            getline(fic,str,'\n'); // s ?
+        }while(str == "s");
+    }else{
+        while(str != "_c")
+        {
+            getline(fic,str,'\n');
+        }
+    }
+}
+
 void Catalogue::ChargerMode1(string nomDuFichier, Catalogue *catalogueInput)
 // Algorithme :
 //              Charge dans le catalogue en entrée tous les trajets du fichier texte
@@ -134,40 +218,14 @@ void Catalogue::ChargerMode1(string nomDuFichier, Catalogue *catalogueInput)
         while(!fic.eof())
         {
             getline(fic,str,'\n');
-            string number = str;
             getline(fic,str,'\n');
             str.c_str();
             if(str == "s")
             {
-                for(int i = 0; i < 3; ++i)
-                {
-                    getline(fic,str,'\n');
-                    tmp[i] = str;
-                }
-                catalogueInput->AjouterTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str());
-                getline(fic,str,'\n');
+                GetTrajetSimple(fic, str, catalogueInput);
             }else if(str == "c")
             {
-                for(int i = 0; i < 2; ++i)
-                {
-                    getline(fic,str,'\n');
-                    tmp[i] = str;
-                }
-                TrajetCompose* newTrajetC = catalogueInput->AjouterTrajetCompose(tmp[0].c_str(), tmp[1].c_str());
-                
-                getline(fic,str,'\n'); // s ?
-                do
-                {
-                    for(int i = 0; i < 3; ++i)
-                    {
-                        getline(fic,str,'\n');
-                        tmp[i] = str;
-                    }
-                    catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
-                    getline(fic,str,'\n'); // _s
-                    getline(fic,str,'\n'); // s ?
-                }while(str == "s");
-
+                GetTrajetCompose(fic, str, catalogueInput);
             }else {
                 cout << "Erreur dans la mise en forme du fichier" << endl;
             }
@@ -177,7 +235,6 @@ void Catalogue::ChargerMode1(string nomDuFichier, Catalogue *catalogueInput)
         cerr << "Erreur d’ouverture de <test.txt>" << endl;
     }
     fic.close();
-
 }
 
 void Catalogue::ChargerMode2(string nomDuFichier, Catalogue *catalogueInput)
@@ -189,7 +246,7 @@ void Catalogue::ChargerMode2(string nomDuFichier, Catalogue *catalogueInput)
     cout << "Trajet composé : tapez 2" << endl;
     int typeTrajet;
     cin >> typeTrajet;
-    ifstream fic; // input stream
+    ifstream fic;
     fic.open (nomDuFichier);
     string str;
     string tmp[3]; 
@@ -198,20 +255,13 @@ void Catalogue::ChargerMode2(string nomDuFichier, Catalogue *catalogueInput)
         while(!fic.eof())
         {
             getline(fic,str,'\n');
-            string number = str;
             getline(fic,str,'\n');
             str.c_str();
             if(typeTrajet == 1)
             {
                 if(str == "s")
                 {
-                    for(int i = 0; i < 3; ++i)
-                    {
-                        getline(fic,str,'\n');
-                        tmp[i] = str;
-                    }
-                    catalogueInput->AjouterTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str());
-                    getline(fic,str,'\n');
+                    GetTrajetSimple(fic, str, catalogueInput);
                 }else{
                     while(str != "_c")
                     {
@@ -222,26 +272,7 @@ void Catalogue::ChargerMode2(string nomDuFichier, Catalogue *catalogueInput)
             {
                 if(str == "c")
                 {
-                    for(int i = 0; i < 2; ++i)
-                    {
-                        getline(fic,str,'\n');
-                        tmp[i] = str;
-                    }
-                    TrajetCompose* newTrajetC = catalogueInput->AjouterTrajetCompose(tmp[0].c_str(), tmp[1].c_str());
-                
-                    getline(fic,str,'\n'); // Hypothèse forte : il y a forcément un trajet simple composant le trajet composé !
-                    do
-                    {
-                        // On récupére les 3 attributs d'un trajet simple
-                        for(int i = 0; i < 3; ++i)
-                        {
-                            getline(fic,str,'\n');
-                            tmp[i] = str;
-                        }
-                        catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
-                        getline(fic,str,'\n'); // _s
-                        getline(fic,str,'\n'); // s ou _c
-                    }while(str == "s");
+                    GetTrajetCompose(fic, str, catalogueInput);
                 }else {
                     while(str != "_s")
                     {
@@ -270,49 +301,14 @@ void Catalogue::ChargerMode3(string nomDuFichier, Catalogue *catalogueInput)
     {
         while(!fic.eof())
         {
-            getline(fic,str,'\n'); // numéro de trajet
-            string number = str;
+            getline(fic,str,'\n'); 
             getline(fic,str,'\n'); // type trajet
             if(str == "s") // dans le cas d'un trajet simple
             {
-                for(int i = 0; i < 3; ++i)
-                {
-                    getline(fic,str,'\n');
-                    tmp[i] = str;
-                }
-                if(strcmp(tmp[0].c_str(), lecture) == 0)
-                {
-                    catalogueInput->AjouterTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str());
-                }
-                getline(fic,str,'\n');
+                GetTrajetSimpleCondition(fic, str, catalogueInput, lecture, lecture, 0, 0);
             }else if(str == "c")
             {
-                for(int i = 0; i < 2; ++i)
-                {
-                    getline(fic,str,'\n');
-                    tmp[i] = str;
-                }
-                if(strcmp(tmp[0].c_str(), lecture) == 0)
-                {
-                    TrajetCompose* newTrajetC = catalogueInput->AjouterTrajetCompose(tmp[0].c_str(), tmp[1].c_str());
-                    getline(fic,str,'\n'); // s ?
-                    do
-                    {
-                        for(int i = 0; i < 3; ++i)
-                        {
-                            getline(fic,str,'\n');
-                            tmp[i] = str;
-                        }
-                        catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
-                        getline(fic,str,'\n'); // _s
-                        getline(fic,str,'\n'); // s ?
-                    }while(str == "s");
-                }else{
-                    while(str != "_c")
-                    {
-                        getline(fic,str,'\n');
-                    }
-                }
+                GetTrajetComposeCondition(fic, str, catalogueInput, lecture, lecture, 0, 0);
             }else {
                 cout << "Erreur dans la mise en forme du fichier" << endl;
             }
@@ -330,7 +326,7 @@ void Catalogue::ChargerMode4(string nomDuFichier, Catalogue *catalogueInput)
     char * lecture = new char[100];
     cout << "Entrez la ville d'arrivée : " << endl;
     cin >> lecture;
-    ifstream fic; // input stream
+    ifstream fic;
     fic.open (nomDuFichier);
     string str;
     string tmp[3]; 
@@ -338,49 +334,14 @@ void Catalogue::ChargerMode4(string nomDuFichier, Catalogue *catalogueInput)
     {
         while(!fic.eof())
         {
-            getline(fic,str,'\n'); // numéro de trajet
-            string number = str;
+            getline(fic,str,'\n'); 
             getline(fic,str,'\n'); // type trajet
             if(str == "s") // dans le cas d'un trajet simple
             {
-                for(int i = 0; i < 3; ++i)
-                {
-                    getline(fic,str,'\n');
-                    tmp[i] = str;
-                }
-                if(strcmp(tmp[1].c_str(), lecture) == 0)
-                {
-                    catalogueInput->AjouterTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str());
-                }
-                getline(fic,str,'\n');
+                GetTrajetSimpleCondition(fic, str, catalogueInput, lecture, lecture, 1, 1);
             }else if(str == "c")
             {
-                for(int i = 0; i < 2; ++i)
-                {
-                    getline(fic,str,'\n');
-                    tmp[i] = str;
-                }
-                if(strcmp(tmp[1].c_str(), lecture) == 0)
-                {
-                    TrajetCompose* newTrajetC = catalogueInput->AjouterTrajetCompose(tmp[0].c_str(), tmp[1].c_str());
-                    getline(fic,str,'\n'); // s ?
-                    do
-                    {
-                        for(int i = 0; i < 3; ++i)
-                        {
-                            getline(fic,str,'\n');
-                            tmp[i] = str;
-                        }
-                        catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
-                        getline(fic,str,'\n'); // _s
-                        getline(fic,str,'\n'); // s ?
-                    }while(str == "s");
-                }else{
-                    while(str != "_c")
-                    {
-                        getline(fic,str,'\n');
-                    }
-                }
+                GetTrajetComposeCondition(fic, str, catalogueInput, lecture, lecture, 1, 1);
             }else {
                 cout << "Erreur dans la mise en forme du fichier" << endl;
             }
@@ -416,44 +377,10 @@ void Catalogue::ChargerMode5(string nomDuFichier, Catalogue *catalogueInput)
             getline(fic,str,'\n'); // type trajet
             if(str == "s") // dans le cas d'un trajet simple
             {
-                for(int i = 0; i < 3; ++i)
-                {
-                    getline(fic,str,'\n');
-                    tmp[i] = str;
-                }
-                if(strcmp(tmp[0].c_str(), lectureVilleDepart) == 0 && strcmp(tmp[1].c_str(), lectureVilleArr) == 0)
-                {
-                    catalogueInput->AjouterTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str());
-                }
-                getline(fic,str,'\n');
+                GetTrajetSimpleCondition(fic, str, catalogueInput, lectureVilleDepart, lectureVilleArr, 0, 1);
             }else if(str == "c")
             {
-                for(int i = 0; i < 2; ++i)
-                {
-                    getline(fic,str,'\n');
-                    tmp[i] = str;
-                }
-                if(strcmp(tmp[0].c_str(), lectureVilleDepart) == 0 && strcmp(tmp[1].c_str(), lectureVilleArr) == 0)
-                {
-                    TrajetCompose* newTrajetC = catalogueInput->AjouterTrajetCompose(tmp[0].c_str(), tmp[1].c_str());
-                    getline(fic,str,'\n'); // s ?
-                    do
-                    {
-                        for(int i = 0; i < 3; ++i)
-                        {
-                            getline(fic,str,'\n');
-                            tmp[i] = str;
-                        }
-                        catalogueInput->AjouterSousTrajetSimple(tmp[0].c_str(), tmp[1].c_str(), tmp[2].c_str(),newTrajetC);
-                        getline(fic,str,'\n'); // _s
-                        getline(fic,str,'\n'); // s ?
-                    }while(str == "s");
-                }else{
-                    while(str != "_c")
-                    {
-                        getline(fic,str,'\n');
-                    }
-                }
+                GetTrajetComposeCondition(fic, str, catalogueInput, lectureVilleDepart, lectureVilleArr, 0, 1);
             }else {
                 cout << "Erreur dans la mise en forme du fichier" << endl;
             }
@@ -583,4 +510,3 @@ Catalogue::~Catalogue ( )
 #endif
 delete catalogueTrajet;
 } //----- Fin de ~Catalogue
-

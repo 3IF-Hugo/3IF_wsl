@@ -6,6 +6,7 @@
         "ostream": "cpp",
         "cstring": "cpp",
         "sstream": "c",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "iosfwd": "cpp"
     }
 }

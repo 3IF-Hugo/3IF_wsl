@@ -81,24 +81,81 @@ public:
         @call ChargerModeX : appelle la méthode correspondant au mode sélectionné
     */
 
-    void ChargerMode1(string nomDuFichier, Catalogue *catalogueInput);
-    /* Méthode spécifique à un mode pour charger les trajets d'un fichier texte dans le catalogue actuel
-        @param1 string : le nom du fichier de chargement
-        @param2 Catalogue : le catalogue à mettre à jour
+    void GetTrajetSimple(ifstream & fic, string str, Catalogue *catalogueInput);
+    /* Méthode pour créer un trajet simple à partir de la lecture du fichier
+        @param1 ifstream : le fichier dans lequel on agit
+        @param2 string : un buffer, le mot courant
+        @param3 Catalogue : le catalogue à mettre à jour
         @call AjouterTrajetSimple : méthode de <Catalogue>
+    */
+
+    void GetTrajetSimpleCondition(ifstream &fic, string str, Catalogue *catalogueInput, char * ville1, char * ville2, int choix1,  int choix2);
+    /* Méthode pour créer un trajet simple à partir de la lecture du fichier s'il répond à la condition
+        @param1 ifstream : le fichier dans lequel on agit
+        @param2 string : un buffer, le mot courant
+        @param3 Catalogue : le catalogue à mettre à jour
+        @param4-5 char* : la ville de départ et d'arrivée sélectionnées
+        @param6-7 int : les numéros correspondant à la place de la ville de départ et d'arrivée
+        @call AjouterTrajetSimple : méthode de <Catalogue>
+    */
+
+    void GetTrajetCompose(ifstream & fic, string str, Catalogue *catalogueInput);
+    /* Méthode pour créer un trajet composé à partir de la lecture du fichier
+        @param1 ifstream : le fichier dans lequel on agit
+        @param2 string : un buffer, le mot courant
+        @param3 Catalogue : le catalogue à mettre à jour
         @call AjouterTrajetCompose : méthode de <Catalogue>
         @call AjouterSousTrajetSimple : méthode de <Catalogue>
     */
 
+    void GetTrajetComposeCondition(ifstream &fic, string str, Catalogue *catalogueInput, char * ville1, char * ville2, int choix1,  int choix2);
+    /* Méthode pour créer un trajet composé à partir de la lecture du fichier s'il répond à la condition
+        @param1 ifstream : le fichier dans lequel on agit
+        @param2 string : un buffer, le mot courant
+        @param3 Catalogue : le catalogue à mettre à jour
+        @param4-5 char* : la ville de départ et d'arrivée sélectionnées
+        @param6-7 int : les numéros correspondant à la place de la ville de départ et d'arrivée
+        @call AjouterTrajetCompose : méthode de <Catalogue>
+        @call AjouterSousTrajetSimple : méthode de <Catalogue>
+    */
+
+    void ChargerMode1(string nomDuFichier, Catalogue *catalogueInput);
+    /* Méthode spécifique au mode 1 pour charger tous les trajets d'un fichier texte dans le catalogue actuel
+        @param1 string : le nom du fichier de chargement
+        @param2 Catalogue : le catalogue à mettre à jour
+        @call GetTrajetSimple : méthode de <Catalogue>
+        @call GetTrajetCompose : méthode de <Catalogue>
+    */
+
     void ChargerMode2(string nomDuFichier, Catalogue *catalogueInput);
+    /* Méthode spécifique au mode 2 pour charger les trajets d'un fichier texte dans le catalogue actuel
+        @param1 string : le nom du fichier de chargement
+        @param2 Catalogue : le catalogue à mettre à jour
+        @call GetTrajetSimple : méthode de <Catalogue>
+        @call GetTrajetCompose : méthode de <Catalogue>
+    */
 
     void ChargerMode3(string nomDuFichier, Catalogue *catalogueInput);
+    /* Méthode spécifique au mode 3 et similaire à ChargerMode4 et ChargerMode5 
+        Elles servent à charger les trajets d'un fichier texte dans le catalogue actuel suivant ville de départ/arrivée
+        @param1 string : le nom du fichier de chargement
+        @param2 Catalogue : le catalogue à mettre à jour
+        @call GetTrajetSimpleCondition : méthode de <Catalogue>
+        @call GetTrajetComposeCondition : méthode de <Catalogue>
+    */
 
     void ChargerMode4(string nomDuFichier, Catalogue *catalogueInput);
 
     void ChargerMode5(string nomDuFichier, Catalogue *catalogueInput);
 
     void ChargerMode6(string nomDuFichier, Catalogue *catalogueInput);
+    /* Méthode spécifique pour sélectionner un certain nombre de trajets d'un fichier texte dans le catalogue actuel
+        @param1 string : le nom du fichier de chargement
+        @param2 Catalogue : le catalogue à mettre à jour
+        @call AjouterTrajetSimple : méthode de <Catalogue>
+        @call AjouterTrajetCompose : méthode de <Catalogue>
+        @call AjouterSousTrajetSimple : méthode de <Catalogue>
+    */
 
     void Afficher();
 
