@@ -130,7 +130,7 @@ int main()
                             Sauvegarder(0, notreCatalogue);
                             break;
                         case 2 :
-                            cout << "Quel trajets voulez-vous suavegarder :" << endl;
+                            cout << "Quel trajets voulez-vous sauvegarder :" << endl;
                             cout << "\t1: Trajets simples" << endl;
                             cout << "\t2: Trajets composés" << endl;
                             cin >> choix;

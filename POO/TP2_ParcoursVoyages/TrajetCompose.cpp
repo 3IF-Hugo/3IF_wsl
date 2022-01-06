@@ -51,9 +51,10 @@ void TrajetCompose::Sauvegarder()
     while(parcours != NULL)
     {
         parcours->getTrajet()->Sauvegarder();
+        cout << endl;
         parcours = parcours->getElemNext();
     }
-    cout << "_c" << endl;
+    cout << "_c";
 } //----- Fin de Sauvegarder
 
 bool TrajetCompose::EstCompose()

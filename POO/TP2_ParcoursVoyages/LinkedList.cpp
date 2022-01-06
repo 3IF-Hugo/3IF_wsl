@@ -222,10 +222,14 @@ void LinkedList::Sauvegarder(int mode, string fileName, const char * villeDep, c
         || (mode == 2 && parcours->getTrajet()->EstCompose()) 
         || (mode == 3 && strcmp(parcours->getTrajet()->getVilleDepart(), villeDep) == 0)
         || (mode == 4 && strcmp(parcours->getTrajet()->getVilleArrivee(), villeArr) == 0)
-        || (mode == 5 && strcmp(parcours->getTrajet()->getVilleDepart(), villeDep) == 0 && strcmp(parcours->getTrajet()->getVilleDepart(), villeDep) == 0)
+        || (mode == 5 && strcmp(parcours->getTrajet()->getVilleDepart(), villeDep) == 0 && strcmp(parcours->getTrajet()->getVilleArrivee(), villeArr) == 0)
         || (mode == 6 && indiceDeb <= indiceTraj && indiceTraj <= indiceFin)
         )
         {
+            if(n > 1)
+            {
+                cout << endl;
+            }
             cout << n << endl;                          // Ecriture du numéro du trajet
             parcours->getTrajet()->Sauvegarder();       // Ecriture des informations du trajet
             ++n;

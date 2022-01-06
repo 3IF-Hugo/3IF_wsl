@@ -232,7 +232,7 @@ void Catalogue::ChargerMode1(string nomDuFichier, Catalogue *catalogueInput)
         }
     }
     else {
-        cerr << "Erreur d’ouverture de <test.txt>" << endl;
+        cerr << "Erreur d’ouverture du fichier" << endl;
     }
     fic.close();
 }
@@ -282,6 +282,7 @@ void Catalogue::ChargerMode2(string nomDuFichier, Catalogue *catalogueInput)
             }
         }
     }
+    fic.close();
 }
 
 void Catalogue::ChargerMode3(string nomDuFichier, Catalogue *catalogueInput)
@@ -314,6 +315,7 @@ void Catalogue::ChargerMode3(string nomDuFichier, Catalogue *catalogueInput)
             }
         }
     }
+    fic.close();
     delete[] lecture;
 }
 
@@ -347,6 +349,7 @@ void Catalogue::ChargerMode4(string nomDuFichier, Catalogue *catalogueInput)
             }
         }
     }
+    fic.close();
     delete[] lecture;
 }
 
@@ -386,6 +389,7 @@ void Catalogue::ChargerMode5(string nomDuFichier, Catalogue *catalogueInput)
             }
         }
     }
+    fic.close();
     delete[] lectureVilleDepart;
     delete[] lectureVilleArr;
 }
@@ -456,6 +460,7 @@ void Catalogue::ChargerMode6(string nomDuFichier, Catalogue *catalogueInput)
             }
         }
     }
+    fic.close();
     delete[] indiceDeb;
     delete[] indiceFin;
 }

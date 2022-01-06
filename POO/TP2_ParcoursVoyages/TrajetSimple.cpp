@@ -36,7 +36,7 @@ void TrajetSimple::Sauvegarder()
     cout << villeDepart << endl;
     cout << villeArrivee << endl;
     cout << moyenTransport << endl;
-    cout << "_s" << endl;
+    cout << "_s";
 } //----- Fin de Sauvegarder
 
 bool TrajetSimple::EstCompose()
