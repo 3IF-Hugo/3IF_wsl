@@ -1,0 +1,6 @@
+googler.com [label="googler.com"];
+youtube [label="youtube"];
+google.com [label="google.com"];
+intranet-if [label="intranet-if"];
+googler.com -> youtube [label="1"];
+google.com -> intranet-if [label="1"];

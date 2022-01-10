@@ -16,6 +16,7 @@ using namespace std;
 #include <iostream>
 #include <map>
 #include "InfoLog.h"
+class test;
 //------------------------------------------------------------------------
 // Rôle de la classe <Graphe>
 //      ...
@@ -28,22 +29,37 @@ struct Cle1
     {}
 };
 
+typedef map<Cle1, int> Tgraph;
+
 class Graphe
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
+    friend bool operator< (const Cle1 & uneCle, const Cle1 & uneAutre);
+
+    // friend ostream & operator<<(ostream & os, Tgraph::const_iterator & g);
+
+    // friend ostream & operator<<(ofstream & os, const Cle1 & uneCle);
+    
+    friend bool operator==(const Cle1 & uneCle, const Cle1 & uneAutre);
+
+    friend class test;
+
     void Ajouter(const InfoLog & log);
     
+    //void Afficher(string nom = "", ostream & f = cout) const;
+
+    void Generer(string nomFic = "");
 //-------------------------------------------- Constructeurs - destructeur
     Graphe ( const Graphe & unGraphe );
 
-    Graphe(string nomfic = "");
+    //Graphe(string nomfic = "");
 
-    // Graphe ( );
+    Graphe ( );
 
-    virtual ~Graphe ( );
+    //~Graphe ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -55,7 +71,6 @@ private:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-typedef map<Cle1, int> Tgraph;
 Tgraph parcours;
 };
 
