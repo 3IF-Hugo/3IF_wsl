@@ -73,7 +73,7 @@ int main ()
     Renseignements info2 = Renseignements("test1", "ds", "sd", "intranet", "gq", "gqggg", "reeeeeeeey", "google.com", "zry");
     InfoLog *log2 = new InfoLog(info2);
 
-    Renseignements info3 = Renseignements("test1", "ds", "sd", "youtube", "gq", "gqggg", "reeeeeeeey", "mozilla", "zry");
+    Renseignements info3 = Renseignements("test1", "ds", "sd", "google.com", "gq", "gqggg", "reeeeeeeey", "mozilla", "zry");
     InfoLog *log3 = new InfoLog(info3);
 
     Graphe *ungraphe = new Graphe();
@@ -83,6 +83,9 @@ int main ()
 
     //ungraphe->Afficher();
 
+    ungraphe->Generer("court.dot");
+
+    ungraphe->LectureFichier("fichierInput.txt");
     ungraphe->Generer("court.dot");
     // InfoLog test = InfoLog(info);
 

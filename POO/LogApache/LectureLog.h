@@ -34,9 +34,9 @@ class LectureLog
 
 public:
 
-    friend class InfoLog;
+    //friend class InfoLog;
 //----------------------------------------------------- Méthodes publiques
-    InfoLog & getLog(string nomFic = "");
+    static InfoLog & getNextLog(ifstream & fic, InfoLog & logLine);
     // Mode d'emploi :
     //
     // Contrat :

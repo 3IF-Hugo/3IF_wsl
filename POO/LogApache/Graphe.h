@@ -49,6 +49,8 @@ public:
 
     friend class test;
 
+    void LectureFichier(string nomFic, int optG, int optE, int optT);
+
     void Ajouter(const InfoLog & log);
     
     //void Afficher(string nom = "", ostream & f = cout) const;

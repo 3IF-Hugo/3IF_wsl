@@ -13,6 +13,8 @@
 
 //------------------------------------------------------ Include personnel
 #include "Graphe.h"
+#include "InfoLog.h"
+#include "LectureLog.h"
 #include <fstream>
 //----------------------------------------------------------------- PUBLIC
 const char SEP = '|';
@@ -58,6 +60,66 @@ const char SEP = '|';
 //     os << uneCle.source << "_" << uneCle.destinataire;
 //     return os;
 // }
+
+void Graphe::LectureFichier(string nomFic, int optG, int optE, int Theure)
+{
+    InfoLog logLine;
+    ifstream fic;
+    fic.open(nomFic);
+    string nomDomaine = "http://intranet-if.insa-lyon.fr";
+    int nomDomaineSize = nomDomaine.size();
+    if(fic)
+    {
+        while(!fic.eof())
+        {
+            InfoLog & logX = LectureLog::getNextLog(fic, logLine);
+            //-------- CAS OU IL N'Y A PAS DE REFERER ???? -----------//
+            //-------- CAS DE LA TARGET BIZARRE AVEC temps/blabla/fichier.html;jsksfjqlksfj -----------//
+            //On ne garde que l'heure au lieu de heure + minute + secondes
+            logX.infos.heure.erase(2, 6);
+            //On supprime le lien du referer s'il correspond au serveur local
+            if(logX.infos.referer.find(nomDomaine) != string::npos)
+            {
+                logX.infos.referer.erase(0, nomDomaineSize);
+            }
+
+            if(optG == 1 && optE == 1 && Theure != -1)
+            {
+                if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
+                || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
+                || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
+                || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd")
+                && stoi(logX.infos.heure) > Theure && stoi(logX.infos.heure) < Theure+1)
+                {
+                    cout << "je passe par là" << endl;
+                    Ajouter(logX);
+                }
+            }else if(optG == 1 && optE == 1)
+            {
+                if(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
+                || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
+                || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
+                || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd")
+                {
+                    continue;
+                }else{
+                    Ajouter(logX);
+                }
+            }else if(optG == 1 && Theure  != -1)
+            {
+                if(stoi(logX.infos.heure) < Theure && stoi(logX.infos.heure) > Theure+1)
+                {
+                    continue;
+                }else{
+                    Ajouter(logX);
+                }
+            }
+
+            Ajouter(logX);
+        }
+    }
+}
+
 
 void Graphe::Ajouter(const InfoLog & log)
 {
