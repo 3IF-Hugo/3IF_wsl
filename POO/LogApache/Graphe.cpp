@@ -18,23 +18,37 @@
 const char SEP = '|';
 //----------------------------------------------------- Méthodes publiques
 
-inline bool operator< (const Cle1 & uneCle, const Cle1 & uneAutre)
-{
-    return uneCle.source.compare(uneAutre.source);
-}
+// inline bool operator< (const Cle1 & uneCle, const Cle1 & uneAutre)
+// {
+//     if(uneCle.source == uneAutre.source && uneCle.destinataire == uneAutre.destinataire)
+//     {
+//         return false;
+//     }else{
+//         return true;
+//     }
+//     //return uneCle.destinataire.compare(uneAutre.destinataire);
+// }
 
-inline bool operator==(const Cle1 & uneCle, const Cle1 & uneAutre)
-{
-    if(!uneCle.source.compare(uneAutre.source) && !uneCle.destinataire.compare(uneAutre.destinataire))
-    {
-        return 1;
-    }
-}
+// inline bool operator==(const Cle1 & uneCle, const Cle1 & uneAutre)
+// {
+//     if(!uneCle.source.compare(uneAutre.source) && !uneCle.destinataire.compare(uneAutre.destinataire))
+//     {
+//         return true;
+//     }else{
+//         return false;
+//     }
+// }
 
 // ostream & operator<<(ostream & os, Tgraph::const_iterator & it)
 // {
-//     os << it->first.source << SEP;
-//     os << it->first.destinataire << SEP;
+//     // Avec Cle1 struct :
+//     // os << it->first.source << SEP;
+//     // os << it->first.destinataire << SEP;
+//     // os << it->second << endl;
+
+//     // Avec Cle pair
+//     os << it->first.first << SEP;
+//     os << it->first.second << SEP;
 //     os << it->second << endl;
 //     return os;
 // }
@@ -47,15 +61,18 @@ inline bool operator==(const Cle1 & uneCle, const Cle1 & uneAutre)
 
 void Graphe::Ajouter(const InfoLog & log)
 {
-    Cle1 infos;
-    infos.source = log.infos.referer;
-    infos.destinataire = log.infos.destinataire;
+    // Cle1 infos;
+    // infos.source = log.infos.referer;
+    // infos.destinataire = log.infos.destinataire;
 
-    if(parcours.count(infos) == 1) // La comparaison ne marche pas encore !!!
+    //Avec la pair :
+    Cle infos = make_pair(log.infos.referer, log.infos.destinataire);
+
+    if(parcours.count(infos) == 1)
     {
-        parcours.insert(pair <Cle1, int> (infos, parcours.find(infos)->second++));
+        parcours.insert(pair <Cle, int> (infos, ++parcours.find(infos)->second));
     }else{
-        parcours.insert(pair <Cle1, int> (infos, 1));
+        parcours.insert(pair <Cle, int> (infos, 1));
     }
 }
 
@@ -82,34 +99,88 @@ void Graphe::Ajouter(const InfoLog & log)
 
 void Graphe::Generer(string nomFic)
 {
+    typedef map<string, string> TypeNode;
+    TypeNode node;
+    int n = 0;
+
+    string string_node = "node";
+    string nodex;
     ofstream fic (nomFic);
     // Sauvegarde de l'ancien flux de sortie de cout et mise à jour
     streambuf *oldCoutBuffer = cout.rdbuf ( fic.rdbuf ( ) );
+
+    // Entête du fichier 
+    fic << "digraph { " << endl;
     
     Tgraph::const_iterator debut;
     Tgraph::const_iterator fin;
 
     debut = parcours.begin();
     fin = parcours.end();
+
+    TypeNode::const_iterator debutNode;
+    TypeNode::const_iterator finNode;
+
+    debutNode = node.begin();
+    finNode = node.end();
     
-    //Première partie du .dot
+    //Première partie du .dot : On construit des nodes uniques, distintes les unes des autres
     while(debut != fin)
     {
-        // Ne pas faire comme ça, faire avec node0
-        fic << debut->first.source << " [label=\"" << debut->first.source << "\"];" << endl;
-        fic << debut->first.destinataire << " [label=\"" << debut->first.destinataire << "\"];" << endl;
+        // Si on ne trouve pas la source dans la map temporaire, on l'ajoute
+        if(node.count(debut->first.first) == 0)
+        {
+            nodex = string_node.append(to_string(n));
+            node.insert(pair <string, string> (debut->first.first, nodex));
+            ++n;
+            string_node = "node";
+        }
+
+        // Si on ne trouve pas le destinataire dans la map temporaire, on l'ajoute
+        if(node.count(debut->first.second) == 0)
+        {
+            nodex = string_node.append(to_string(n));
+            node.insert(pair <string, string> (debut->first.second, nodex));
+            ++n;
+            string_node = "node";
+        }
+        
+        // On construit le fichier .dot de sortie
+        // On recherche dans la map temporaire la ville et on prend second, cad, le node avec numéro
+        // fic << node.find(debut->first.first)->second << " [label=\"" << debut->first.first << "\"];" << endl;
+        // fic << node.find(debut->first.second)->second << " [label=\"" << debut->first.second << "\"];" << endl;
         ++debut;
     }
 
+    //On écrit sur le fichier de sortie la première partie concernant les nodes
+    // On initialise
+    debutNode = node.begin();
+    finNode = node.end();
+
+    // On parcourt la map du début à la fin
+    while(debutNode != finNode)
+    {
+        fic << debutNode->second << " [label=\"" << debutNode->first << "\"];" << endl;
+        ++debutNode;
+    }
+
+    //Deuxième partie du .dot
+    // On ré-initialise les itérateurs
     debut = parcours.begin();
     fin = parcours.end();
 
-    //Deuxième partie du .dot
+    debutNode = node.begin();
+    finNode = node.end();
+
+    // On écrit dans le fichier, en s'aidant de la map temporaire, chaque trajet d'une node à l'autre
     while(debut != fin)
     {
-        fic << debut->first.source << " -> " << debut->first.destinataire << " [label=\"" << debut->second << "\"];" << endl;
+        fic << node.find(debut->first.first)->second << " -> " << node.find(debut->first.second)->second << " [label=\"" << debut->second << "\"];" << endl;
         ++debut;
     }
+
+    // Clôture du fichier 
+    fic << "}" << endl;
 
     //Redirection de cout sur la sortie initiale sauvegardée
     cout.rdbuf (oldCoutBuffer);

@@ -29,7 +29,9 @@ struct Cle1
     {}
 };
 
-typedef map<Cle1, int> Tgraph;
+//typedef map<Cle1, int> Tgraph;
+typedef pair<string, string> Cle;
+typedef map<Cle, int> Tgraph;
 
 class Graphe
 {
@@ -37,13 +39,13 @@ class Graphe
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    friend bool operator< (const Cle1 & uneCle, const Cle1 & uneAutre);
+    //friend bool operator< (const Cle1 & uneCle, const Cle1 & uneAutre);
 
-    // friend ostream & operator<<(ostream & os, Tgraph::const_iterator & g);
+    //friend ostream & operator<<(ostream & os, Tgraph::const_iterator & g);
 
-    // friend ostream & operator<<(ofstream & os, const Cle1 & uneCle);
+    friend ostream & operator<<(ofstream & os, const Cle1 & uneCle);
     
-    friend bool operator==(const Cle1 & uneCle, const Cle1 & uneAutre);
+    //friend bool operator==(const Cle1 & uneCle, const Cle1 & uneAutre);
 
     friend class test;
 

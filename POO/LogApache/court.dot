@@ -1,6 +1,8 @@
-googler.com [label="googler.com"];
-youtube [label="youtube"];
-google.com [label="google.com"];
-intranet-if [label="intranet-if"];
-googler.com -> youtube [label="1"];
-google.com -> intranet-if [label="1"];
+digraph { 
+node0 [label="google.com"];
+node1 [label="intranet"];
+node2 [label="mozilla"];
+node3 [label="youtube"];
+node0 -> node1 [label="2"];
+node2 -> node3 [label="1"];
+}

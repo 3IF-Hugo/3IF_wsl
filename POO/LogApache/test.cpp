@@ -64,22 +64,27 @@ using namespace std;
 
 int main ()
 {
-    Cle1 *uneCle = new Cle1("source", "desti");
+    //Cle1 *uneCle = new Cle1("source", "desti");
     //cout << uneCle->source;
     
-    Renseignements info = Renseignements("test1", "ds", "sd", "intranet-if", "gq", "gqggg", "reeeeeeeey", "google.com", "zry");
+    Renseignements info = Renseignements("test1", "ds", "sd", "intranet", "gq", "gqggg", "reeeeeeeey", "google.com", "zry");
     InfoLog *log1 = new InfoLog(info);
 
-    Renseignements info2 = Renseignements("test1", "ds", "sd", "youtube", "gq", "gqggg", "reeeeeeeey", "googler.com", "zry");
+    Renseignements info2 = Renseignements("test1", "ds", "sd", "intranet", "gq", "gqggg", "reeeeeeeey", "google.com", "zry");
     InfoLog *log2 = new InfoLog(info2);
+
+    Renseignements info3 = Renseignements("test1", "ds", "sd", "youtube", "gq", "gqggg", "reeeeeeeey", "mozilla", "zry");
+    InfoLog *log3 = new InfoLog(info3);
 
     Graphe *ungraphe = new Graphe();
     ungraphe->Ajouter(*log1);
     ungraphe->Ajouter(*log2);
+    ungraphe->Ajouter(*log3);
 
     //ungraphe->Afficher();
 
     ungraphe->Generer("court.dot");
     // InfoLog test = InfoLog(info);
+
     return 0;
 }
