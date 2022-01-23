@@ -85,7 +85,7 @@ int main ()
 
     ungraphe->Generer("court.dot");
 
-    ungraphe->LectureFichier("fichierInput.txt");
+    //ungraphe->LectureFichier("fichierInput.txt");
     ungraphe->Generer("court.dot");
     // InfoLog test = InfoLog(info);
 

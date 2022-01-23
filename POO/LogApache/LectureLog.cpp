@@ -53,10 +53,15 @@ InfoLog & LectureLog::getNextLog(ifstream & fic, InfoLog & logLine)
         logLine.infos.typeAction.erase(0, 1);
         //URL de la target
         scraping >> logLine.infos.destinataire;
-        //Type de doc
-        if(logLine.infos.destinataire.find(".") != string::npos)
+        //Session si présente
+        if((posSplit = logLine.infos.destinataire.find_first_of(";")) != string::npos)
         {
-            posSplit = logLine.infos.destinataire.find_last_of(".");
+            logLine.infos.session = logLine.infos.destinataire.substr(posSplit+1, logLine.infos.date.size()-posSplit-1);
+        }
+        logLine.
+        //Type de doc
+        if((posSplit = logLine.infos.destinataire.find_first_of(".")) != string::npos)
+        {
             logLine.infos.typeDoc = logLine.infos.destinataire.substr(posSplit+1, logLine.infos.date.size()-posSplit-1);
         }
         //HTML/1.1

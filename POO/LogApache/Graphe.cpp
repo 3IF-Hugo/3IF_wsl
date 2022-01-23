@@ -114,8 +114,6 @@ void Graphe::LectureFichier(string nomFic, int optG, int optE, int Theure)
                     Ajouter(logX);
                 }
             }
-
-            Ajouter(logX);
         }
     }
 }

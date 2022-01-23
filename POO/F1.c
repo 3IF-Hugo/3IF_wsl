@@ -4,6 +4,7 @@ int Modifie();
 int i;
 int j=0;
 
+
 int main()
 {
     i=1;
