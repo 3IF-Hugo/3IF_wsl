@@ -58,7 +58,7 @@ InfoLog & LectureLog::getNextLog(ifstream & fic, InfoLog & logLine)
         {
             logLine.infos.session = logLine.infos.destinataire.substr(posSplit+1, logLine.infos.date.size()-posSplit-1);
         }
-        logLine.
+        //logLine.
         //Type de doc
         if((posSplit = logLine.infos.destinataire.find_first_of(".")) != string::npos)
         {

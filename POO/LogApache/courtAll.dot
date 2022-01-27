@@ -1,0 +1,6 @@
+digraph { 
+node0 [label="/temps/3IF37.html"];
+node1 [label="/temps/choix.html"];
+node0 -> node0 [label="1"];
+node0 -> node1 [label="1"];
+}

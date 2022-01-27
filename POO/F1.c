@@ -10,6 +10,7 @@ int main()
     i=1;
     printf("i (main 1) = %d\n", i);
     j = Modifie();
+    Modifie();
     printf("i (main 2) = %d\n", i);
     printf("j (main 2) = %d\n", j);
 

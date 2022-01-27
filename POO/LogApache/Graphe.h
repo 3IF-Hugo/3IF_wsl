@@ -29,9 +29,16 @@ struct Cle1
     {}
 };
 
+//Map pour le graphe
 //typedef map<Cle1, int> Tgraph;
 typedef pair<string, string> Cle;
 typedef map<Cle, int> Tgraph;
+
+//Map pour destinataire/nb de hit
+typedef map<string, int> Classement;
+
+//Map pour la recherche du top10
+typedef multimap<int, string> Top10;
 
 class Graphe
 {
@@ -52,6 +59,12 @@ public:
     void LectureFichier(string nomFic, int optG, int optE, int optT);
 
     void Ajouter(const InfoLog & log);
+
+    void AjouterClassement(const InfoLog & log);
+
+    void FaireTop10();
+
+    void AfficherTop10();
     
     //void Afficher(string nom = "", ostream & f = cout) const;
 
@@ -76,6 +89,8 @@ private:
 
 //----------------------------------------------------- Attributs protégés
 Tgraph parcours;
+Classement classement;
+Top10 top10;
 };
 
 #endif // Graphe_H

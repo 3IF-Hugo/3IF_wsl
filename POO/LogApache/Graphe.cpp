@@ -83,35 +83,68 @@ void Graphe::LectureFichier(string nomFic, int optG, int optE, int Theure)
                 logX.infos.referer.erase(0, nomDomaineSize);
             }
 
-            if(optG == 1 && optE == 1 && Theure != -1)
+            //Aucune option renseignée, on ne fait que le top 10
+            if(optG == 0 && optE == 0 && Theure == -1)
+            {
+                AjouterClassement(logX);
+            }else if(optG == 1 && optE == 1 && Theure != -1) //Toute les options sont renseignées
             {
                 if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
                 || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
                 || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
                 || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd")
-                && stoi(logX.infos.heure) > Theure && stoi(logX.infos.heure) < Theure+1)
+                && stoi(logX.infos.heure) >= Theure && stoi(logX.infos.heure) < Theure+1)
                 {
-                    cout << "je passe par là" << endl;
                     Ajouter(logX);
+                    AjouterClassement(logX);
                 }
-            }else if(optG == 1 && optE == 1)
+            }else if(optG == 1 && optE == 1) // Les options -g et -e sont renseignées
             {
-                if(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
+                if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
                 || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
                 || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
-                || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd")
+                || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd"))
                 {
-                    continue;
-                }else{
                     Ajouter(logX);
+                    AjouterClassement(logX);
                 }
-            }else if(optG == 1 && Theure  != -1)
+            }else if(optG == 1 && Theure  != -1) // Les options -g et -t sont renseignées
             {
                 if(stoi(logX.infos.heure) < Theure && stoi(logX.infos.heure) > Theure+1)
                 {
                     continue;
                 }else{
                     Ajouter(logX);
+                    AjouterClassement(logX);
+                }
+            }else if(optG == 1) //  Seule l'option -g est renseignée
+            {
+                Ajouter(logX);
+                AjouterClassement(logX);
+            }else if(optE == 1 && Theure != -1) // Les options -e et -t sont renseignées
+            {
+                if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
+                || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
+                || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
+                || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd")
+                && stoi(logX.infos.heure) >= Theure && stoi(logX.infos.heure) < Theure+1)
+                {
+                    AjouterClassement(logX);
+                }
+            }else if(optE == 1) // Seule l'option -e est renseignée
+            {
+                if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
+                || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
+                || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
+                || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd"))
+                {
+                    AjouterClassement(logX);
+                }
+            }else if(Theure != -1) // Seule l'option -t est renseignée
+            {
+                if(stoi(logX.infos.heure) >= Theure && stoi(logX.infos.heure) < Theure+1)
+                {
+                    AjouterClassement(logX);
                 }
             }
         }
@@ -133,6 +166,48 @@ void Graphe::Ajouter(const InfoLog & log)
         parcours.insert(pair <Cle, int> (infos, ++parcours.find(infos)->second));
     }else{
         parcours.insert(pair <Cle, int> (infos, 1));
+    }
+}
+
+
+void Graphe::AjouterClassement(const InfoLog & log)
+{
+    if(classement.count(log.infos.destinataire) == 1)
+    {
+        classement.insert(pair <string, int> (log.infos.destinataire, ++classement.find(log.infos.destinataire)->second));
+    }else{
+        classement.insert(pair <string, int> (log.infos.destinataire, 1));
+    }
+}
+
+void Graphe::FaireTop10()
+{
+    Classement::const_iterator debut;
+    Classement::const_iterator fin;
+    debut = classement.begin();
+    fin = classement.end();
+
+    while(debut != fin)
+    {
+        top10.insert(pair <int, string> (debut->second, debut->first));
+        debut++;
+    }
+}
+
+void Graphe::AfficherTop10()
+{
+    Top10::const_reverse_iterator debut;
+    Top10::const_reverse_iterator fin;
+
+    debut = top10.rbegin();
+    fin = top10.rend();
+    int nbIteration = 0;
+
+    while(nbIteration < 10 && debut != fin)
+    {
+        cout << debut->second << " (" << debut->first << " hits)" << endl;
+        ++debut;
+        ++nbIteration;
     }
 }
 
