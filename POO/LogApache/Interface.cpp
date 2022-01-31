@@ -122,7 +122,7 @@ int main(int argc, char * argv[])
     {
         cerr << chaine << endl;
     }
-
+    delete ungraphe;
     return 0;
 }
 

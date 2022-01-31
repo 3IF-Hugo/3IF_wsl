@@ -77,7 +77,7 @@ InfoLog & LectureLog::getNextLog(ifstream & fic, InfoLog & logLine)
         logLine.infos.referer.pop_back();
         //Navigateur utilisé
         scraping >> logLine.infos.clientNav;
-        temp = "";
+        //temp = "";
         while(temp.back() != '"')
         {
             scraping >> temp;
