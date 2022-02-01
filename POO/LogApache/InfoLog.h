@@ -49,18 +49,19 @@ struct Renseignements
     string fuseauHoraire;
     string typeAction;
     string destinataire;
-    string session;
+    string complement;
     string HTML;
     string typeDoc;
     string status;
     string qteData;
     string referer;
+    string referer_complement;
     string clientNav;
-    Renseignements(string ip = "", string userLN = "", string userN = "", string dt = "", string h = "", string fh = "", string ta = "", string dest ="", string s = "-", string html = "",
-    string td = "-", string st = "", string qd = "", string ref = "",
+    Renseignements(string ip = "", string userLN = "", string userN = "", string dt = "", string h = "", string fh = "", string ta = "", string dest ="", string comp = "-", string html = "",
+    string td = "-", string st = "", string qd = "", string ref = "", string ref_comp = "-",
     string cN = "") : 
-    IP(ip), userLogName(userLN), userName(userN), date(dt), heure(h), fuseauHoraire(fh), typeAction(ta), destinataire(dest), session (s), HTML(html), typeDoc(td), status(st), 
-    qteData(qd), referer(ref), clientNav(cN)
+    IP(ip), userLogName(userLN), userName(userN), date(dt), heure(h), fuseauHoraire(fh), typeAction(ta), destinataire(dest), complement (comp), HTML(html), typeDoc(td), status(st), 
+    qteData(qd), referer(ref), referer_complement(ref_comp), clientNav(cN)
     {}
 };
 

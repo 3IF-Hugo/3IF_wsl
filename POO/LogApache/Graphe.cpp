@@ -74,7 +74,6 @@ void Graphe::LectureFichier(string nomFic, int optG, int optE, int Theure)
         {
             InfoLog & logX = LectureLog::getNextLog(fic, logLine);
             //-------- CAS OU IL N'Y A PAS DE REFERER ???? -----------//
-            //-------- CAS DE LA TARGET BIZARRE AVEC temps/blabla/fichier.html;jsksfjqlksfj -----------//
             //On ne garde que l'heure au lieu de heure + minute + secondes
             logX.infos.heure.erase(2, 6);
             //On supprime le lien du referer s'il correspond au serveur local

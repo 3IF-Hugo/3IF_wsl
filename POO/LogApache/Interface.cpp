@@ -22,7 +22,7 @@ using namespace std;
 //----------------------------------------------- Déclaration des méthodes
 
 //------------------------------------------------ Définition des méthodes
-int chercherOtions(vector<string> & args, string options);
+int chercherOptions(vector<string> & args, string options);
 
 int main(int argc, char * argv[])
 {
@@ -35,9 +35,9 @@ int main(int argc, char * argv[])
     string e = "-e";
     string t = "-t";
 
-    int gPresent = chercherOtions(args, g);
-    int ePresent = chercherOtions(args, e);
-    int tPresent = chercherOtions(args, t);
+    int gPresent = chercherOptions(args, g);
+    int ePresent = chercherOptions(args, e);
+    int tPresent = chercherOptions(args, t);
     try
     {
         if(gPresent != 0 && (gPresent < ePresent || gPresent < tPresent))
@@ -126,7 +126,7 @@ int main(int argc, char * argv[])
     return 0;
 }
 
-int chercherOtions(vector<string> & args, string options)
+int chercherOptions(vector<string> & args, string options)
 {
     for (size_t i = 1; i < args.size(); ++i) {
         if (args[i] == options) {

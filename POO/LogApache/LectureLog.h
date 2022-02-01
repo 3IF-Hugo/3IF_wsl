@@ -77,6 +77,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
+
 };
 
 //-------------------------------- Autres définitions dépendantes de <LectureLog>
