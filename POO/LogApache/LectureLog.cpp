@@ -1,9 +1,9 @@
 /*************************************************************************
                            LectureLog  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : Janvier 2022
+    copyright            : VOTE Robin et GREL Hugo
+    e-mail               : robin.vote@insa-lyon.fr et hugo.grel@insa-lyon.fr
 *************************************************************************/
 
 //---------- Réalisation de la classe <LectureLog> (fichier LectureLog.cpp) ------------

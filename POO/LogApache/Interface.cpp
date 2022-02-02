@@ -41,6 +41,14 @@ int main(int argc, char * argv[])
             throw string("ERREUR : L'option -g doit être mise en dernier ! Relancer l'application...");
         }
 
+        if(tPresent != -1)
+        {
+            int heure = stoi(args[tPresent+1]);
+            if(0 > heure || heure > 24)
+            {
+                throw string("ERREUR : L'heure renseignée n'est pas conforme");
+            }
+        }
         if(argc == 2)
         {
             uneApplication->LectureFichier(args[argc-1], 0, 0, -1);
