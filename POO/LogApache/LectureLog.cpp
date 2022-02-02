@@ -76,6 +76,11 @@ InfoLog & LectureLog::getNextLog(ifstream & fic, InfoLog & logLine)
             logLine.infos.complement = logLine.infos.destinataire.substr(posSplit+1, logLine.infos.destinataire.size()-posSplit-1);
             logLine.infos.destinataire.erase(posSplit, logLine.infos.destinataire.size()-posSplit);
         }
+        //Suppression du dernier / si présent target
+        if(logLine.infos.destinataire.find_last_of("/") == logLine.infos.destinataire.size()-1)
+        {
+            logLine.infos.destinataire.pop_back();
+        }
 
         //Type doc
         if((posSplit = logLine.infos.destinataire.find_first_of(".")) != string::npos)
@@ -115,6 +120,11 @@ InfoLog & LectureLog::getNextLog(ifstream & fic, InfoLog & logLine)
         if((posSplit = logLine.infos.referer.find("index.html")) != string::npos)
         {
             logLine.infos.referer.erase(posSplit, logLine.infos.referer.size()-posSplit);
+        }
+        //Suppression du dernier / si referer
+        if(logLine.infos.referer.find_last_of("/") == logLine.infos.referer.size()-1)
+        {
+            logLine.infos.referer.pop_back();
         }
 
         //Navigateur utilisé
