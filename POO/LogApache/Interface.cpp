@@ -15,13 +15,13 @@ using namespace std;
 #include <cstring>
 #include <vector>
 //------------------------------------------------------ Include personnel
-#include "Graphe.h"
+#include "Application.h"
 //----------------------------------------------- Déclaration des méthodes
 int chercherOptions(vector<string> & args, string options);
 //------------------------------------------------ Définition des méthodes
 int main(int argc, char * argv[])
 {
-    Graphe *ungraphe = new Graphe();
+    Application* uneApplication = new Application();
 
     cout << "-> " << argv[0] << endl;
 
@@ -43,69 +43,69 @@ int main(int argc, char * argv[])
 
         if(argc == 2)
         {
-            ungraphe->LectureFichier(args[argc-1], 0, 0, -1);
-            ungraphe->FaireTop10();
+            uneApplication->LectureFichier(args[argc-1], 0, 0, -1);
+            uneApplication->FaireTop10();
             cout << "Top 10 : " << endl;
-            ungraphe->AfficherTop10();
+            uneApplication->AfficherTop10();
         }else if(tPresent != 0 && gPresent != 0 && ePresent != 0 && argc == 7)
         {
             int heure = stoi(args[tPresent+1]);
 
-            ungraphe->LectureFichier(args[argc-1], 1, 1, heure);
-            ungraphe->Generer(args[gPresent+1]);
+            uneApplication->LectureFichier(args[argc-1], 1, 1, heure);
+            uneApplication->Generer(args[gPresent+1]);
             cout << "Dot-file "<< args[gPresent+1] << " generated" << endl;
             cout << "Il ne contient pas les extensions css, image, javascript" << endl;
             cout << "WARNING : only hits between " << heure << " and " << heure+1 << " have been taken into account" << endl;
-            ungraphe->FaireTop10();
-            ungraphe->AfficherTop10();
+            uneApplication->FaireTop10();
+            uneApplication->AfficherTop10();
         }else if((gPresent != 0) && (ePresent != 0) && argc == 5)
         {
-            ungraphe->LectureFichier(args[argc-1], 1, 1, -1);
-            ungraphe->Generer(args[gPresent+1]);
+            uneApplication->LectureFichier(args[argc-1], 1, 1, -1);
+            uneApplication->Generer(args[gPresent+1]);
             cout << "Dot-file "<< args[gPresent+1] << " generated" << endl;
             cout << "Il ne contient pas les extensions css, image, javascript" << endl;
-            ungraphe->FaireTop10();
-            ungraphe->AfficherTop10();
+            uneApplication->FaireTop10();
+            uneApplication->AfficherTop10();
         }else if(tPresent != 0 && gPresent != 0 && argc == 6)
         {
             int heure = stoi(args[tPresent+1]);
 
-            ungraphe->LectureFichier(args[argc-1], 1, 0, heure);
-            ungraphe->Generer(args[gPresent+1]);
+            uneApplication->LectureFichier(args[argc-1], 1, 0, heure);
+            uneApplication->Generer(args[gPresent+1]);
             cout << "Dot-file "<< args[gPresent+1] << " generated" << endl;
             cout << "Il ne contient pas les extensions css, image, javascript" << endl;
             cout << "WARNING : only hits between " << heure << " and " << heure+1 << " have been taken into account" << endl;
-            ungraphe->FaireTop10();
-            ungraphe->AfficherTop10();
+            uneApplication->FaireTop10();
+            uneApplication->AfficherTop10();
         }else if(gPresent != 0 && argc == 4)
         {
             cout << args[argc-1] << endl;
-            ungraphe->LectureFichier(args[argc-1], 1, 0, -1);
-            ungraphe->Generer(args[gPresent+1]);
+            uneApplication->LectureFichier(args[argc-1], 1, 0, -1);
+            uneApplication->Generer(args[gPresent+1]);
             cout << "Dot-file "<< args[gPresent+1] << " generated" << endl;
-            ungraphe->FaireTop10();
-            ungraphe->AfficherTop10();
+            uneApplication->FaireTop10();
+            uneApplication->AfficherTop10();
         }else if(tPresent != 0 && ePresent != 0 && argc == 5)
         {
             int heure = stoi(args[tPresent+1]);
-            ungraphe->LectureFichier(args[argc-1], 0, 1, heure);
+            uneApplication->LectureFichier(args[argc-1], 0, 1, heure);
             cout << "Top 10 dans un créneau horaire sans les extensions : " << endl;
-            ungraphe->FaireTop10();
-            ungraphe->AfficherTop10();
+            uneApplication->FaireTop10();
+            uneApplication->AfficherTop10();
         }else if(ePresent != 0 && argc == 3)
         {
-            ungraphe->LectureFichier(args[argc-1], 0, 1, -1);
+            uneApplication->LectureFichier(args[argc-1], 0, 1, -1);
             cout << "Top 10 sans extensions : " << endl;
-            ungraphe->FaireTop10();
-            ungraphe->AfficherTop10();
+            uneApplication->FaireTop10();
+            uneApplication->AfficherTop10();
         }else if(tPresent != 0 && argc == 4)
         {
             int heure = stoi(args[tPresent+1]);
 
-            ungraphe->LectureFichier(args[argc-1], 0, 0, heure);
+            uneApplication->LectureFichier(args[argc-1], 0, 0, heure);
             cout << "Top 10 dans un créneau horaire : " << endl;
-            ungraphe->FaireTop10();
-            ungraphe->AfficherTop10();
+            uneApplication->FaireTop10();
+            uneApplication->AfficherTop10();
         }
         else{
             throw string("ERREUR : Options invalides ! Relancer l'application...");
@@ -116,7 +116,7 @@ int main(int argc, char * argv[])
         cerr << chaine << endl;
     }
 
-    delete ungraphe;
+    delete uneApplication;
     
     return 0;
 }

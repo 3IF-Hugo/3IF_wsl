@@ -51,7 +51,7 @@ public:
 //----------------------------------------------------- Méthodes publiques
     friend class LectureLog;
 
-    friend class Graphe;
+    friend class Application;
 //-------------------------------------------- Constructeurs - destructeur
     InfoLog ( const InfoLog & unInfoLog )
     {}

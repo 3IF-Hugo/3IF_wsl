@@ -1,24 +1,26 @@
 /*************************************************************************
-                           Graphe  -  description
+                           Application  -  description
                              -------------------
     début                : 15/11/2021
     copyright            : VOTE Robin et GREL Hugo
     e-mail               : robin.vote@insa-lyon.fr et hugo.grel@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <Graphe> (fichier Graphe.cpp) ------
+//---------- Réalisation de la classe <Application> (fichier Application.cpp) ------
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
 #include <fstream>
 //------------------------------------------------------ Include personnel
-#include "Graphe.h"
+#include "Application.h"
 #include "InfoLog.h"
 #include "LectureLog.h"
 //----------------------------------------------------------------- PUBLIC
 const char SEP = '|';
 //----------------------------------------------------- Méthodes publiques
-void Graphe::LectureFichier(string nomFic, int optG, int optE, int Theure)
+void Application::LectureFichier(string nomFic, int optG, int optE, int Theure)
+// Algorithme :
+//      Lecture ligne par ligne et insère suivant les caractéristiques demandées dans la map.
 {
     InfoLog logLine;
     ifstream fic;
@@ -107,7 +109,11 @@ void Graphe::LectureFichier(string nomFic, int optG, int optE, int Theure)
     }
 }
 
-void Graphe::Ajouter(const InfoLog & log)
+void Application::Ajouter(const InfoLog & log)
+// Algorithme :
+//      On fait une paire avec la source et le destinataire pour clé de la map
+//      Si la paire n'existe pas dans la map, on met 1 en second argument(nombre d'aller similaire) de la map
+//      Sinon, on fait +1 sur le second argument
 {
     Cle infos = make_pair(log.infos.referer, log.infos.destinataire);
 
@@ -119,7 +125,11 @@ void Graphe::Ajouter(const InfoLog & log)
     }
 }
 
-void Graphe::AjouterClassement(const InfoLog & log)
+void Application::AjouterClassement(const InfoLog & log)
+// Algorithme :
+//      Si, dans la map classement, la clé n'est pas trouvé (destinataire n'existant pas encore),
+//      on met 1 dans le second élément de la map.
+//      Sinon, on fait +1 sur le second élément.
 {
     if(classement.count(log.infos.destinataire) == 1)
     {
@@ -129,7 +139,7 @@ void Graphe::AjouterClassement(const InfoLog & log)
     }
 }
 
-void Graphe::FaireTop10()
+void Application::FaireTop10()
 {
     Classement::const_iterator debut;
     Classement::const_iterator fin;
@@ -143,7 +153,7 @@ void Graphe::FaireTop10()
     }
 }
 
-void Graphe::AfficherTop10()
+void Application::AfficherTop10()
 {
     Top10::const_reverse_iterator debut;
     Top10::const_reverse_iterator fin;
@@ -160,7 +170,7 @@ void Graphe::AfficherTop10()
     }
 }
 
-void Graphe::Generer(string nomFic)
+void Application::Generer(string nomFic)
 {
     typedef map<string, string> TypeNode;
     TypeNode node;
@@ -247,16 +257,16 @@ void Graphe::Generer(string nomFic)
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-Graphe::Graphe ( const Graphe & unGraphe )
+Application::Application ( const Application & unApplication )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <LectureLog>" << endl;
 #endif
-} //----- Fin de Graphe (constructeur de copie)
+} //----- Fin de Application (constructeur de copie)
 
-Graphe::Graphe ( )
+Application::Application ( )
 // Algorithme :
 //
 {
@@ -265,12 +275,12 @@ Graphe::Graphe ( )
 #endif
 } // Constructeur par défaut
 
-Graphe::~Graphe ( )
+Application::~Application ( )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au destructeur de <LectureLog>" << endl;
 #endif
-} //----- Fin de ~Graphe
+} //----- Fin de ~Application
 

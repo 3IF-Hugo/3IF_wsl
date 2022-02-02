@@ -4,7 +4,7 @@ EXEC=analog
 
 all: $(EXEC)
 
-analog : LectureLog.o Graphe.o Interface.o
+analog : LectureLog.o Application.o Interface.o
 	$(CXX) -o $@ $^
 
 %.o : %.cpp

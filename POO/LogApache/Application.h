@@ -1,14 +1,14 @@
 /*************************************************************************
-                           Graphe  -  description
+                           Application  -  description
                              -------------------
     début                : Janvier 2022
     copyright            : VOTE Robin et GREL Hugo
     e-mail               : robin.vote@insa-lyon.fr et hugo.grel@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <Graphe> (fichier Graphe.h) ----------------
-#if ! defined ( Graphe_H )
-#define Graphe_H
+//---------- Interface de la classe <Application> (fichier Application.h) ----------------
+#if ! defined ( Application_H )
+#define Application_H
 
 //--------------------------------------------------- Interfaces utilisées
 using namespace std;
@@ -18,8 +18,10 @@ using namespace std;
 #include "InfoLog.h"
 class test;
 //------------------------------------------------------------------------
-// Rôle de la classe <Graphe>
-//      ...
+// Rôle de la classe <Application>
+//      Permet de remplir ligne par ligne la map parcours.
+//      Permet de générer un Application .dot.
+//      Permet de faire le top 10 et de l'afficher
 //------------------------------------------------------------------------
 struct Cle1
 {
@@ -29,7 +31,7 @@ struct Cle1
     {}
 };
 
-//Map pour le graphe
+//Map pour le Application
 //typedef map<Cle1, int> Tgraph;
 typedef pair<string, string> Cle;
 typedef map<Cle, int> Tgraph;
@@ -40,41 +42,52 @@ typedef map<string, int> Classement;
 //Map pour la recherche du top10
 typedef multimap<int, string> Top10;
 
-class Graphe
+class Application
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    //friend bool operator< (const Cle1 & uneCle, const Cle1 & uneAutre);
-
-    //friend ostream & operator<<(ostream & os, Tgraph::const_iterator & g);
-
-    friend ostream & operator<<(ofstream & os, const Cle1 & uneCle);
-    
-    //friend bool operator==(const Cle1 & uneCle, const Cle1 & uneAutre);
-
-    friend class test;
-
     void LectureFichier(string nomFic, int optG, int optE, int optT);
+    /* Méthode pour lire ligne par ligne le fichier en entrée suivant des caractéristiques
+        @param1 string : le nom du fichier à lire
+        @param2 int : l'option -g : 1 = renseignée, 0 : non renseignée
+        @param3 int : l'option -e : 1 = renseignée, 0 : non renseignée
+        @param4 int : l'option -t : x = renseignée et x est l'heure, -1 : non renseignée
+        @call Ajouter : méthode de <Application>
+        @call AjouterClassement : méthode de <Application>
+        @call getNextLog : méthode de <LectureLog>
+        @call Ajouter : méthode de <Application>
+    */
 
     void Ajouter(const InfoLog & log);
+    /* Méthode pour ajouter certains argument de log dans la map parcours
+        @param1 Infolog : un objet log contenant toutes les informations de la ligne concernée
+    */
 
     void AjouterClassement(const InfoLog & log);
+    /* Méthode pour ajouter certains argument de log dans la map classement
+        @param1 Infolog : un objet log contenant toutes les informations de la ligne concernée
+    */
 
     void FaireTop10();
+    /* Méthode pour classer les destinataires ayant le plus de hit, utilise une multimap
+    */
 
     void AfficherTop10();
+    /* Méthode pour afficher les 10 destinataires ayant le plus de hit
+    */
     
-    //void Afficher(string nom = "", ostream & f = cout) const;
-
     void Generer(string nomFic);
+    /* Méthode pour générer un fichier .dot ayant le nom fournit en entrée
+        @param1 string : le nom du fichier dans lequel écrire
+    */
 //-------------------------------------------- Constructeurs - destructeur
-    Graphe ( const Graphe & unGraphe );
+    Application ( const Application & unApplication );
 
-    Graphe ( );
+    Application ( );
 
-    ~Graphe ( );
+    ~Application ( );
 //------------------------------------------------------------------ PRIVE
 
 private:
@@ -86,5 +99,5 @@ Classement classement;
 Top10 top10;
 };
 
-#endif // Graphe_H
+#endif // Application_H
 
