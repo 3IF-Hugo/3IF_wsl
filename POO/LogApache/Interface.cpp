@@ -14,20 +14,15 @@ using namespace std;
 #include <fstream>
 #include <cstring>
 #include <vector>
-#include "Graphe.h"
-
 //------------------------------------------------------ Include personnel
-
-
+#include "Graphe.h"
 //----------------------------------------------- Déclaration des méthodes
-
-//------------------------------------------------ Définition des méthodes
 int chercherOptions(vector<string> & args, string options);
-
+//------------------------------------------------ Définition des méthodes
 int main(int argc, char * argv[])
 {
     Graphe *ungraphe = new Graphe();
-    // ne pas utiliser argv[0], c'est le nom de l'exécutable
+
     cout << "-> " << argv[0] << endl;
 
     vector<string> args(argv, argv+argc);
@@ -38,12 +33,14 @@ int main(int argc, char * argv[])
     int gPresent = chercherOptions(args, g);
     int ePresent = chercherOptions(args, e);
     int tPresent = chercherOptions(args, t);
+
     try
     {
         if(gPresent != 0 && (gPresent < ePresent || gPresent < tPresent))
         {
-            throw string("L'option -g doit être mise en dernier ! Relancer l'application...");
+            throw string("ERREUR : L'option -g doit être mise en dernier ! Relancer l'application...");
         }
+
         if(argc == 2)
         {
             ungraphe->LectureFichier(args[argc-1], 0, 0, -1);
@@ -82,10 +79,8 @@ int main(int argc, char * argv[])
             ungraphe->AfficherTop10();
         }else if(gPresent != 0 && argc == 4)
         {
-            cout << "je passe par la" << endl;
             cout << args[argc-1] << endl;
             ungraphe->LectureFichier(args[argc-1], 1, 0, -1);
-            //ungraphe->LectureFichier("fichierInput.txt", 1, 0, -1);
             ungraphe->Generer(args[gPresent+1]);
             cout << "Dot-file "<< args[gPresent+1] << " generated" << endl;
             ungraphe->FaireTop10();
@@ -113,16 +108,16 @@ int main(int argc, char * argv[])
             ungraphe->AfficherTop10();
         }
         else{
-            throw string("Options invalides ! Relancer l'application...");
-            // cerr << "Options invalides" << endl;
-            // cerr << "Fermeture de l'application" << endl;
+            throw string("ERREUR : Options invalides ! Relancer l'application...");
         }
     }
     catch(string const& chaine)
     {
         cerr << chaine << endl;
     }
+
     delete ungraphe;
+    
     return 0;
 }
 

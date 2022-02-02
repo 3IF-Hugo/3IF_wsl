@@ -17,28 +17,6 @@ using namespace std;
 // Rôle de la classe <InfoLog>
 //      ...
 //------------------------------------------------------------------------
-// struct Renseignements
-// {
-//     string IP;
-//     string userLogName;
-//     string userName;
-//     string date;
-//     string heure;
-//     string typeAction;
-//     string destinataire;
-//     string typeDoc;
-//     string status;
-//     string qteData;
-//     string referer;
-//     string clientNav;
-//     Renseignements(string ip = "", string userLogName = "", string userName = "", string dt = "", string h = "", string ta = "", string dest ="",
-//     string td = "", string st = "", string qd = "", string ref = "",
-//     string cN = "") : 
-//     IP(ip), date(dt), heure(h), destinataire(dest), typeDoc(td), status(st), 
-//     qteData(qd), referer(ref), clientNav(cN)
-//     {}
-// };
-
 struct Renseignements
 {
     string IP;
@@ -75,14 +53,16 @@ public:
 
     friend class Graphe;
 //-------------------------------------------- Constructeurs - destructeur
-    InfoLog ( const InfoLog & unInfoLog );
+    InfoLog ( const InfoLog & unInfoLog )
+    {}
 
     InfoLog(Renseignements r = Renseignements()) : infos(r)
     {}
 
     // InfoLog ( );
 
-    virtual ~InfoLog ( );
+    virtual ~InfoLog ( )
+    {}
     // Mode d'emploi :
     //
     // Contrat :

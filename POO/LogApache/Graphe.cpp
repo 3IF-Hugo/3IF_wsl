@@ -10,57 +10,14 @@
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
-
+#include <fstream>
 //------------------------------------------------------ Include personnel
 #include "Graphe.h"
 #include "InfoLog.h"
 #include "LectureLog.h"
-#include <fstream>
 //----------------------------------------------------------------- PUBLIC
 const char SEP = '|';
 //----------------------------------------------------- Méthodes publiques
-
-// inline bool operator< (const Cle1 & uneCle, const Cle1 & uneAutre)
-// {
-//     if(uneCle.source == uneAutre.source && uneCle.destinataire == uneAutre.destinataire)
-//     {
-//         return false;
-//     }else{
-//         return true;
-//     }
-//     //return uneCle.destinataire.compare(uneAutre.destinataire);
-// }
-
-// inline bool operator==(const Cle1 & uneCle, const Cle1 & uneAutre)
-// {
-//     if(!uneCle.source.compare(uneAutre.source) && !uneCle.destinataire.compare(uneAutre.destinataire))
-//     {
-//         return true;
-//     }else{
-//         return false;
-//     }
-// }
-
-// ostream & operator<<(ostream & os, Tgraph::const_iterator & it)
-// {
-//     // Avec Cle1 struct :
-//     // os << it->first.source << SEP;
-//     // os << it->first.destinataire << SEP;
-//     // os << it->second << endl;
-
-//     // Avec Cle pair
-//     os << it->first.first << SEP;
-//     os << it->first.second << SEP;
-//     os << it->second << endl;
-//     return os;
-// }
-
-// ostream & operator<<(ofstream & os, const Cle1 & uneCle)
-// {
-//     os << uneCle.source << "_" << uneCle.destinataire;
-//     return os;
-// }
-
 void Graphe::LectureFichier(string nomFic, int optG, int optE, int Theure)
 {
     InfoLog logLine;
@@ -150,14 +107,8 @@ void Graphe::LectureFichier(string nomFic, int optG, int optE, int Theure)
     }
 }
 
-
 void Graphe::Ajouter(const InfoLog & log)
 {
-    // Cle1 infos;
-    // infos.source = log.infos.referer;
-    // infos.destinataire = log.infos.destinataire;
-
-    //Avec la pair :
     Cle infos = make_pair(log.infos.referer, log.infos.destinataire);
 
     if(parcours.count(infos) == 1)
@@ -167,7 +118,6 @@ void Graphe::Ajouter(const InfoLog & log)
         parcours.insert(pair <Cle, int> (infos, 1));
     }
 }
-
 
 void Graphe::AjouterClassement(const InfoLog & log)
 {
@@ -209,27 +159,6 @@ void Graphe::AfficherTop10()
         ++nbIteration;
     }
 }
-
-// void Graphe::Afficher(string nom, ostream & f) const
-// {
-//     Tgraph::const_iterator debut;
-//     Tgraph::const_iterator fin;
-
-//     if(nom.empty())
-//     {
-//         debut = parcours.begin();
-//         fin = parcours.end();
-//     }//else{
-//     //     debut = parcours.lower_bound(nom);
-//     //     fin = parcours.upper_bound(nom);
-//     // }
-
-//     while(debut != fin)
-//     {
-//         f << debut;
-//         debut++;
-//     }
-// }
 
 void Graphe::Generer(string nomFic)
 {
@@ -278,11 +207,7 @@ void Graphe::Generer(string nomFic)
             ++n;
             string_node = "node";
         }
-        
-        // On construit le fichier .dot de sortie
-        // On recherche dans la map temporaire la ville et on prend second, cad, le node avec numéro
-        // fic << node.find(debut->first.first)->second << " [label=\"" << debut->first.first << "\"];" << endl;
-        // fic << node.find(debut->first.second)->second << " [label=\"" << debut->first.second << "\"];" << endl;
+
         ++debut;
     }
 
@@ -322,16 +247,30 @@ void Graphe::Generer(string nomFic)
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-// Graphe::Graphe ( const Graphe & unGraphe )
-//----- Fin de Graphe (constructeur de copie)
-
-// Graphe::Graphe (string name = "", Renseignements r = Renseignements())
-// Constructeur de Graphe
+Graphe::Graphe ( const Graphe & unGraphe )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <LectureLog>" << endl;
+#endif
+} //----- Fin de Graphe (constructeur de copie)
 
 Graphe::Graphe ( )
-{}
-// Constructeur par défaut
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <LectureLog>" << endl;
+#endif
+} // Constructeur par défaut
 
-// Graphe::~Graphe ( )
-// Destructeur de Graphe
+Graphe::~Graphe ( )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au destructeur de <LectureLog>" << endl;
+#endif
+} //----- Fin de ~Graphe
 

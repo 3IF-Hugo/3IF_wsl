@@ -4,9 +4,9 @@ EXEC=analog
 
 all: $(EXEC)
 
-analog : InfoLog.o LectureLog.o Graphe.o Interface.o
+analog : LectureLog.o Graphe.o Interface.o
 	$(CXX) -o $@ $^
-	
+
 %.o : %.cpp
 	$(CXX) -c -g $< $(CFLAGS)
 

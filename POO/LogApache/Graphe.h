@@ -68,20 +68,13 @@ public:
     
     //void Afficher(string nom = "", ostream & f = cout) const;
 
-    void Generer(string nomFic = "");
+    void Generer(string nomFic);
 //-------------------------------------------- Constructeurs - destructeur
     Graphe ( const Graphe & unGraphe );
 
-    //Graphe(string nomfic = "");
-
     Graphe ( );
 
-    //~Graphe ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+    ~Graphe ( );
 //------------------------------------------------------------------ PRIVE
 
 private:
