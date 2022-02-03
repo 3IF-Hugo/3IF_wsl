@@ -33,42 +33,24 @@ class LectureLog
 //----------------------------------------------------------------- PUBLIC
 
 public:
-
-    //friend class InfoLog;
 //----------------------------------------------------- Méthodes publiques
     static bool getNextLog(ifstream & fic, InfoLog & logLine);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+    /* Méthode pour lire ligne par ligne le fichier en entrée suivant des caractéristiques
+        @param1 ifstream : input stream du fichier dans lequel lire la ligne
+        @param2 InfoLog& : L'instance de classe InfoLog passée par référence qui va contenir les infos de la ligne lue
+        @return bool : Retourne 1 si on a pu lire correctement la ligne, 0 sinon
+    */
 
 //------------------------------------------------- Surcharge d'opérateurs
     LectureLog & operator = ( const LectureLog & unLectureLog );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 
 //-------------------------------------------- Constructeurs - destructeur
     LectureLog ( const LectureLog & unLectureLog );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     LectureLog ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     virtual ~LectureLog ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE
 

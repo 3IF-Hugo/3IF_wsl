@@ -32,29 +32,30 @@ bool LectureLog::getNextLog(ifstream & fic, InfoLog & logLine)
         stringstream scraping;
         long unsigned int posSplit;
         getline(fic, temp, '\n');
+        //Si la ligne n'est pas vide
         if(!temp.empty())
         {
             scraping << temp;
-            //IP
+            /*IP*/
             scraping >> logLine.infos.IP;
-            //UserLogName
+            /*UserLogName*/
             scraping >> logLine.infos.userLogName;
-            //UserName
+            /*UserName*/
             scraping >> logLine.infos.userName;
-            //Date + heure
+            /*Date + heure*/
             scraping >> logLine.infos.date;
             logLine.infos.date.erase(0, 1);
             //Séparation date et heure
             posSplit = logLine.infos.date.find_first_of(":");
             logLine.infos.heure = logLine.infos.date.substr(posSplit+1, logLine.infos.date.size()-posSplit-1);
             logLine.infos.date.erase(posSplit, logLine.infos.date.size()-posSplit);
-            //Fuseau horaire
+            /*Fuseau horaire*/
             scraping >> logLine.infos.fuseauHoraire;
             logLine.infos.fuseauHoraire.pop_back();
-            //Type d'action (GET, OPTION, ...)
+            /*Type d'action (GET, ...)*/
             scraping >> logLine.infos.typeAction;
             logLine.infos.typeAction.erase(0, 1);
-            //URL de la target
+            /*URL de la target*/
             scraping >> logLine.infos.destinataire;
             //Suppression index.html pour temps/ target
             if((posSplit = logLine.infos.destinataire.find("index.html")) != string::npos)
@@ -77,7 +78,7 @@ bool LectureLog::getNextLog(ifstream & fic, InfoLog & logLine)
             {
                 logLine.infos.destinataire.pop_back();
             }
-            //Type doc
+            /*Type doc*/
             if((posSplit = logLine.infos.destinataire.find_first_of(".")) != string::npos)
             {
                 logLine.infos.typeDoc = logLine.infos.destinataire.substr(posSplit+1, logLine.infos.destinataire.size()-posSplit-1);
@@ -85,14 +86,14 @@ bool LectureLog::getNextLog(ifstream & fic, InfoLog & logLine)
             {
                 logLine.infos.typeDoc = "html";
             }
-            //HTML/1.1
+            /*HTML/1.1*/
             scraping >> logLine.infos.HTML;
             logLine.infos.HTML.pop_back();
-            //Status
+            /*Status*/
             scraping >> logLine.infos.status;
-            //Qte de data échangée (- si pas spécifiée)
+            /*Qte de data échangée (- si pas spécifiée)*/
             scraping >> logLine.infos.qteData;
-            //Referer
+            /*Referer*/
             scraping >> logLine.infos.referer;
             logLine.infos.referer.erase(0,1);
             logLine.infos.referer.pop_back();
@@ -117,7 +118,7 @@ bool LectureLog::getNextLog(ifstream & fic, InfoLog & logLine)
             {
                 logLine.infos.referer.pop_back();
             }
-            //Navigateur utilisé
+            /*Navigateur utilisé*/
             scraping >> temp;
             logLine.infos.clientNav = temp;
             cpt=0;
@@ -147,18 +148,6 @@ bool LectureLog::getNextLog(ifstream & fic, InfoLog & logLine)
     }
     return 1;
 }
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-// LectureLog & LectureLog::operator = ( const LectureLog & unLectureLog )
-// // Algorithme :
-// //
-// {
-// } //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur

@@ -58,7 +58,7 @@ public:
         @call AjouterClassement : méthode de <Application>
         @call getNextLog : méthode de <LectureLog>
         @call Ajouter : méthode de <Application>
-        @return bool : Retourne si on a pu lire correctement le fichier
+        @return bool : Retourne 1 si on a pu lire correctement le fichier, 0 sinon
     */
 
     void Ajouter(const InfoLog & log);
