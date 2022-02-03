@@ -48,7 +48,7 @@ class Application
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void LectureFichier(string nomFic, int optG, int optE, int optT);
+    bool LectureFichier(string nomFic, int optG, int optE, int optT);
     /* Méthode pour lire ligne par ligne le fichier en entrée suivant des caractéristiques
         @param1 string : le nom du fichier à lire
         @param2 int : l'option -g : 1 = renseignée, 0 : non renseignée
@@ -58,6 +58,7 @@ public:
         @call AjouterClassement : méthode de <Application>
         @call getNextLog : méthode de <LectureLog>
         @call Ajouter : méthode de <Application>
+        @return bool : Retourne si on a pu lire correctement le fichier
     */
 
     void Ajouter(const InfoLog & log);

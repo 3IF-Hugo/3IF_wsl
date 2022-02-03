@@ -18,95 +18,105 @@
 //----------------------------------------------------------------- PUBLIC
 const char SEP = '|';
 //----------------------------------------------------- Méthodes publiques
-void Application::LectureFichier(string nomFic, int optG, int optE, int Theure)
+bool Application::LectureFichier(string nomFic, int optG, int optE, int Theure)
 // Algorithme :
 //      Lecture ligne par ligne et insère suivant les caractéristiques demandées dans la map.
 {
-    InfoLog logLine;
+    InfoLog logX;
     ifstream fic;
     fic.open(nomFic);
     string nomDomaine = "http://intranet-if.insa-lyon.fr";
     int nomDomaineSize = nomDomaine.size();
+    unsigned int ligne = 1;
     if(fic)
     {
         while(!fic.eof())
         {
-            InfoLog & logX = LectureLog::getNextLog(fic, logLine);
-            //-------- CAS OU IL N'Y A PAS DE REFERER ???? -----------//
-            //On ne garde que l'heure au lieu de heure + minute + secondes
-            logX.infos.heure.erase(2, 6);
-            //On supprime le lien du referer s'il correspond au serveur local
-            if(logX.infos.referer.find(nomDomaine) != string::npos)
+            //Si la lecture est correcte
+            if(LectureLog::getNextLog(fic, logX))
             {
-                logX.infos.referer.erase(0, nomDomaineSize);
-            }
+                //On ne garde que l'heure au lieu de heure + minute + secondes
+                logX.infos.heure.erase(2, 6);
+                //On supprime le lien du referer s'il correspond au serveur local
+                if(logX.infos.referer.find(nomDomaine) != string::npos)
+                {
+                    logX.infos.referer.erase(0, nomDomaineSize);
+                }
 
-            //Aucune option renseignée, on ne fait que le top 10
-            if(optG == 0 && optE == 0 && Theure == -1)
-            {
-                AjouterClassement(logX);
-            }else if(optG == 1 && optE == 1 && Theure != -1) //Toute les options sont renseignées
-            {
-                if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
-                || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
-                || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
-                || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd")
-                && stoi(logX.infos.heure) >= Theure && stoi(logX.infos.heure) < Theure+1)
+                //Aucune option renseignée, on ne fait que le top 10
+                if(optG == 0 && optE == 0 && Theure == -1)
+                {
+                    AjouterClassement(logX);
+                }else if(optG == 1 && optE == 1 && Theure != -1) //Toute les options sont renseignées
+                {
+                    if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
+                    || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
+                    || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
+                    || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd")
+                    && stoi(logX.infos.heure) >= Theure && stoi(logX.infos.heure) < Theure+1)
+                    {
+                        Ajouter(logX);
+                        AjouterClassement(logX);
+                    }
+                }else if(optG == 1 && optE == 1) // Les options -g et -e sont renseignées
+                {
+                    if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
+                    || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
+                    || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
+                    || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd"))
+                    {
+                        Ajouter(logX);
+                        AjouterClassement(logX);
+                    }
+                }else if(optG == 1 && Theure  != -1) // Les options -g et -t sont renseignées
+                {
+                    if(stoi(logX.infos.heure) >= Theure && stoi(logX.infos.heure) < Theure+1)
+                    {
+                        Ajouter(logX);
+                        AjouterClassement(logX);
+                    }
+                }else if(optG == 1) //  Seule l'option -g est renseignée
                 {
                     Ajouter(logX);
                     AjouterClassement(logX);
-                }
-            }else if(optG == 1 && optE == 1) // Les options -g et -e sont renseignées
-            {
-                if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
-                || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
-                || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
-                || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd"))
+                }else if(optE == 1 && Theure != -1) // Les options -e et -t sont renseignées
                 {
-                    Ajouter(logX);
-                    AjouterClassement(logX);
-                }
-            }else if(optG == 1 && Theure  != -1) // Les options -g et -t sont renseignées
-            {
-                if(stoi(logX.infos.heure) < Theure && stoi(logX.infos.heure) > Theure+1)
+                    if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
+                    || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
+                    || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
+                    || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd")
+                    && stoi(logX.infos.heure) >= Theure && stoi(logX.infos.heure) < Theure+1)
+                    {
+                        AjouterClassement(logX);
+                    }
+                }else if(optE == 1) // Seule l'option -e est renseignée
                 {
-                    continue;
-                }else{
-                    Ajouter(logX);
-                    AjouterClassement(logX);
-                }
-            }else if(optG == 1) //  Seule l'option -g est renseignée
-            {
-                Ajouter(logX);
-                AjouterClassement(logX);
-            }else if(optE == 1 && Theure != -1) // Les options -e et -t sont renseignées
-            {
-                if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
-                || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
-                || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
-                || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd")
-                && stoi(logX.infos.heure) >= Theure && stoi(logX.infos.heure) < Theure+1)
+                    if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
+                    || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
+                    || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
+                    || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd"))
+                    {
+                        AjouterClassement(logX);
+                    }
+                }else if(Theure != -1) // Seule l'option -t est renseignée
                 {
-                    AjouterClassement(logX);
+                    if(stoi(logX.infos.heure) >= Theure && stoi(logX.infos.heure) < Theure+1)
+                    {
+                        AjouterClassement(logX);
+                    }
                 }
-            }else if(optE == 1) // Seule l'option -e est renseignée
+            }else
             {
-                if(!(logX.infos.typeDoc == "css" || logX.infos.typeDoc == "js" 
-                || logX.infos.typeDoc == "jpg" || logX.infos.typeDoc == "gif"
-                || logX.infos.typeDoc == "ico" || logX.infos.typeDoc == "jpeg"
-                || logX.infos.typeDoc == "png" || logX.infos.typeDoc == "psd"))
-                {
-                    AjouterClassement(logX);
-                }
-            }else if(Theure != -1) // Seule l'option -t est renseignée
-            {
-                if(stoi(logX.infos.heure) >= Theure && stoi(logX.infos.heure) < Theure+1)
-                {
-                    AjouterClassement(logX);
-                }
+                cerr << " à la ligne " << ligne << ". Elle n'est pas prise en compte." << endl;
             }
+            ++ligne;
         }
+    }else
+    {
+        cerr << "ERREUR : Fichier non valide" << endl;
+        return 0;
     }
+    return 1;
 }
 
 void Application::Ajouter(const InfoLog & log)

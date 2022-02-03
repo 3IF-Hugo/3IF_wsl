@@ -36,7 +36,7 @@ public:
 
     //friend class InfoLog;
 //----------------------------------------------------- Méthodes publiques
-    static InfoLog & getNextLog(ifstream & fic, InfoLog & logLine);
+    static bool getNextLog(ifstream & fic, InfoLog & logLine);
     // Mode d'emploi :
     //
     // Contrat :
