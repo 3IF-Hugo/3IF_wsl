@@ -43,7 +43,7 @@ int main(int argc, char * argv[])
         {
             try{
                 int heure = stoi(args[tPresent+1]);
-                if(0 > heure || heure > 24)
+                if(0 > heure || heure >= 24)
                 {
                     throw string("ERREUR : L'heure renseignée n'est pas conforme");
                 }
