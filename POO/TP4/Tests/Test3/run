@@ -1,1 +1,1 @@
-../../bin/analog -g ../../tmp/fichierInput.txt
+../../bin/analog -g ../../tmp/fichierInput.log
