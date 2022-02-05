@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<note
+xmlns="https://www.w3schools.com"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xs:schemaLocation="note.xsd">
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>

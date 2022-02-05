@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<!-- Ligne pour activer le dtd pour note-->
+<!-- 
+<!DOCTYPE note SYSTEM "note.dtd">
+-->
+
+<!-- Ligne pour activer le schéma XML (XSD)-->
+<note
+xmlns="https://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="https://www.w3schools.com note.xsd">
+<!-- 
+<note>
+-->
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>

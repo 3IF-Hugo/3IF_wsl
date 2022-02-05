@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bibliotheque SYSTEM "livre.dtd">
+<?xml-stylesheet href="livres.xsl" type="text/xsl"?>
+
+<bibliotheque>
+    <livres id="01">
+        <livre>
+            <titre>Ze comte de Monte Christo</titre>
+            <auteurs>
+                <auteur>
+                    Dumas
+                </auteur>
+            </auteurs>
+            <editeur>Eyrolles</editeur>
+            <description>Une description</description>
+        </livre>
+        <pages>300</pages>
+        <couverture scr="SoireeInte_TCraig-001.jpg"/>
+        <prix>20 €</prix>
+        <edition>une édition</edition>
+        <parution>05/03/2020</parution>
+    </livres>
+    <livres id="02">
+        <livre>
+            <titre>Le comte de Monte Christo</titre>
+            <auteurs>
+                <auteur>
+                    Dumas
+                </auteur>
+            </auteurs>
+            <editeur>Eyrolles</editeur>
+            <description>Une description</description>
+        </livre>
+        <pages>300</pages>
+        <couverture scr="SoireeInte_TCraig-001.jpg"/>
+        <prix>20 €</prix>
+        <edition>une édition</edition>
+        <parution>05/03/2020</parution>
+    </livres>
+</bibliotheque>
