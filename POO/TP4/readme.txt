@@ -27,3 +27,10 @@ L'option -g doit toujours être la dernière des options spécifiées.
 Voici un exemple de syntaxe correcte :
 ./analog -t 21 -e -g monGraphe.dot ../tmp/MesLogs.log
 La syntaxe reste correcte si '-t 21' et '-e' sont interchangés.
+
+----------------------------------------------------------------------------------
+
+Procédure de tests :
+Pour lancer la procédure de tests, utiliser dans le dossier Tests :
+./mktest.sh
+Le programme doit préalablement build avec le makefile
