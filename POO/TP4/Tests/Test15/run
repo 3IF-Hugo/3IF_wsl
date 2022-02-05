@@ -1,1 +1,0 @@
-../../bin/analog -t 12 -g out.dot ../../tmp/fichierInput.log
