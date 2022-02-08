@@ -1,0 +1,68 @@
+Prise de notes TD1 
+
+1) Employee Nodes
+$x("//Employee")
+$x("//Company/Employee")
+$x("//descendant::Employee")
+
+2) The emails
+$x("//Company/Employee/Email")
+$x("//Employee/Email")
+$x("//Email")
+$x("//descendant::Email")
+$x("//Company/Employee/Email/text()")
+
+3)Their salaries
+$x("//Company/Employee/@salary")
+$x("//attribute::salary")
+
+4)Count of Employee
+$x("count(//Employee)")
+
+5)The second Employee
+$x("//Employee[position()=2]");
+$x("//Employee[2]");
+
+6) The first 3 Employees
+$x("//Employee[position()<= 3]");
+
+7)The age of the Employees with the id 06
+$x("//Employee[6]/Age")
+$x("//Age[../@id='06']")
+$x("//Employee[@id = '06']/Age");
+$x("//Age[parent::Employee/@id='06']")
+$x("//Age[parent::Employee/@attribute::id='06']")
+
+8)the age of the Employee "Wayne"
+$x("//Employee[LastName='Wayne']/Age/text()")
+$x("//Age[../LastName='Wayne']")
+
+9)last name of Employee whose category is officer
+$x("//LastName[../Category='Officer']/text()")
+//Category[.='Officer']/preceding-sibling::LastName
+
+10)Employee whose names length is at least 4 characters
+$x("//Employee[string-length(LastName) >= 4]")
+
+11)Employee whose position contains "Chief"
+$x("//Employee[contains(Position, 'Chief')]")
+
+12) Employee whose last name is the same as the domains of their email address
+$x("//Employee[LastName = substring-before(substring-after(Email,'@'),'.')]")
+$x("//Employee[LastName = substring(Email,'@',string-length(LastName))]") ne marche pas car deuxième
+param est une position.
+
+13) The last child of the second last Employee Node
+$x("//Employee[last()-1]/*[last()]")
+
+14) The Employees younger than 30
+$x("//Employee[Age <= 30]")
+
+15)The sum of the salaries
+$x("sum(//@salary)")
+
+16) The Employee after John Wayne
+$x("//Employee[FirstName='John'and LastName='Wayne']/following-sibling::Employee[1]")
+
+Q Bonus : Position du noeud Employee de John Wayne
+$x("count(//Employee[FirstName='John'and LastName='Wayne']/preceding-sibling::Employee)+1")
