@@ -247,7 +247,7 @@ void v_output( FILE *fp, VEC *v )
   u_int i;
 
   fprintf( fp, "Vector: %d\n", v->dim );
-  for( i = 0 ; i < v->dim ; i++ ) fprintf( fp, "%1.5g ", v->e[i] );
+  for( i = 0 ; i < v->dim ; i++ ) fprintf( fp,"%1.5g", v->e[i] );
   putc( '\n', fp );
 }
 
@@ -256,13 +256,101 @@ int main()
   FILE *fp;
   SMAT *SM;
 
-  fp = fopen( "exemple.dat", "r" );
+  fp = fopen( "genetic.dat", "r" );
   SM = sm_input( fp );
   fclose( fp );
 
+  int m = SM->m;
+  int n = SM->n;
+  double alpha;
+
+  u_int k;
+  printf("choisir k :\n");
+  scanf("%u", &k );
+
+  printf("choisir alpha :\n");
+  scanf("%lf", &alpha);
+
+  VEC *r = v_new(n);
+  VEC *tmp = v_new(n);
+  for (int i = 0; i < n; ++i)
+  {
+    r->e[i] = 1.0/6.0;
+    tmp->e[i] = 1.0/6.0;
+  }
+  SMAT *H = sm_new(m, n);
+  int cpt = 0;
+
+  for(int i=0; i<m; ++i)
+  {
+    if(i != 1){
+      H->row[i].nnz = SM->row[i].nnz;
+      H->row[i].col = NEW_A(SM->row[i].nnz, u_int);
+      H->row[i].val = NEW_A(SM->row[i].nnz, double);
+      for(int j=0; j<SM->row[i].nnz; ++j)
+      {
+        H->row[i].col[j] = SM->row[i].col[j];
+        H->row[i].val[j] = SM->row[i].val[j] * 1/SM->row[i].nnz;
+      }
+    }
+  }
+  VEC *e = v_new(n);
+  for(int i=0; i<n; ++i)
+  {
+    e->e[i] = 1;
+  }
+
+  VEC *a = v_new(SM->m);
+  a->dim = SM->m;
+  for(int i=0; i<SM->m; ++i)
+  {
+    if(H->row[i].nnz == 0)
+    {
+      a->e[i] = (double) i;
+    }
+    else{
+      a->e[i] = 0;
+    }
+  }
+  //On transforme H en S, ici S reste H...
+  H->row[1].nnz = SM->m;
+  H->row[1].col = NEW_A(SM->m, u_int);
+  H->row[1].val = NEW_A(SM->m, double);
+  for(u_int i=0; i < SM->m; ++i)
+  { 
+    H->row[1].col[i] = i;
+    H->row[1].val[i] = 1.0/(double)(SM->m);
+  }
+
+  v_output(stdout, a);
+
+  sm_output(stdout, H);
+
+  VEC *temp;
+  for (int i = 0; i < k; i++) // Multiplication k times
+  {
+    temp = v_new(SM->m);
+    memcpy(temp->e, r->e, sizeof(double)*SM->m);
+    memset(r->e, 0, H->m*sizeof(double));
+    for (int j = 0; j < H->m; j++)
+    {
+      for (int m = 0; m < H->row[j].nnz; m++)
+      {
+        int c = H->row[j].col[m];
+        //r->e[c] += H->row[j].val[m]*temp->e[j];
+        r->e[c] = alpha * H->row[j].val[m] * temp->e[j] + (alpha*temp->e[j]*a->e[j]+1-alpha)*1.0/n*e->e[j];
+      }
+    }
+    v_free(temp);
+  }
   sm_output( stdout, SM );
 
+  sm_output(stdout, H);
+
+  v_output(stdout, r);
+
   sm_free( SM );
+  sm_free( H );
 
   return 0;
 }

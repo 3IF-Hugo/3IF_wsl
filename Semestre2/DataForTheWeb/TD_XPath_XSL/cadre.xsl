@@ -15,16 +15,48 @@
             <th>Position</th>
             <th>E-mail</th>
           </tr>
+          <!-- <xsl:for-each-group select="//Employee" group-by="distinct-values(//Email[//Employee[substring-before(substring-after(Email,'@'),'.')]])">
+            <xsl:for-each select="current-group()">
+              <tr>
+                <td><xsl:value-of select="FirstName"/><xsl:text> </xsl:text><xsl:value-of select="LastName"/></td>
+                <td><xsl:value-of select="Position"/></td>
+                <td><xsl:value-of select="Email"/></td>
+            </tr>  
+            </xsl:for-each>
+          </xsl:for-each-group> -->
+
           <xsl:for-each select="//Employee">
+          <xsl:sort select="//Employee[substring-after(Email,'@')]" order="ascending"/>
+            <tr>
+                <td><xsl:value-of select="FirstName"/><xsl:text> </xsl:text><xsl:value-of select="LastName"/></td>
+                <td><xsl:value-of select="Position"/></td>
+                <td><xsl:value-of select="Email"/></td>
+            </tr>
+          </xsl:for-each>
+
+
+          <!-- <xsl:for-each select="//Employee">
+          <xsl:if test="Age &lt; 30">
+            <tr>
+              <td><xsl:value-of select="FirstName"/><xsl:text> </xsl:text><xsl:value-of select="LastName"/></td>
+              <td><xsl:value-of select="Position"/></td>
+              <td><xsl:value-of select="Email"/></td>
+          </tr>  
+          </xsl:if> -->
+
+          <!-- <xsl:for-each select="//Employee">
           <xsl:sort select="LastName" order="ascending"/>
             <tr>
                 <td><xsl:value-of select="FirstName"/><xsl:text> </xsl:text><xsl:value-of select="LastName"/></td>
                 <td><xsl:value-of select="Position"/></td>
                 <td><xsl:value-of select="Email"/></td>
-            </tr>  
-        </xsl:for-each>
-          <!-- <xsl:apply-templates/> -->
+            </tr>
+          </xsl:for-each> -->
+
+        <!-- </xsl:for-each> -->
+          <!-- <! <xsl:apply-templates/> -->
         </table>
+        <!-- <p align="center">Total Employees: <xsl:value-of select="count(//Employee[Age &lt; 30])" /></p> -->
         <p align="center">Total Employees: <xsl:value-of select="count(//Employee)" /></p>
       </body>
     </html>
