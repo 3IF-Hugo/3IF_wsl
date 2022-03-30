@@ -25,14 +25,45 @@
             </xsl:for-each>
           </xsl:for-each-group> -->
 
-          <xsl:for-each select="//Employee">
-          <xsl:sort select="//Employee[substring-after(Email,'@')]" order="ascending"/>
+          <!-- Question 5 groupe par adresse mail -->
+          <!-- <xsl:for-each select="//Employee">
+          <xsl:sort select="substring-after(Email, '@')"/>
+          <xsl:sort select="LastName" order="descending"/>
+          Ne marche pas... <xsl:sort select="//Employee[substring-after(Email,'@')]" order="ascending"/>
             <tr>
                 <td><xsl:value-of select="FirstName"/><xsl:text> </xsl:text><xsl:value-of select="LastName"/></td>
                 <td><xsl:value-of select="Position"/></td>
                 <td><xsl:value-of select="Email"/></td>
             </tr>
-          </xsl:for-each>
+          </xsl:for-each> -->
+
+          <!-- Question 6 : zébré -->
+          <xsl:for-each select="//Employee">
+						
+						<xsl:element name="tr">
+						<xsl:attribute name="bgcolor">
+							<xsl:if test="position() mod 2=1">
+							FFFFFF
+							</xsl:if>
+							<xsl:if test="position() mod 2=0">
+							beige
+							</xsl:if>
+						</xsl:attribute>
+						
+							<td>
+								<xsl:value-of select="FirstName"/>
+								<xsl:text> </xsl:text>
+								<xsl:value-of select="LastName"/>
+							</td>
+							<td>
+								<xsl:value-of select="Position"/>
+							</td>
+							<td>
+								<xsl:value-of select="Email"/>
+							</td>
+						</xsl:element>
+					</xsl:for-each>
+
 
 
           <!-- <xsl:for-each select="//Employee">
@@ -70,7 +101,6 @@
     </tr>      
   </xsl:template> -->
 
-  
-
+ <!--  -->
 
 </xsl:stylesheet>

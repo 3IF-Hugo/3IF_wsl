@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="temoigner.xsl" type="text/xsl"?>
+
+<bibliotheque>
+    <methodes id="01">
+        <methode>
+            <titre>Questionnaire rapide sur la foi</titre>
+            <auteurs>
+                <auteur>
+                    AGAPE
+                </auteur>
+            </auteurs>
+            <description>Une description</description>
+        </methode>
+        <couverture scr="questionnaire.png"/>
+        <nbPersonne>2 personnes</nbPersonne>
+    </methodes>
+    <methodes id="02">
+        <methode>
+            <titre>Album avec images</titre>
+            <auteurs>
+                <auteur>
+                    AGAPE
+                </auteur>
+            </auteurs>
+            <description>Une description</description>
+        </methode>
+        <couverture scr="album.jpg"/>
+        <nbPersonne>1 à 2 personnes</nbPersonne>
+    </methodes>
+</bibliotheque>

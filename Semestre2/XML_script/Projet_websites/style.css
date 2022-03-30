@@ -1,0 +1,54 @@
+body{
+    width: 800px;
+    margin: 20px auto 20px auto;
+    padding: 10px;
+}
+
+h3{
+    font-size: 15pt;
+    width: 70%;
+    border-bottom: 1px solid black;
+}
+
+h5{
+    font-size: 12pt;
+    line-height: 20pt;
+    margin: 0 10px 10px 10px;
+}
+
+h3, h5, span{ font-weight: bold;}
+
+table{
+    border: none;
+    width: 90%;
+    margin: 0 0 30px 0;
+}
+
+table td{
+    padding: 20px;
+    text-align: justify;
+}
+
+table td.image{
+    width:100px;
+}
+
+table td p{
+    float: left;
+    font-size: 11pt;
+
+}
+
+table td p ul li{
+    text-indent: 30px;
+}
+
+img{
+    height: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+table, tr, td{
+    border: 3px ridge black;
+}

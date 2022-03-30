@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <h3>ma biblio</h3>
+        <h1 style="text-align:center">Le site de FaFa</h1>
         <br /> <br />
         <ul>
             <xsl:for-each select="bibliotheque/livres">

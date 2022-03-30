@@ -154,3 +154,4 @@ int chercherOptions(vector<string> & args, string options)
     }
     return 0;
 }
+
