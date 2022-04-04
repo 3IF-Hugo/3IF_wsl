@@ -1,0 +1,62 @@
+Prise de notes et réponses aux questions
+
+Q1 : Quand A* ne parvient pas à résoudre un problème, est-ce d’abord par manque de temps ou de mémoire ?
+=> manque de mémoire
+
+Q2 : La quantité de mémoire utilisée par A* est-elle linéairement proportionnelle à la taille d’un chemin solution,
+au nombre de solutions partielles de coût inférieur à la solution optimale, ou à la taille de l’espace d’états ?
+=> au nombre de solutions partielles de coût inférieur à la solution optimale
+
+Q3 : La quantité de mémoire utilisée par IDA* est-elle linéairement proportionnelle à la taille d’un chemin solution, au nombre de solutions partielles de coût inférieur à la solution optimale, ou à la taille de l’espace
+d’états ?
+=> à la taille d'un chemin solution
+
+Q4 : Combien d’actions différentes sont-elles possibles pour l’état E1 ?
+6
+
+Q5 : Etant donné un état E de n blocs sur k piles, quelle est la taille maximale de actions(E) ?
+Pour n >= k: k(k-1)
+Pour n < k: n(k-1)
+
+Q6 : Etant donné un état E de n blocs sur k piles ayant v piles vides, quelle est la taille de actions(E) ?
+(k-v)(k-1)
+
+Q7 : Quel est l’ordre de grandeur du nombre total d’états différents possibles ?
+Exponentiel par rapport à n et k
+
+Q8 : Le graphe G est-il orienté ?
+Oui
+
+Q9 : Quels sont les algorithmes qui peuvent être utilisés pour rechercher ce plus court chemin ? (plusieurs réponses possibles)
+Bellman-Ford
+BFS
+Dijkstra
+
+Q10 : Quel est l’algorithme le plus efficace pour rechercher ce plus court chemin ?
+BFS
+
+Q11 : Quelle est la complexité en temps de cet algorithme par rapport à |S| et |A| ?
+o(|S|+|A|)
+Linéaire
+
+Q12 : Quelle est la complexité en temps de cet algorithme par rapport au nombre de blocs (n) et de piles (k) ?
+Exponentielle
+
+Q13 : Quelles sont les valeurs de h1(E4), h2(E4) et h3(E4) dans le cas où l’état final est E5 ?
+2, 4, 3
+
+Pour 14, 15, 17: delta(E4, E5) = 5
+Q14 : L’heuristique h1 est-elle admissible ?
+Oui
+
+Q15 : L’heuristique h2 est-elle admissible ?
+Oui
+
+Q16 : L’heuristique h2 est elle plus informée, moins informée, ou incomparable par rapport à l’heuristique h1.
+Plus informée (2<4<5)
+
+Q17 : L’heuristique h3 est-elle admissible ?
+Non
+
+Q18 : L’heuristique h3 est elle plus informée, moins informée, ou incomparable par rapport à l’heuristique h2.
+Incomparable (h3 est pas admissible)
