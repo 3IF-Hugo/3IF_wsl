@@ -6,19 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
-User.h
-/home/hgrel/3IF_wsl/AirWatcher/User.h
-
-/home/hgrel/3IF_wsl/AirWatcher/Test.cpp
-Test.h
-/home/hgrel/3IF_wsl/AirWatcher/Test.h
-gtest/gtest.h
+/home/hgrel/3IF_wsl/AirWatcher/PrivateUser.cpp
+iostream
 -
 PrivateUser.h
 /home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
 
-/home/hgrel/3IF_wsl/AirWatcher/Test.h
+/home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
+User.h
+/home/hgrel/3IF_wsl/AirWatcher/User.h
 
 /home/hgrel/3IF_wsl/AirWatcher/User.h
 string

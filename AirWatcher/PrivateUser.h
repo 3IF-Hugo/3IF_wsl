@@ -60,6 +60,7 @@ public:
     // Contrat :
     //
 
+
     PrivateUser(string userId, string name, string surname, string email,
     string password, int score, string userSensor, StateSensorUser stateSensorUser = Reliable);
     

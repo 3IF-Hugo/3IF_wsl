@@ -60,6 +60,8 @@ public:
     // Contrat :
     //
 
+    bool operator== ( const User & unUser );
+
 
 //-------------------------------------------- Constructeurs - destructeur
     User ( const User & unUser );

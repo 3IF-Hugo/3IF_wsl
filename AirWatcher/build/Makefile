@@ -168,17 +168,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Test
+# Target rules for targets named User
 
 # Build rule for target.
-Test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Test
-.PHONY : Test
+User: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 User
+.PHONY : User
 
 # fast build rule for target.
-Test/fast:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/build
-.PHONY : Test/fast
+User/fast:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/build
+.PHONY : User/fast
 
 #=============================================================================
 # Target rules for targets named gmock_main
@@ -245,32 +245,32 @@ ExampleTests/fast:
 	$(MAKE) -f test/CMakeFiles/ExampleTests.dir/build.make test/CMakeFiles/ExampleTests.dir/build
 .PHONY : ExampleTests/fast
 
-Test.o: Test.cpp.o
+User.o: User.cpp.o
 
-.PHONY : Test.o
+.PHONY : User.o
 
 # target to build an object file
-Test.cpp.o:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/Test.cpp.o
-.PHONY : Test.cpp.o
+User.cpp.o:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/User.cpp.o
+.PHONY : User.cpp.o
 
-Test.i: Test.cpp.i
+User.i: User.cpp.i
 
-.PHONY : Test.i
+.PHONY : User.i
 
 # target to preprocess a source file
-Test.cpp.i:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/Test.cpp.i
-.PHONY : Test.cpp.i
+User.cpp.i:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/User.cpp.i
+.PHONY : User.cpp.i
 
-Test.s: Test.cpp.s
+User.s: User.cpp.s
 
-.PHONY : Test.s
+.PHONY : User.s
 
 # target to generate assembly for a file
-Test.cpp.s:
-	$(MAKE) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/Test.cpp.s
-.PHONY : Test.cpp.s
+User.cpp.s:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/User.cpp.s
+.PHONY : User.cpp.s
 
 # Help Target
 help:
@@ -285,15 +285,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... Test"
+	@echo "... User"
 	@echo "... gmock_main"
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
 	@echo "... ExampleTests"
-	@echo "... Test.o"
-	@echo "... Test.i"
-	@echo "... Test.s"
+	@echo "... User.o"
+	@echo "... User.i"
+	@echo "... User.s"
 .PHONY : help
 
 

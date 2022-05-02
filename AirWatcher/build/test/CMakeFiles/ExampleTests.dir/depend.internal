@@ -23,4 +23,5 @@ test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o
  ../googletest/googletest/include/gtest/internal/gtest-port.h
  ../googletest/googletest/include/gtest/internal/gtest-string.h
  ../googletest/googletest/include/gtest/internal/gtest-type-util.h
+ /home/hgrel/3IF_wsl/AirWatcher/User.h
  /home/hgrel/3IF_wsl/AirWatcher/test/ExampleTests.cpp

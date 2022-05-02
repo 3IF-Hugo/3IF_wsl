@@ -1,0 +1,2 @@
+/usr/bin/ar qc libAirwatcher.a  CMakeFiles/Airwatcher.dir/User.cpp.o
+/usr/bin/ranlib libAirwatcher.a

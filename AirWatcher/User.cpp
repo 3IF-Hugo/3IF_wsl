@@ -59,26 +59,43 @@ User & User::operator = ( const User & unUser )
 {
 } //----- Fin de operator =
 
+bool User::operator== ( const User & unUser )
+// Algorithme :
+//
+{
+    if(userId == unUser.userId &&
+        name == unUser.name &&
+        surname == unUser.surname &&
+        email == unUser.email &&
+        password == unUser.password)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+} //----- Fin de operator =
 
 //-------------------------------------------- Constructeurs - destructeur
-User::User ( const User & unUser )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <User>" << endl;
-#endif
-} //----- Fin de User (constructeur de copie)
+// User::User ( const User & unUser )
+// // Algorithme :
+// //
+// {
+// #ifdef MAP
+//     cout << "Appel au constructeur de copie de <User>" << endl;
+// #endif
+// } //----- Fin de User (constructeur de copie)
 
 
-User::User ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <User>" << endl;
-#endif
-} //----- Fin de User
+// User::User ( )
+// // Algorithme :
+// //
+// {
+// #ifdef MAP
+//     cout << "Appel au constructeur de <User>" << endl;
+// #endif
+// } //----- Fin de User
 
 
 User::~User ( )

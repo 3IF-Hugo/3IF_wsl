@@ -366,7 +366,15 @@ cxxabi.h
 acxx_demangle.h
 -
 
+/home/hgrel/3IF_wsl/AirWatcher/User.h
+string
+-
+iostream
+-
+
 /home/hgrel/3IF_wsl/AirWatcher/test/ExampleTests.cpp
+../User.h
+/home/hgrel/3IF_wsl/AirWatcher/User.h
 gtest/gtest.h
 -
 

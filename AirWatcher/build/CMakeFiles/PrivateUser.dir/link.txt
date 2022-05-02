@@ -1,0 +1,2 @@
+/usr/bin/ar qc libPrivateUser.a  CMakeFiles/PrivateUser.dir/PrivateUser.cpp.o
+/usr/bin/ranlib libPrivateUser.a

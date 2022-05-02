@@ -1,8 +1,8 @@
 [
 {
   "directory": "/home/hgrel/3IF_wsl/AirWatcher/build",
-  "command": "/usr/bin/g++    -g -fPIC   -std=gnu++11 -o CMakeFiles/Test.dir/Test.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/Test.cpp",
-  "file": "/home/hgrel/3IF_wsl/AirWatcher/Test.cpp"
+  "command": "/usr/bin/g++    -g -fPIC   -std=gnu++11 -o CMakeFiles/User.dir/User.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/User.cpp",
+  "file": "/home/hgrel/3IF_wsl/AirWatcher/User.cpp"
 },
 {
   "directory": "/home/hgrel/3IF_wsl/AirWatcher/build/googletest/googlemock",

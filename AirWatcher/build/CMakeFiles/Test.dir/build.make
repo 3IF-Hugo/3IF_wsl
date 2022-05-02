@@ -57,27 +57,27 @@ include CMakeFiles/Test.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Test.dir/flags.make
 
-CMakeFiles/Test.dir/Test.cpp.o: CMakeFiles/Test.dir/flags.make
-CMakeFiles/Test.dir/Test.cpp.o: ../Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Test.dir/Test.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Test.dir/Test.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/Test.cpp
+CMakeFiles/Test.dir/PrivateUser.cpp.o: CMakeFiles/Test.dir/flags.make
+CMakeFiles/Test.dir/PrivateUser.cpp.o: ../PrivateUser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Test.dir/PrivateUser.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Test.dir/PrivateUser.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/PrivateUser.cpp
 
-CMakeFiles/Test.dir/Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Test.dir/Test.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hgrel/3IF_wsl/AirWatcher/Test.cpp > CMakeFiles/Test.dir/Test.cpp.i
+CMakeFiles/Test.dir/PrivateUser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Test.dir/PrivateUser.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hgrel/3IF_wsl/AirWatcher/PrivateUser.cpp > CMakeFiles/Test.dir/PrivateUser.cpp.i
 
-CMakeFiles/Test.dir/Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Test.dir/Test.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/Test.cpp -o CMakeFiles/Test.dir/Test.cpp.s
+CMakeFiles/Test.dir/PrivateUser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Test.dir/PrivateUser.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/PrivateUser.cpp -o CMakeFiles/Test.dir/PrivateUser.cpp.s
 
 # Object files for target Test
 Test_OBJECTS = \
-"CMakeFiles/Test.dir/Test.cpp.o"
+"CMakeFiles/Test.dir/PrivateUser.cpp.o"
 
 # External object files for target Test
 Test_EXTERNAL_OBJECTS =
 
-libTest.a: CMakeFiles/Test.dir/Test.cpp.o
+libTest.a: CMakeFiles/Test.dir/PrivateUser.cpp.o
 libTest.a: CMakeFiles/Test.dir/build.make
 libTest.a: CMakeFiles/Test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libTest.a"

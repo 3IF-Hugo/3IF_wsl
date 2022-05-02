@@ -38,11 +38,11 @@ bool PrivateUser::setScorePlus1(){
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
-PrivateUser & PrivateUser::operator = ( const PrivateUser & unPrivateUser )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
+// PrivateUser & PrivateUser::operator = ( const PrivateUser & unPrivateUser )
+// // Algorithme :
+// //
+// {
+// } //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -58,18 +58,18 @@ PrivateUser::PrivateUser ( const PrivateUser & unPrivateUser ) : User(unPrivateU
 } //----- Fin de PrivateUser (constructeur de copie)
 
 
-PrivateUser::PrivateUser ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <PrivateUser>" << endl;
-#endif
-} //----- Fin de PrivateUser
+// PrivateUser::PrivateUser ( )
+// // Algorithme :
+// //
+// {
+// #ifdef MAP
+//     cout << "Appel au constructeur de <PrivateUser>" << endl;
+// #endif
+// } //----- Fin de PrivateUser
 
 PrivateUser::PrivateUser(string userId, string name, string surname, string email, 
-    string password, int score, string userSensor, StateSensorUser stateSensorUser = Reliable) 
-    : User(userId, name, surname, email, password), score(score), sensorId(userSensor), statut(stateSensorUser)  {}
+    string password, int score, string userSensor, StateSensorUser stateSensorUser) 
+    : User(userId, name, surname, email, password), score(score), SensorId(userSensor), statut(stateSensorUser)  {}
 
 PrivateUser::~PrivateUser ( )
 // Algorithme :

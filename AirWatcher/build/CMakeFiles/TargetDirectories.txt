@@ -5,7 +5,7 @@
 /home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles/rebuild_cache.dir
 /home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles/edit_cache.dir
 /home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles/test.dir
-/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles/Test.dir
+/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles/User.dir
 /home/hgrel/3IF_wsl/AirWatcher/build/googletest/CMakeFiles/install/strip.dir
 /home/hgrel/3IF_wsl/AirWatcher/build/googletest/CMakeFiles/install/local.dir
 /home/hgrel/3IF_wsl/AirWatcher/build/googletest/CMakeFiles/install.dir
