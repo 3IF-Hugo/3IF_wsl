@@ -1,0 +1,45 @@
+Start testing: May 02 21:23 CEST
+----------------------------------------------------------
+1/1 Testing: ExampleTests
+1/1 Test: ExampleTests
+Command: "/home/hgrel/3IF_wsl/AirWatcher/build/test/ExampleTests"
+Directory: /home/hgrel/3IF_wsl/AirWatcher/build/test
+"ExampleTests" start time: May 02 21:23 CEST
+Output:
+----------------------------------------------------------
+Running main() from /home/hgrel/3IF_wsl/AirWatcher/googletest/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ExampleTests
+[ RUN      ] ExampleTests.Test1
+/home/hgrel/3IF_wsl/AirWatcher/test/ExampleTests.cpp:4: Failure
+Expected equality of these values:
+  1
+  2
+/home/hgrel/3IF_wsl/AirWatcher/test/ExampleTests.cpp:5: Failure
+Expected equality of these values:
+  1
+  2
+/home/hgrel/3IF_wsl/AirWatcher/test/ExampleTests.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+[  FAILED  ] ExampleTests.Test1 (0 ms)
+[----------] 1 test from ExampleTests (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] ExampleTests.Test1
+
+ 1 FAILED TEST
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Failed.
+"ExampleTests" end time: May 02 21:23 CEST
+"ExampleTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 02 21:23 CEST

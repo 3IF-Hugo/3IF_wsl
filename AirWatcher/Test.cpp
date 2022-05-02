@@ -1,7 +1,8 @@
 //Classe de test de la classe PrivateUser
-
+#include "Test.h"
+/*
 //create google test framework
-#include <googletest-main/googletest/include/gtest/gtest.h>
+#include <gtest/gtest.h>
 
 //include the class to test
 #include "PrivateUser.h"
@@ -43,3 +44,4 @@ TEST(PrivateUser, ConstructorWithParameters2) {
 }
 
 //test the constructor with
+*/

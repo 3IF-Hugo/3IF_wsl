@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
+User.h
+/home/hgrel/3IF_wsl/AirWatcher/User.h
+
+/home/hgrel/3IF_wsl/AirWatcher/Test.cpp
+Test.h
+/home/hgrel/3IF_wsl/AirWatcher/Test.h
+gtest/gtest.h
+-
+PrivateUser.h
+/home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
+
+/home/hgrel/3IF_wsl/AirWatcher/Test.h
+
+/home/hgrel/3IF_wsl/AirWatcher/User.h
+string
+-
+iostream
+-
+

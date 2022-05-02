@@ -50,5 +50,6 @@
         "chrono": "cpp",
         "ratio": "cpp",
         "variant": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "${workspaceFolder}/AirWatcher"
 }
