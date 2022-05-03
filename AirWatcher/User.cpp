@@ -78,14 +78,14 @@ bool User::operator== ( const User & unUser )
 } //----- Fin de operator =
 
 //-------------------------------------------- Constructeurs - destructeur
-// User::User ( const User & unUser )
-// // Algorithme :
-// //
-// {
-// #ifdef MAP
-//     cout << "Appel au constructeur de copie de <User>" << endl;
-// #endif
-// } //----- Fin de User (constructeur de copie)
+User::User ( const User & unUser )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <User>" << endl;
+#endif
+} //----- Fin de User (constructeur de copie)
 
 
 // User::User ( )

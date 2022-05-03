@@ -37,6 +37,11 @@ bool PrivateUser::setScorePlus1(){
     return true;
 }
 
+//get the state of the sensor
+StateSensorUser PrivateUser::getStatut(){
+    return statut;
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 // PrivateUser & PrivateUser::operator = ( const PrivateUser & unPrivateUser )
 // // Algorithme :
@@ -67,9 +72,10 @@ PrivateUser::PrivateUser ( const PrivateUser & unPrivateUser ) : User(unPrivateU
 // #endif
 // } //----- Fin de PrivateUser
 
-PrivateUser::PrivateUser(string userId, string name, string surname, string email, 
-    string password, int score, string userSensor, StateSensorUser stateSensorUser) 
-    : User(userId, name, surname, email, password), score(score), SensorId(userSensor), statut(stateSensorUser)  {}
+// PrivateUser::PrivateUser(string userId, string name, string surname, string email, 
+//     string password, int score, StateSensorUser stateSensorUser) 
+//     : User(userId, name, surname, email, password), score(score), statut(stateSensorUser)  {}
+
 
 PrivateUser::~PrivateUser ( )
 // Algorithme :

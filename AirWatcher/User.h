@@ -67,8 +67,8 @@ public:
     User ( const User & unUser );
     //(constructeur de copie)
 
-    User ( );
-    // Constructeur par défaut
+    // User ( );
+    // // Constructeur par défaut
 
     User(string userId = "", string name = "", string surname = "", string email = "", string password = "") 
     : userId(userId), name(name), surname(surname), email(email), password(password) {}

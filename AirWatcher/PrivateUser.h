@@ -38,6 +38,9 @@ public:
     //
     // Contrat :
     //
+
+    //get the state of the sensor
+    StateSensorUser getStatut();
     
 //------------------------------------------------- Surcharge d'opérateurs
     PrivateUser & operator = ( const PrivateUser & unPrivateUser );
@@ -54,15 +57,19 @@ public:
     // Contrat :
     //
 
-    PrivateUser ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // PrivateUser ( );
+    // // Mode d'emploi :
+    // //
+    // // Contrat :
+    // //
 
 
-    PrivateUser(string userId, string name, string surname, string email,
-    string password, int score, string userSensor, StateSensorUser stateSensorUser = Reliable);
+    // PrivateUser(string userId, string name, string surname, string email,
+    // string password, int score, StateSensorUser stateSensorUser = Reliable);
+
+    PrivateUser(string userId = "", string name = "", string surname = "", string email = "", 
+    string password = "", int score = 0, StateSensorUser stateSensorUser = Reliable) 
+    : User(userId, name, surname, email, password), score(score), statut(stateSensorUser)  {}
     
 
     virtual ~PrivateUser ( );

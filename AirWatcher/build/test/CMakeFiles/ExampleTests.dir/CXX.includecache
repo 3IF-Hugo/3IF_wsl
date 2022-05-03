@@ -366,6 +366,10 @@ cxxabi.h
 acxx_demangle.h
 -
 
+/home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
+User.h
+/home/hgrel/3IF_wsl/AirWatcher/User.h
+
 /home/hgrel/3IF_wsl/AirWatcher/User.h
 string
 -
@@ -375,6 +379,8 @@ iostream
 /home/hgrel/3IF_wsl/AirWatcher/test/ExampleTests.cpp
 ../User.h
 /home/hgrel/3IF_wsl/AirWatcher/User.h
+../PrivateUser.h
+/home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
 gtest/gtest.h
 -
 

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/User.dir/PrivateUser.cpp.o"
   "CMakeFiles/User.dir/User.cpp.o"
   "libUser.a"
   "libUser.pdb"
