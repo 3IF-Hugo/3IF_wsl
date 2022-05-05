@@ -17,10 +17,11 @@ using namespace std;
 #include <cstring>
 #include <map>
 #include <list>
+
 #include "Measurement.h"
+#include "Sensor.h"
 #include "Attribute.h"
 #include "Cleaner.h"
-#include "Sensor.h"
 #include "PrivateUser.h"
 #include "Provider.h"
 
@@ -41,10 +42,10 @@ class Lecture
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    static bool LireDonnees(list<Sensor> & listeCapteurs,list<Attribute> & listeAttributs, list<PrivateUser> & listePrivateUsers,
+    static bool LireDonnees(map<string, Sensor> & listeCapteurs,list<Attribute> & listeAttributs, list<PrivateUser> & listePrivateUsers,
     list<Cleaner> & listeCleaners, list<Provider> & listeProviders,
-    multimap<string, Measurement> & mesuresO3, multimap<string, Measurement> & mesuresSO2,
-    multimap<string, Measurement> & mesuresNO2, multimap<string, Measurement> & mesuresPM10);
+    multimap<Sensor, Measurement> & mesuresO3, multimap<Sensor, Measurement> & mesuresSO2,
+    multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesuresPM10);
     /* Méthode pour lire ligne par ligne le fichier en entrée suivant des caractéristiques
         @param1 ifstream : input stream du fichier dans lequel lire la ligne
         @param2 InfoLog& : L'instance de classe InfoLog passée par référence qui va contenir les infos de la ligne lue

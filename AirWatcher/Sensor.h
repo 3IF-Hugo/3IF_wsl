@@ -8,7 +8,7 @@
 //---------- Interface de la classe <Sensor> (fichier Sensor.h) ----------------
 using namespace std;
 #include <string>
-#if ! defined ( SENSOR_H )
+// #if ! defined ( SENSOR_H )
 #define SENSOR_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -107,5 +107,5 @@ protected:
 
 //-------------------------------- Autres définitions dépendantes de <Sensor>
 
-#endif // XXX_H
+// #endif // XXX_H
 

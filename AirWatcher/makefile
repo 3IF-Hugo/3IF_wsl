@@ -4,7 +4,7 @@ EXEC=airWatcher
 
 all: $(EXEC)
 
-airWatcher : User.o PrivateUser.o Provider.o Cleaner.o Attribute.o Sensor.o Measurement.o Service.o Interface.o
+airWatcher : User.o PrivateUser.o Provider.o Cleaner.o Sensor.o Attribute.o Measurement.o Lecture.o Service.o Interface.o 
 	$(CXX) -o $@ $^
 
 %.o : %.cpp

@@ -25,17 +25,16 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-bool Lecture::LireDonnees(list<Sensor> & listeCapteurs,list<Attribute> & listeAttributs, list<PrivateUser> & listePrivateUsers,
+bool Lecture::LireDonnees(map<string, Sensor> & listeCapteurs,list<Attribute> & listeAttributs, list<PrivateUser> & listePrivateUsers,
 list<Cleaner> & listeCleaners, list<Provider> & listeProviders,
-multimap<string, Measurement> & mesuresO3, multimap<string, Measurement> & mesuresSO2,
-multimap<string, Measurement> & mesuresNO2, multimap<string, Measurement> & mesuresPM10)
+multimap<Sensor, Measurement> & mesuresO3, multimap<Sensor, Measurement> & mesuresSO2,
+multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesuresPM10)
 {
     try
     {
         ifstream fic;
         string temp;
         stringstream scraping;
-        long unsigned int posSplit;
         struct tm tm = {0};
         const char * timeFormat = "%Y-%m-%d %H:%M:%S";
 
@@ -55,7 +54,7 @@ multimap<string, Measurement> & mesuresNO2, multimap<string, Measurement> & mesu
                 getline(scraping, temp, ';');
                 longitude = stod(temp);
                 Sensor * s = new Sensor(id, latitude, longitude);
-                listeCapteurs.push_back(*s);
+                listeCapteurs.insert(make_pair(id, *s));
             }
         }
         fic.close();
@@ -161,18 +160,22 @@ multimap<string, Measurement> & mesuresNO2, multimap<string, Measurement> & mesu
                 getline(scraping, temp, ';');
                 value = stod(temp);
                 Measurement * c = new Measurement(timestamp, value, attribute);
+
+                map<string, Sensor>::iterator it;
+                it = listeCapteurs.find(sensorId);
+
                 if(!attribute.compare("O3"))
                 {
-                    mesuresO3.insert(make_pair(sensorId, *c));
+                    mesuresO3.insert(make_pair(it->second, *c));
                 }else if(!attribute.compare("SO2"))
                 {
-                    mesuresSO2.insert(make_pair(sensorId, *c));
+                    mesuresSO2.insert(make_pair(it->second, *c));
                 }else if(!attribute.compare("NO2"))
                 {
-                    mesuresNO2.insert(make_pair(sensorId, *c));
+                    mesuresNO2.insert(make_pair(it->second, *c));
                 }else if(!attribute.compare("PM10"))
                 {
-                    mesuresPM10.insert(make_pair(sensorId, *c));
+                    mesuresPM10.insert(make_pair(it->second, *c));
                 }else
                 {
                     throw std::invalid_argument("type ne correspond a aucun type existant");
