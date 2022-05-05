@@ -366,6 +366,12 @@ cxxabi.h
 acxx_demangle.h
 -
 
+/home/hgrel/3IF_wsl/AirWatcher/Attribute.h
+string
+-
+iostream
+-
+
 /home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
 User.h
 /home/hgrel/3IF_wsl/AirWatcher/User.h
@@ -381,6 +387,8 @@ iostream
 /home/hgrel/3IF_wsl/AirWatcher/User.h
 ../PrivateUser.h
 /home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
+../Attribute.h
+/home/hgrel/3IF_wsl/AirWatcher/Attribute.h
 gtest/gtest.h
 -
 

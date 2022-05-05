@@ -83,19 +83,34 @@ CMakeFiles/User.dir/PrivateUser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/User.dir/PrivateUser.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/PrivateUser.cpp -o CMakeFiles/User.dir/PrivateUser.cpp.s
 
+CMakeFiles/User.dir/Attribute.cpp.o: CMakeFiles/User.dir/flags.make
+CMakeFiles/User.dir/Attribute.cpp.o: ../Attribute.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/User.dir/Attribute.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/User.dir/Attribute.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/Attribute.cpp
+
+CMakeFiles/User.dir/Attribute.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/User.dir/Attribute.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hgrel/3IF_wsl/AirWatcher/Attribute.cpp > CMakeFiles/User.dir/Attribute.cpp.i
+
+CMakeFiles/User.dir/Attribute.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/User.dir/Attribute.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/Attribute.cpp -o CMakeFiles/User.dir/Attribute.cpp.s
+
 # Object files for target User
 User_OBJECTS = \
 "CMakeFiles/User.dir/User.cpp.o" \
-"CMakeFiles/User.dir/PrivateUser.cpp.o"
+"CMakeFiles/User.dir/PrivateUser.cpp.o" \
+"CMakeFiles/User.dir/Attribute.cpp.o"
 
 # External object files for target User
 User_EXTERNAL_OBJECTS =
 
 libUser.a: CMakeFiles/User.dir/User.cpp.o
 libUser.a: CMakeFiles/User.dir/PrivateUser.cpp.o
+libUser.a: CMakeFiles/User.dir/Attribute.cpp.o
 libUser.a: CMakeFiles/User.dir/build.make
 libUser.a: CMakeFiles/User.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libUser.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libUser.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/User.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/User.dir/link.txt --verbose=$(VERBOSE)
 

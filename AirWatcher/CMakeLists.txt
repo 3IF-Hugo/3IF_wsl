@@ -16,11 +16,13 @@ add_subdirectory(googletest)
 set(Headers
     User.h
     PrivateUser.h
+    Attribute.h
 )
 
 set(Sources
     User.cpp
     PrivateUser.cpp
+    Attribute.cpp
 )
 
 add_library(${This} STATIC ${Sources} ${Headers})

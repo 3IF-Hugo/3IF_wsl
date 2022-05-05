@@ -10,6 +10,11 @@
   "file": "/home/hgrel/3IF_wsl/AirWatcher/PrivateUser.cpp"
 },
 {
+  "directory": "/home/hgrel/3IF_wsl/AirWatcher/build",
+  "command": "/usr/bin/g++    -g -fPIC   -std=gnu++11 -o CMakeFiles/User.dir/Attribute.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/Attribute.cpp",
+  "file": "/home/hgrel/3IF_wsl/AirWatcher/Attribute.cpp"
+},
+{
   "directory": "/home/hgrel/3IF_wsl/AirWatcher/build/googletest/googlemock",
   "command": "/usr/bin/g++   -isystem /home/hgrel/3IF_wsl/AirWatcher/googletest/googlemock/include -isystem /home/hgrel/3IF_wsl/AirWatcher/googletest/googlemock -isystem /home/hgrel/3IF_wsl/AirWatcher/googletest/googletest/include -isystem /home/hgrel/3IF_wsl/AirWatcher/googletest/googletest  -g -fPIC   -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /home/hgrel/3IF_wsl/AirWatcher/googletest/googlemock/src/gmock_main.cc",
   "file": "/home/hgrel/3IF_wsl/AirWatcher/googletest/googlemock/src/gmock_main.cc"

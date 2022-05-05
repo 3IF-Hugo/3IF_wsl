@@ -245,6 +245,33 @@ ExampleTests/fast:
 	$(MAKE) -f test/CMakeFiles/ExampleTests.dir/build.make test/CMakeFiles/ExampleTests.dir/build
 .PHONY : ExampleTests/fast
 
+Attribute.o: Attribute.cpp.o
+
+.PHONY : Attribute.o
+
+# target to build an object file
+Attribute.cpp.o:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Attribute.cpp.o
+.PHONY : Attribute.cpp.o
+
+Attribute.i: Attribute.cpp.i
+
+.PHONY : Attribute.i
+
+# target to preprocess a source file
+Attribute.cpp.i:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Attribute.cpp.i
+.PHONY : Attribute.cpp.i
+
+Attribute.s: Attribute.cpp.s
+
+.PHONY : Attribute.s
+
+# target to generate assembly for a file
+Attribute.cpp.s:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Attribute.cpp.s
+.PHONY : Attribute.cpp.s
+
 PrivateUser.o: PrivateUser.cpp.o
 
 .PHONY : PrivateUser.o
@@ -318,6 +345,9 @@ help:
 	@echo "... gtest_main"
 	@echo "... gtest"
 	@echo "... ExampleTests"
+	@echo "... Attribute.o"
+	@echo "... Attribute.i"
+	@echo "... Attribute.s"
 	@echo "... PrivateUser.o"
 	@echo "... PrivateUser.i"
 	@echo "... PrivateUser.s"
