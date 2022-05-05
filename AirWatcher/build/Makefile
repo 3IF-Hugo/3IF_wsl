@@ -272,6 +272,60 @@ Attribute.cpp.s:
 	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Attribute.cpp.s
 .PHONY : Attribute.cpp.s
 
+Cleaner.o: Cleaner.cpp.o
+
+.PHONY : Cleaner.o
+
+# target to build an object file
+Cleaner.cpp.o:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Cleaner.cpp.o
+.PHONY : Cleaner.cpp.o
+
+Cleaner.i: Cleaner.cpp.i
+
+.PHONY : Cleaner.i
+
+# target to preprocess a source file
+Cleaner.cpp.i:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Cleaner.cpp.i
+.PHONY : Cleaner.cpp.i
+
+Cleaner.s: Cleaner.cpp.s
+
+.PHONY : Cleaner.s
+
+# target to generate assembly for a file
+Cleaner.cpp.s:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Cleaner.cpp.s
+.PHONY : Cleaner.cpp.s
+
+Measurement.o: Measurement.cpp.o
+
+.PHONY : Measurement.o
+
+# target to build an object file
+Measurement.cpp.o:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Measurement.cpp.o
+.PHONY : Measurement.cpp.o
+
+Measurement.i: Measurement.cpp.i
+
+.PHONY : Measurement.i
+
+# target to preprocess a source file
+Measurement.cpp.i:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Measurement.cpp.i
+.PHONY : Measurement.cpp.i
+
+Measurement.s: Measurement.cpp.s
+
+.PHONY : Measurement.s
+
+# target to generate assembly for a file
+Measurement.cpp.s:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Measurement.cpp.s
+.PHONY : Measurement.cpp.s
+
 PrivateUser.o: PrivateUser.cpp.o
 
 .PHONY : PrivateUser.o
@@ -298,6 +352,60 @@ PrivateUser.s: PrivateUser.cpp.s
 PrivateUser.cpp.s:
 	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/PrivateUser.cpp.s
 .PHONY : PrivateUser.cpp.s
+
+Provider.o: Provider.cpp.o
+
+.PHONY : Provider.o
+
+# target to build an object file
+Provider.cpp.o:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Provider.cpp.o
+.PHONY : Provider.cpp.o
+
+Provider.i: Provider.cpp.i
+
+.PHONY : Provider.i
+
+# target to preprocess a source file
+Provider.cpp.i:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Provider.cpp.i
+.PHONY : Provider.cpp.i
+
+Provider.s: Provider.cpp.s
+
+.PHONY : Provider.s
+
+# target to generate assembly for a file
+Provider.cpp.s:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Provider.cpp.s
+.PHONY : Provider.cpp.s
+
+Sensor.o: Sensor.cpp.o
+
+.PHONY : Sensor.o
+
+# target to build an object file
+Sensor.cpp.o:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Sensor.cpp.o
+.PHONY : Sensor.cpp.o
+
+Sensor.i: Sensor.cpp.i
+
+.PHONY : Sensor.i
+
+# target to preprocess a source file
+Sensor.cpp.i:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Sensor.cpp.i
+.PHONY : Sensor.cpp.i
+
+Sensor.s: Sensor.cpp.s
+
+.PHONY : Sensor.s
+
+# target to generate assembly for a file
+Sensor.cpp.s:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Sensor.cpp.s
+.PHONY : Sensor.cpp.s
 
 User.o: User.cpp.o
 
@@ -348,9 +456,21 @@ help:
 	@echo "... Attribute.o"
 	@echo "... Attribute.i"
 	@echo "... Attribute.s"
+	@echo "... Cleaner.o"
+	@echo "... Cleaner.i"
+	@echo "... Cleaner.s"
+	@echo "... Measurement.o"
+	@echo "... Measurement.i"
+	@echo "... Measurement.s"
 	@echo "... PrivateUser.o"
 	@echo "... PrivateUser.i"
 	@echo "... PrivateUser.s"
+	@echo "... Provider.o"
+	@echo "... Provider.i"
+	@echo "... Provider.s"
+	@echo "... Sensor.o"
+	@echo "... Sensor.i"
+	@echo "... Sensor.s"
 	@echo "... User.o"
 	@echo "... User.i"
 	@echo "... User.s"

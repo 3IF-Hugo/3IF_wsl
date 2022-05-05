@@ -69,7 +69,7 @@ public:
 
     Measurement (time_t ts, double val, Attribute attr);
 
-    Measurement(string id, double lat, double log);
+    //Measurement(string id, double lat, double log);
 
     virtual ~Measurement ( );
     // Mode d'emploi :

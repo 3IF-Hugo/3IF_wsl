@@ -17,12 +17,20 @@ set(Headers
     User.h
     PrivateUser.h
     Attribute.h
+    Sensor.h
+    Provider.h
+    Measurement.h
+    Cleaner.h
 )
 
 set(Sources
     User.cpp
     PrivateUser.cpp
     Attribute.cpp
+    Sensor.cpp
+    Provider.cpp
+    Measurement.cpp
+    Cleaner.cpp
 )
 
 add_library(${This} STATIC ${Sources} ${Headers})

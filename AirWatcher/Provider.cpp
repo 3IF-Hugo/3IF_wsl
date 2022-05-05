@@ -32,6 +32,12 @@ string Provider::getProviderId()
     return providerId;
 }
 
+//get cleanerId
+string Provider::getCleanerId()
+{
+    return cleanerId;
+}
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 Provider & Provider::operator = ( const Provider & unProvider )
@@ -52,7 +58,7 @@ Provider::Provider ( const Provider & unProvider )
     providerId = unProvider.providerId;
 } //----- Fin de Provider (constructeur de copie)
 
-Provider::Provider (string providerId, string cleanerId) : providerId(providerId), cleanerId(cleanerId) {}
+Provider::Provider (string providerId, string cleanerId) : providerId(providerId), cleanerId(cleanerId)
 // Algorithme :
 //
 {

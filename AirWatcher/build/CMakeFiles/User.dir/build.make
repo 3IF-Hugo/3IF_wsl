@@ -96,11 +96,67 @@ CMakeFiles/User.dir/Attribute.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/User.dir/Attribute.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/Attribute.cpp -o CMakeFiles/User.dir/Attribute.cpp.s
 
+CMakeFiles/User.dir/Sensor.cpp.o: CMakeFiles/User.dir/flags.make
+CMakeFiles/User.dir/Sensor.cpp.o: ../Sensor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/User.dir/Sensor.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/User.dir/Sensor.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/Sensor.cpp
+
+CMakeFiles/User.dir/Sensor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/User.dir/Sensor.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hgrel/3IF_wsl/AirWatcher/Sensor.cpp > CMakeFiles/User.dir/Sensor.cpp.i
+
+CMakeFiles/User.dir/Sensor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/User.dir/Sensor.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/Sensor.cpp -o CMakeFiles/User.dir/Sensor.cpp.s
+
+CMakeFiles/User.dir/Provider.cpp.o: CMakeFiles/User.dir/flags.make
+CMakeFiles/User.dir/Provider.cpp.o: ../Provider.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/User.dir/Provider.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/User.dir/Provider.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/Provider.cpp
+
+CMakeFiles/User.dir/Provider.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/User.dir/Provider.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hgrel/3IF_wsl/AirWatcher/Provider.cpp > CMakeFiles/User.dir/Provider.cpp.i
+
+CMakeFiles/User.dir/Provider.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/User.dir/Provider.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/Provider.cpp -o CMakeFiles/User.dir/Provider.cpp.s
+
+CMakeFiles/User.dir/Measurement.cpp.o: CMakeFiles/User.dir/flags.make
+CMakeFiles/User.dir/Measurement.cpp.o: ../Measurement.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/User.dir/Measurement.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/User.dir/Measurement.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/Measurement.cpp
+
+CMakeFiles/User.dir/Measurement.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/User.dir/Measurement.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hgrel/3IF_wsl/AirWatcher/Measurement.cpp > CMakeFiles/User.dir/Measurement.cpp.i
+
+CMakeFiles/User.dir/Measurement.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/User.dir/Measurement.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/Measurement.cpp -o CMakeFiles/User.dir/Measurement.cpp.s
+
+CMakeFiles/User.dir/Cleaner.cpp.o: CMakeFiles/User.dir/flags.make
+CMakeFiles/User.dir/Cleaner.cpp.o: ../Cleaner.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/User.dir/Cleaner.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/User.dir/Cleaner.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/Cleaner.cpp
+
+CMakeFiles/User.dir/Cleaner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/User.dir/Cleaner.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hgrel/3IF_wsl/AirWatcher/Cleaner.cpp > CMakeFiles/User.dir/Cleaner.cpp.i
+
+CMakeFiles/User.dir/Cleaner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/User.dir/Cleaner.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/Cleaner.cpp -o CMakeFiles/User.dir/Cleaner.cpp.s
+
 # Object files for target User
 User_OBJECTS = \
 "CMakeFiles/User.dir/User.cpp.o" \
 "CMakeFiles/User.dir/PrivateUser.cpp.o" \
-"CMakeFiles/User.dir/Attribute.cpp.o"
+"CMakeFiles/User.dir/Attribute.cpp.o" \
+"CMakeFiles/User.dir/Sensor.cpp.o" \
+"CMakeFiles/User.dir/Provider.cpp.o" \
+"CMakeFiles/User.dir/Measurement.cpp.o" \
+"CMakeFiles/User.dir/Cleaner.cpp.o"
 
 # External object files for target User
 User_EXTERNAL_OBJECTS =
@@ -108,9 +164,13 @@ User_EXTERNAL_OBJECTS =
 libUser.a: CMakeFiles/User.dir/User.cpp.o
 libUser.a: CMakeFiles/User.dir/PrivateUser.cpp.o
 libUser.a: CMakeFiles/User.dir/Attribute.cpp.o
+libUser.a: CMakeFiles/User.dir/Sensor.cpp.o
+libUser.a: CMakeFiles/User.dir/Provider.cpp.o
+libUser.a: CMakeFiles/User.dir/Measurement.cpp.o
+libUser.a: CMakeFiles/User.dir/Cleaner.cpp.o
 libUser.a: CMakeFiles/User.dir/build.make
 libUser.a: CMakeFiles/User.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libUser.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libUser.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/User.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/User.dir/link.txt --verbose=$(VERBOSE)
 

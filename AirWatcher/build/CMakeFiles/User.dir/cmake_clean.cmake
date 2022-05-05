@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/User.dir/Attribute.cpp.o"
+  "CMakeFiles/User.dir/Cleaner.cpp.o"
+  "CMakeFiles/User.dir/Measurement.cpp.o"
   "CMakeFiles/User.dir/PrivateUser.cpp.o"
+  "CMakeFiles/User.dir/Provider.cpp.o"
+  "CMakeFiles/User.dir/Sensor.cpp.o"
   "CMakeFiles/User.dir/User.cpp.o"
   "libUser.a"
   "libUser.pdb"

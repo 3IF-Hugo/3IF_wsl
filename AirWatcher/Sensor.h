@@ -12,11 +12,11 @@ using namespace std;
 #define SENSOR_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "PrivateUser.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-enum StateSensorUser { Reliable, Unreliable };
+//enum StateSensorUser { Reliable, Unreliable };
 //------------------------------------------------------------------------
 // Rôle de la classe <Sensor>
 //

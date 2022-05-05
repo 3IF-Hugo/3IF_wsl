@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/hgrel/3IF_wsl/AirWatcher/Attribute.cpp
+/home/hgrel/3IF_wsl/AirWatcher/Cleaner.cpp
 iostream
 -
-Attribute.h
-/home/hgrel/3IF_wsl/AirWatcher/Attribute.h
+Cleaner.h
+/home/hgrel/3IF_wsl/AirWatcher/Cleaner.h
 
-/home/hgrel/3IF_wsl/AirWatcher/Attribute.h
+/home/hgrel/3IF_wsl/AirWatcher/Cleaner.h
 string
 -
 iostream

@@ -4,9 +4,24 @@
 CMakeFiles/User.dir/Attribute.cpp.o
  /home/hgrel/3IF_wsl/AirWatcher/Attribute.cpp
  /home/hgrel/3IF_wsl/AirWatcher/Attribute.h
+CMakeFiles/User.dir/Cleaner.cpp.o
+ /home/hgrel/3IF_wsl/AirWatcher/Cleaner.cpp
+ /home/hgrel/3IF_wsl/AirWatcher/Cleaner.h
+CMakeFiles/User.dir/Measurement.cpp.o
+ /home/hgrel/3IF_wsl/AirWatcher/Attribute.h
+ /home/hgrel/3IF_wsl/AirWatcher/Measurement.cpp
+ /home/hgrel/3IF_wsl/AirWatcher/Measurement.h
 CMakeFiles/User.dir/PrivateUser.cpp.o
  /home/hgrel/3IF_wsl/AirWatcher/PrivateUser.cpp
  /home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
+ /home/hgrel/3IF_wsl/AirWatcher/User.h
+CMakeFiles/User.dir/Provider.cpp.o
+ /home/hgrel/3IF_wsl/AirWatcher/Provider.cpp
+ /home/hgrel/3IF_wsl/AirWatcher/Provider.h
+CMakeFiles/User.dir/Sensor.cpp.o
+ /home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
+ /home/hgrel/3IF_wsl/AirWatcher/Sensor.cpp
+ /home/hgrel/3IF_wsl/AirWatcher/Sensor.h
  /home/hgrel/3IF_wsl/AirWatcher/User.h
 CMakeFiles/User.dir/User.cpp.o
  /home/hgrel/3IF_wsl/AirWatcher/User.cpp

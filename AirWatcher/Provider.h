@@ -37,6 +37,8 @@ public:
     // Contrat :
     //
 
+    string getCleanerId();
+
 
 //------------------------------------------------- Surcharge d'opérateurs
     Provider & operator = ( const Provider & unProvider );

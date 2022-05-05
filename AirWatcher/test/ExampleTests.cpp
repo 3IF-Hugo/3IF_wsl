@@ -1,6 +1,14 @@
-#include "../User.h"
-#include "../PrivateUser.h"
+// #include "../User.h"
+// #include "../Sensor.h"
+// //#include "../PrivateUser.h"
+// #include "../Measurement.h"
+// //#include "../Attribute.h"
+// #include "../Provider.h"
+
+#include "../Sensor.h"
 #include "../Attribute.h"
+#include "../Provider.h"
+#include "../Cleaner.h"
 
 #include <gtest/gtest.h>
 
@@ -75,4 +83,66 @@ TEST(AttributeTest, ConstructorWithParameters) {
     EXPECT_EQ(attribute.getUnit(), "unit");
     EXPECT_EQ(attribute.getDescription(), "description");
 }
+
+//Partie Sensor
+//test le constructor avec paramètres
+TEST(SensorTest, ConstructorWithParameters) {
+    Sensor sensor("sensorId", 1, 2);
+    EXPECT_EQ(sensor.getSensorID(), "sensorId");
+    EXPECT_EQ(sensor.getLatitude(), 1);
+    EXPECT_EQ(sensor.getLongitude(), 2);
+    // EXPECT_EQ(sensor.getState(), Unreliable);
+}
+
+//test setStateUnreliable
+TEST(SensorTest, setStateUnreliable) {
+    Sensor sensor("sensorId", 1, 2);
+    sensor.SetStateUnreliable();
+    EXPECT_EQ(sensor.getState(), Unreliable);
+}
+
+//Partie Provider
+//test le constructor vide
+TEST(ProviderTest, ConstructorVide) {
+    Provider provider;
+    EXPECT_EQ(provider.getProviderId(), "");
+    EXPECT_EQ(provider.getCleanerId(), "");
+}
+
+//test le constructor avec paramètres
+TEST(ProviderTest, ConstructorWithParameters) {
+    Provider provider("providerId", "cleanerId");
+    EXPECT_EQ(provider.getProviderId(), "providerId");
+    EXPECT_EQ(provider.getCleanerId(), "cleanerId");
+}
+
+//Partie Measurement
+//test le constructor avec paramètres time_t, double, Attribute
+// TEST(MeasurementTest, ConstructorWithParameters) {
+//     Measurement measurement(time(NULL), 1.0, Attribute("attributeId", "unit", "description"));
+//     EXPECT_EQ(measurement.getTimestamp(), time(NULL));
+//     EXPECT_EQ(measurement.getValue(), 1.0);
+//     EXPECT_EQ(measurement.getAttribute().getAttributeId(), "attributeId");
+//     EXPECT_EQ(measurement.getAttribute().getUnit(), "unit");
+//     EXPECT_EQ(measurement.getAttribute().getDescription(), "description");
+// }
+
+//Partie Cleaner
+//test le constructor avec paramètres
+//Cleaner (string cleanerId = "", double latitude = 0.0, double longitude = 0.0, time_t timestampStart = 0, time_t timestampStop = 0);
+TEST(CleanerTest, ConstructorWithParameters) {
+    Cleaner cleaner("cleanerId", 1.0, 2.0, time(NULL), time(NULL));
+    EXPECT_EQ(cleaner.getCleanerId(), "cleanerId");
+    EXPECT_EQ(cleaner.getLatitude(), 1.0);
+    EXPECT_EQ(cleaner.getLongitude(), 2.0);
+    EXPECT_EQ(cleaner.getTimestampStart(), time(NULL));
+    EXPECT_EQ(cleaner.getTimestampStop(), time(NULL));
+}
+
+
+
+
+
+
+
 
