@@ -209,11 +209,11 @@ double * Service::calculateMean(list<Sensor> sensors, Sensor sensorRef, time_t d
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Service & Service::operator = ( const Service & unService )
+// & Service::operator = ( const Service & unService )
 // Algorithme :
 //
-{
-} //----- Fin de operator =
+//{
+//} //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur

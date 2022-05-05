@@ -40,19 +40,19 @@ public:
     // Contrat :
     //
 
-    list<Sensor> trouverZonesSimilaires(string idCapteurRef, list<string> listeTypesDonnees, int pourcentageOpt);
+    //list<Sensor> trouverZonesSimilaires(string idCapteurRef, list<string> listeTypesDonnees, int pourcentageOpt);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    double * qualiteAirZone(double latitude, double longitude, double rayon = 5.0) ;
+    //double * qualiteAirZone(double latitude, double longitude, double rayon = 5.0) ;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    int impactPurificateur(string idPurificateur) ;
+    //int impactPurificateur(string idPurificateur) ;
     // Mode d'emploi :
     //
     // Contrat :
@@ -72,7 +72,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Service & operator = ( const Service & unService );
+    //Service & operator = ( const Service & unService );
     // Mode d'emploi :
     //
     // Contrat :
