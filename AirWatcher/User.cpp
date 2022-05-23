@@ -57,6 +57,7 @@ User & User::operator = ( const User & unUser )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 bool User::operator== ( const User & unUser )
@@ -85,6 +86,11 @@ User::User ( const User & unUser )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <User>" << endl;
 #endif
+userId = unUser.userId;
+name = unUser.name;
+surname = unUser.surname;
+email = unUser.email;
+password = unUser.password;
 } //----- Fin de User (constructeur de copie)
 
 

@@ -10,7 +10,7 @@ using namespace std;
 #include <string>
 #include <iostream>
 #if ! defined ( ATTRIBUTE_H )
-#define Attribute_H
+#define ATTRIBUTE_H
 
 //--------------------------------------------------- Interfaces utilisées
 

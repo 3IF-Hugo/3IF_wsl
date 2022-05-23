@@ -44,6 +44,7 @@ Provider & Provider::operator = ( const Provider & unProvider )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 
@@ -56,6 +57,7 @@ Provider::Provider ( const Provider & unProvider )
     cout << "Appel au constructeur de copie de <Provider>" << endl;
 #endif
     providerId = unProvider.providerId;
+    cleanerId = unProvider.cleanerId;
 } //----- Fin de Provider (constructeur de copie)
 
 Provider::Provider (string providerId, string cleanerId) : providerId(providerId), cleanerId(cleanerId)

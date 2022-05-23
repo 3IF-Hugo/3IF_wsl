@@ -12,6 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <string>
 
 //------------------------------------------------------ Include personnel
 #include "Sensor.h"
@@ -32,7 +33,7 @@ bool Sensor::SetStateUnreliable(){
     return true;
 }
 
-string Sensor::getSensorID(){
+string Sensor::getSensorID() const{
     return sensorID;
 }
 
@@ -48,13 +49,23 @@ StateSensorUser Sensor::getState(){
     return state;
 }
 
-
 //------------------------------------------------- Surcharge d'opérateurs
-Sensor & Sensor::operator = ( const Sensor & unSensor )
+Sensor & Sensor::operator= ( const Sensor & unSensor )
 // Algorithme :
 //
 {
+    return *this; 
 } //----- Fin de operator =
+
+bool operator< ( const Sensor & sensor1, const Sensor & sensor2)
+{
+    return (sensor1.sensorID < sensor2.sensorID);
+}
+
+bool operator== ( Sensor & sensor1, const Sensor & sensor2)
+{
+    return (sensor1.sensorID == sensor2.sensorID);
+}
 
 
 //-------------------------------------------- Constructeurs - destructeur

@@ -24,9 +24,13 @@ test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../googletest/googletest/in
 test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../googletest/googletest/include/gtest/internal/gtest-type-util.h
 test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../Attribute.h
 test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../Cleaner.h
+test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../Lecture.h
+test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../Measurement.h
 test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../PrivateUser.h
 test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../Provider.h
 test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../Sensor.h
+test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../Service.h
 test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../User.h
+test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../UtilityService.h
 test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o: ../test/ExampleTests.cpp
 

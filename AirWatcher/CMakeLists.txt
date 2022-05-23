@@ -14,13 +14,16 @@ enable_testing()
 add_subdirectory(googletest)
 
 set(Headers
-    User.h
-    PrivateUser.h
-    Attribute.h
-    Sensor.h
+    Service.h
+    # User.h
+    # PrivateUser.h
+    # Attribute.h
+    # Sensor.h
     Provider.h
-    Measurement.h
+    # Measurement.h
     Cleaner.h
+    UtilityService.h
+    Lecture.h
 )
 
 set(Sources
@@ -31,6 +34,9 @@ set(Sources
     Provider.cpp
     Measurement.cpp
     Cleaner.cpp
+    Service.cpp
+    UtilityService.cpp
+    Lecture.cpp
 )
 
 add_library(${This} STATIC ${Sources} ${Headers})

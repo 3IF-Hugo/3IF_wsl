@@ -299,6 +299,33 @@ Cleaner.cpp.s:
 	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Cleaner.cpp.s
 .PHONY : Cleaner.cpp.s
 
+Lecture.o: Lecture.cpp.o
+
+.PHONY : Lecture.o
+
+# target to build an object file
+Lecture.cpp.o:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Lecture.cpp.o
+.PHONY : Lecture.cpp.o
+
+Lecture.i: Lecture.cpp.i
+
+.PHONY : Lecture.i
+
+# target to preprocess a source file
+Lecture.cpp.i:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Lecture.cpp.i
+.PHONY : Lecture.cpp.i
+
+Lecture.s: Lecture.cpp.s
+
+.PHONY : Lecture.s
+
+# target to generate assembly for a file
+Lecture.cpp.s:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Lecture.cpp.s
+.PHONY : Lecture.cpp.s
+
 Measurement.o: Measurement.cpp.o
 
 .PHONY : Measurement.o
@@ -407,6 +434,33 @@ Sensor.cpp.s:
 	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Sensor.cpp.s
 .PHONY : Sensor.cpp.s
 
+Service.o: Service.cpp.o
+
+.PHONY : Service.o
+
+# target to build an object file
+Service.cpp.o:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Service.cpp.o
+.PHONY : Service.cpp.o
+
+Service.i: Service.cpp.i
+
+.PHONY : Service.i
+
+# target to preprocess a source file
+Service.cpp.i:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Service.cpp.i
+.PHONY : Service.cpp.i
+
+Service.s: Service.cpp.s
+
+.PHONY : Service.s
+
+# target to generate assembly for a file
+Service.cpp.s:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/Service.cpp.s
+.PHONY : Service.cpp.s
+
 User.o: User.cpp.o
 
 .PHONY : User.o
@@ -434,6 +488,33 @@ User.cpp.s:
 	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/User.cpp.s
 .PHONY : User.cpp.s
 
+UtilityService.o: UtilityService.cpp.o
+
+.PHONY : UtilityService.o
+
+# target to build an object file
+UtilityService.cpp.o:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/UtilityService.cpp.o
+.PHONY : UtilityService.cpp.o
+
+UtilityService.i: UtilityService.cpp.i
+
+.PHONY : UtilityService.i
+
+# target to preprocess a source file
+UtilityService.cpp.i:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/UtilityService.cpp.i
+.PHONY : UtilityService.cpp.i
+
+UtilityService.s: UtilityService.cpp.s
+
+.PHONY : UtilityService.s
+
+# target to generate assembly for a file
+UtilityService.cpp.s:
+	$(MAKE) -f CMakeFiles/User.dir/build.make CMakeFiles/User.dir/UtilityService.cpp.s
+.PHONY : UtilityService.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -459,6 +540,9 @@ help:
 	@echo "... Cleaner.o"
 	@echo "... Cleaner.i"
 	@echo "... Cleaner.s"
+	@echo "... Lecture.o"
+	@echo "... Lecture.i"
+	@echo "... Lecture.s"
 	@echo "... Measurement.o"
 	@echo "... Measurement.i"
 	@echo "... Measurement.s"
@@ -471,9 +555,15 @@ help:
 	@echo "... Sensor.o"
 	@echo "... Sensor.i"
 	@echo "... Sensor.s"
+	@echo "... Service.o"
+	@echo "... Service.i"
+	@echo "... Service.s"
 	@echo "... User.o"
 	@echo "... User.i"
 	@echo "... User.s"
+	@echo "... UtilityService.o"
+	@echo "... UtilityService.i"
+	@echo "... UtilityService.s"
 .PHONY : help
 
 

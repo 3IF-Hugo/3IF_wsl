@@ -10,10 +10,13 @@ using namespace std;
 #include <string>
 #include <iostream>
 #include <list>
-#include "Sensor.h"
 #include <map>
 #if ! defined ( SERVICE_H )
 #define SERVICE_H
+#include "Measurement.h"
+#include "Sensor.h"
+
+
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -53,18 +56,6 @@ public:
     //
 
     //int impactPurificateur(string idPurificateur) ;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    double * calculateMean(list<Sensor> sensors, Sensor sensorRef, time_t date, multimap<Sensor,Measurement> mesureO3, multimap<Sensor,Measurement> mesureSO2, multimap<Sensor,Measurement> mesureNO2, multimap<Sensor,Measurement> mesurePM10 ) ;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    bool analyseSensor(list<Sensor> allSensors, Sensor sensorAnalyse, double rayon, time_t date, multimap<Sensor,Measurement> mesureO3, multimap<Sensor,Measurement> mesureSO2, multimap<Sensor,Measurement> mesureNO2, multimap<Sensor,Measurement> mesurePM10);
     // Mode d'emploi :
     //
     // Contrat :

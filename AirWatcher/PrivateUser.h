@@ -6,8 +6,8 @@
 *************************************************************************/
 
 //---------- Interface de la classe <PrivateUser> (fichier PrivateUser.h) ----------------
-#if ! defined ( PrivateUser_H )
-#define PrivateUser_H
+#if ! defined ( PRIVATEUSER_H )
+#define PRIVATEUSER_H
 
 //--------------------------------------------------- Interfaces utilisées
 #include "User.h"
@@ -42,6 +42,8 @@ public:
     //get the state of the sensor
     StateSensorUser getStatut();
     
+    //get string sensorId;
+    string getSensorId();
 //------------------------------------------------- Surcharge d'opérateurs
     PrivateUser & operator = ( const PrivateUser & unPrivateUser );
     // Mode d'emploi :
@@ -68,8 +70,7 @@ public:
     // string password, int score, StateSensorUser stateSensorUser = Reliable);
 
     PrivateUser(string userId = "", string name = "", string surname = "", string email = "", 
-    string password = "", int score = 0, string IDSensor = "", StateSensorUser stateSensorUser = Reliable) 
-    : User(userId, name, surname, email, password), score(score), sensorId(IDSensor), statut(stateSensorUser)  {}
+    string password = "", int score = 0, string IDSensor = "", StateSensorUser stateSensorUser = Reliable);
     
 
     virtual ~PrivateUser ( );

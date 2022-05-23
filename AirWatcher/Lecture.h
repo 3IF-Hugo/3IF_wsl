@@ -7,8 +7,8 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Lecture> (fichier Lecture.h) ----------------
-#if ! defined ( LECTURELOG_H )
-#define LECTURELOG_H
+#if ! defined ( LECTURE_H )
+#define LECTURE_H
 
 
 //--------------------------------------------------- Interfaces utilisées
@@ -75,5 +75,5 @@ protected:
 
 //-------------------------------- Autres définitions dépendantes de <Lecture>
 
-#endif // LectureLog_H
+#endif // Lecture_H
 

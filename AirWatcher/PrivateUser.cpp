@@ -42,6 +42,11 @@ StateSensorUser PrivateUser::getStatut(){
     return statut;
 }
 
+//get string sensorId;
+string PrivateUser::getSensorId(){
+    return sensorId;
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 // PrivateUser & PrivateUser::operator = ( const PrivateUser & unPrivateUser )
 // // Algorithme :
@@ -58,8 +63,14 @@ PrivateUser::PrivateUser ( const PrivateUser & unPrivateUser ) : User(unPrivateU
 #ifdef MAP
     cout << "Appel au constructeur de copie de <PrivateUser>" << endl;
 #endif
+    userId = unPrivateUser.userId;
+    name = unPrivateUser.name;
+    surname = unPrivateUser.surname;
+    email = unPrivateUser.email;
+    password = unPrivateUser.password;
     score = unPrivateUser.score;
     statut = unPrivateUser.statut;
+    sensorId = unPrivateUser.sensorId;
 } //----- Fin de PrivateUser (constructeur de copie)
 
 
@@ -72,9 +83,8 @@ PrivateUser::PrivateUser ( const PrivateUser & unPrivateUser ) : User(unPrivateU
 // #endif
 // } //----- Fin de PrivateUser
 
-// PrivateUser::PrivateUser(string userId, string name, string surname, string email, 
-//     string password, int score, StateSensorUser stateSensorUser) 
-//     : User(userId, name, surname, email, password), score(score), statut(stateSensorUser)  {}
+ PrivateUser::PrivateUser(string userId, string name, string surname, string email, 
+     string password, int score, string IDSensor, StateSensorUser stateSensorUser) :User(userId, name, surname, email, password), score(score), sensorId(IDSensor), statut(stateSensorUser) {}
 
 
 PrivateUser::~PrivateUser ( )

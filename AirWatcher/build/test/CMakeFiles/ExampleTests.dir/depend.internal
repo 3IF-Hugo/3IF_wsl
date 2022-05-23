@@ -25,8 +25,12 @@ test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.o
  ../googletest/googletest/include/gtest/internal/gtest-type-util.h
  /home/hgrel/3IF_wsl/AirWatcher/Attribute.h
  /home/hgrel/3IF_wsl/AirWatcher/Cleaner.h
+ /home/hgrel/3IF_wsl/AirWatcher/Lecture.h
+ /home/hgrel/3IF_wsl/AirWatcher/Measurement.h
  /home/hgrel/3IF_wsl/AirWatcher/PrivateUser.h
  /home/hgrel/3IF_wsl/AirWatcher/Provider.h
  /home/hgrel/3IF_wsl/AirWatcher/Sensor.h
+ /home/hgrel/3IF_wsl/AirWatcher/Service.h
  /home/hgrel/3IF_wsl/AirWatcher/User.h
+ /home/hgrel/3IF_wsl/AirWatcher/UtilityService.h
  /home/hgrel/3IF_wsl/AirWatcher/test/ExampleTests.cpp

@@ -48,6 +48,7 @@ Attribute & Attribute::operator = ( const Attribute & unAttribute )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

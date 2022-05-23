@@ -55,6 +55,7 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
                 longitude = stod(temp);
                 Sensor * s = new Sensor(id, latitude, longitude);
                 listeCapteurs.insert(make_pair(id, *s));
+                free(s);
             }
         }
         fic.close();
@@ -63,6 +64,8 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
         fic.open("dataset/attributes.csv");
         if(!fic.fail())
         {
+            //Dummy for the first line
+            getline(fic, temp, '\n');
             string id;
             string unit;
             string description;
@@ -74,6 +77,7 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
                 getline(scraping, description, ';');
                 Attribute * a = new Attribute(id, unit, description);
                 listeAttributs.push_back(*a);
+                free(a);
             }
         }
         fic.close();
@@ -103,6 +107,7 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
                 fin = mktime(&tm);
                 Cleaner * c = new Cleaner(id, lat, longi, debut, fin);
                 listeCleaners.push_back(*c);
+                free(c);
             }
         }
         fic.close();
@@ -120,6 +125,7 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
                 getline(scraping, sensorId, ';');
                 PrivateUser * u = new PrivateUser(userId, "Jean", "Dupond", "jean.dupond@insa-lyon.fr", "123456", 0, sensorId);
                 listePrivateUsers.push_back(*u);
+                free(u);
             }
         }
         fic.close();
@@ -137,12 +143,13 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
                 getline(scraping, cleanerId, ';');
                 Provider * p = new Provider(providerId, cleanerId);
                 listeProviders.push_back(*p);
+                free(p);
             }
         }
         fic.close();
 
         //Stockage des mesures
-        fic.open("dataset/cleaners.csv");
+        fic.open("dataset/measurements.csv");
         if(!fic.fail())
         {
             string sensorId;
@@ -163,7 +170,7 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
 
                 map<string, Sensor>::iterator it;
                 it = listeCapteurs.find(sensorId);
-
+                //cout << attribute.compare("O3") << attribute.compare("SO2") << attribute.compare("NO2") << attribute.compare("PM10") << endl;
                 if(!attribute.compare("O3"))
                 {
                     mesuresO3.insert(make_pair(it->second, *c));
@@ -180,13 +187,13 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
                 {
                     throw std::invalid_argument("type ne correspond a aucun type existant");
                 }
+                free(c);
             }
         }
         fic.close();
 
     }catch(exception& e)
     {
-        cerr << "ERREUR : Mise en forme du fichier non valide";
         return 0;
     }
     return 1;

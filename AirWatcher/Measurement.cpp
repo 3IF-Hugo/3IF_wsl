@@ -34,12 +34,18 @@ double Measurement::getValue(){
     return value;
 }
 
+Attribute Measurement::getAttribute()
+{
+    return attribute;
+}
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 Measurement & Measurement::operator = ( const Measurement & unMeasurement )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 
@@ -48,6 +54,9 @@ Measurement::Measurement ( const Measurement & unMeasurement )
 // Algorithme :
 //
 {
+    timestamp = unMeasurement.timestamp;
+    value = unMeasurement.value;
+    attribute = unMeasurement.attribute;
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Measurement>" << endl;
 #endif

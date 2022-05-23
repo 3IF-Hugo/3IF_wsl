@@ -5,11 +5,13 @@
     copyright            : B3324 et B3328
 *************************************************************************/
 
+#ifndef SENSOR_H
+#define SENSOR_H
+
 //---------- Interface de la classe <Sensor> (fichier Sensor.h) ----------------
 using namespace std;
 #include <string>
-// #if ! defined ( SENSOR_H )
-#define SENSOR_H
+
 
 //--------------------------------------------------- Interfaces utilisées
 #include "PrivateUser.h"
@@ -40,7 +42,7 @@ public:
     // Contrat :
     //
 
-    string getSensorID();
+    string getSensorID() const;
     // Mode d'emploi :
     //
     // Contrat :
@@ -65,12 +67,23 @@ public:
     //
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Sensor & operator = ( const Sensor & unSensor );
+    Sensor & operator= ( const Sensor & unSensor );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
+    friend bool operator< ( const Sensor & sensor1, const Sensor & sensor2);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    friend bool operator== ( Sensor & sensor1, const Sensor & sensor2);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
 //-------------------------------------------- Constructeurs - destructeur
     Sensor ( const Sensor & unSensor );
@@ -107,5 +120,5 @@ protected:
 
 //-------------------------------- Autres définitions dépendantes de <Sensor>
 
-// #endif // XXX_H
+#endif // SENSOR_H
 

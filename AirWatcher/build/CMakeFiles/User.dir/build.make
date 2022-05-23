@@ -148,6 +148,45 @@ CMakeFiles/User.dir/Cleaner.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/User.dir/Cleaner.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/Cleaner.cpp -o CMakeFiles/User.dir/Cleaner.cpp.s
 
+CMakeFiles/User.dir/Service.cpp.o: CMakeFiles/User.dir/flags.make
+CMakeFiles/User.dir/Service.cpp.o: ../Service.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/User.dir/Service.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/User.dir/Service.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/Service.cpp
+
+CMakeFiles/User.dir/Service.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/User.dir/Service.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hgrel/3IF_wsl/AirWatcher/Service.cpp > CMakeFiles/User.dir/Service.cpp.i
+
+CMakeFiles/User.dir/Service.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/User.dir/Service.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/Service.cpp -o CMakeFiles/User.dir/Service.cpp.s
+
+CMakeFiles/User.dir/UtilityService.cpp.o: CMakeFiles/User.dir/flags.make
+CMakeFiles/User.dir/UtilityService.cpp.o: ../UtilityService.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/User.dir/UtilityService.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/User.dir/UtilityService.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/UtilityService.cpp
+
+CMakeFiles/User.dir/UtilityService.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/User.dir/UtilityService.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hgrel/3IF_wsl/AirWatcher/UtilityService.cpp > CMakeFiles/User.dir/UtilityService.cpp.i
+
+CMakeFiles/User.dir/UtilityService.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/User.dir/UtilityService.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/UtilityService.cpp -o CMakeFiles/User.dir/UtilityService.cpp.s
+
+CMakeFiles/User.dir/Lecture.cpp.o: CMakeFiles/User.dir/flags.make
+CMakeFiles/User.dir/Lecture.cpp.o: ../Lecture.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/User.dir/Lecture.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/User.dir/Lecture.cpp.o -c /home/hgrel/3IF_wsl/AirWatcher/Lecture.cpp
+
+CMakeFiles/User.dir/Lecture.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/User.dir/Lecture.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hgrel/3IF_wsl/AirWatcher/Lecture.cpp > CMakeFiles/User.dir/Lecture.cpp.i
+
+CMakeFiles/User.dir/Lecture.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/User.dir/Lecture.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hgrel/3IF_wsl/AirWatcher/Lecture.cpp -o CMakeFiles/User.dir/Lecture.cpp.s
+
 # Object files for target User
 User_OBJECTS = \
 "CMakeFiles/User.dir/User.cpp.o" \
@@ -156,7 +195,10 @@ User_OBJECTS = \
 "CMakeFiles/User.dir/Sensor.cpp.o" \
 "CMakeFiles/User.dir/Provider.cpp.o" \
 "CMakeFiles/User.dir/Measurement.cpp.o" \
-"CMakeFiles/User.dir/Cleaner.cpp.o"
+"CMakeFiles/User.dir/Cleaner.cpp.o" \
+"CMakeFiles/User.dir/Service.cpp.o" \
+"CMakeFiles/User.dir/UtilityService.cpp.o" \
+"CMakeFiles/User.dir/Lecture.cpp.o"
 
 # External object files for target User
 User_EXTERNAL_OBJECTS =
@@ -168,9 +210,12 @@ libUser.a: CMakeFiles/User.dir/Sensor.cpp.o
 libUser.a: CMakeFiles/User.dir/Provider.cpp.o
 libUser.a: CMakeFiles/User.dir/Measurement.cpp.o
 libUser.a: CMakeFiles/User.dir/Cleaner.cpp.o
+libUser.a: CMakeFiles/User.dir/Service.cpp.o
+libUser.a: CMakeFiles/User.dir/UtilityService.cpp.o
+libUser.a: CMakeFiles/User.dir/Lecture.cpp.o
 libUser.a: CMakeFiles/User.dir/build.make
 libUser.a: CMakeFiles/User.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libUser.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hgrel/3IF_wsl/AirWatcher/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library libUser.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/User.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/User.dir/link.txt --verbose=$(VERBOSE)
 

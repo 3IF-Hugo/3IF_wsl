@@ -8,8 +8,8 @@
 //---------- Interface de la classe <Measurement> (fichier Measurement.h) ----------------
 using namespace std;
 #include <string>
-#if ! defined ( SENSOR_H )
-#define SENSOR_H
+#if ! defined ( MEASUREMENT_H )
+#define MEASUREMENT_H
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Attribute.h"
@@ -41,6 +41,12 @@ public:
     //
 
     double getValue();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    Attribute getAttribute();
     // Mode d'emploi :
     //
     // Contrat :
@@ -90,5 +96,5 @@ protected:
 
 //-------------------------------- Autres définitions dépendantes de <Measurement>
 
-#endif // XXX_H
+#endif // MEASUREMENT_H
 
