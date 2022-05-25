@@ -191,6 +191,7 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
             }
         }
         fic.close();
+        cout << "APRES//////////" << endl;
 
     }catch(exception& e)
     {

@@ -32,37 +32,42 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-double** Service::calculerStatistiques(list<Sensor> sensors, multimap <Sensor, Measurement> tousMeasurements, list <string> listeTypesDonnees, double latitude, double longitude, double rayonZone, int nbrJours){
+double** Service::calculerStatistiques(map<string, Sensor> sensors, multimap <Sensor, Measurement> tousMeasurements, list <string> listeTypesDonnees, double latitude, double longitude, double rayonZone, time_t dateDeb, time_t dateFin){
+    printf("%s\n", asctime(gmtime(&dateDeb)));
+    printf("%s\n", asctime(gmtime(&dateFin)));
 
     double** returnArray;
-    returnArray = (double**) malloc(sizeof(double)*listeTypesDonnees.size());
+    returnArray = (double**) malloc(sizeof(double*)*((int)listeTypesDonnees.size()));
     for(int i=0; i<(int)(listeTypesDonnees.size()); ++i)
     {
         returnArray[i] = (double*) calloc(3, sizeof(double));
+        returnArray[i][2] = __INT_MAX__;
     }
-    list<Sensor> listSensorsArea;
+    map<string, Sensor> listSensorsArea;
     int nbMeasurements;
     double distance;
     
     // Recuperer les capteurs dans la zone choisie
-    for(list <Sensor>::iterator it = sensors.begin(); it != sensors.end(); it++){
+    for(map <string, Sensor>::iterator it = sensors.begin(); it != sensors.end(); it++){
         // Calcul de la distance simple en 2D, amelioration possible avec la formule de haversine
-        distance = sqrt(pow(it->getLatitude() - latitude, 2) + pow(it->getLongitude() - longitude, 2)); 
+        distance = sqrt(pow(it->second.getLatitude() - latitude, 2) + pow(it->second.getLongitude() - longitude, 2)); 
         if (distance < rayonZone){
-            listSensorsArea.push_back(*it);
+            listSensorsArea.insert(*it);
         }
     }
+    cout << "nb Capteurs trouvés : " << listSensorsArea.size() << endl;
 
-    long long borneSup = static_cast<long long>(time(0)); //maintenant, en secondes
-    long long borneInf = borneSup - nbrJours*24*3600;
+    // long long borneSup = static_cast<long long>(dateFin); //date de fin, en secondes
+    // long long borneInf = static_cast<long long>(dateDeb); //date de debut, en secondes
     int iterateur = 0; // Variable pour remplacer l'index de l'element pointe par 'itl' - a la place de la fonction distance(listTypesDonnees, itl)
 
     // Calculer la moyenne, le min et max pour chaque type de donnees
     for(list <string>::iterator itl = listeTypesDonnees.begin(); itl != listeTypesDonnees.end(); itl++){
-        for(auto itm = tousMeasurements.rbegin(); itm != tousMeasurements.rend(); itm++){
+        for(map<Sensor, Measurement>::iterator itm = tousMeasurements.begin(); itm != tousMeasurements.end(); itm++){
             
             // Moyenne (Calculer la somme et diviser a la fin de cette boucle)
-            if (static_cast<long long>(itm->second.getTimestamp()) < borneSup && static_cast<long long>(itm->second.getTimestamp()) > borneInf && itl->compare(itm->second.getAttribute().getAttributeId()) == 0){
+            if (listSensorsArea.find(itm->first.getSensorID()) != listSensorsArea.end() && itl->compare(itm->second.getAttribute()) == 0 && itm->second.getTimestamp() <= dateFin && itm->second.getTimestamp() >= dateDeb){
+                
                 //returnArray[distance(listTypesDonnees, itl)][0] += itm->second.value;
                 returnArray[iterateur][0] += itm->second.getValue();
                 

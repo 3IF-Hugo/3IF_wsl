@@ -84,11 +84,14 @@ int main()
     double latInput;
     double logInput;
     double rayonZone;
-    int nbrJours; 
+    int nbrJours;
+    int dataInputTab[4] = {0};
+    int dataInput; 
     bool capteurFonctionnel;
     list<Sensor> listeCapteursDefectueux;
+    multimap<Sensor, Measurement> mesuresInput;
     
-    while (userInput != 0) {
+    while (userInput != 6) {
         //Menu
         cout << "-----------------------------------------------------------------------------------" << endl;
         cout << "-----------------------------------------------------------------------------------" << endl;
@@ -106,9 +109,9 @@ int main()
         cin >> userInput;
 
         //Verification d'entree
-        if (userInput < 0 || userInput > 5)
+        if (userInput < 0 || userInput > 6)
         {
-            while (userInput < 0 || userInput > 5)
+            while (userInput < 0 || userInput > 6)
             {
                 cout << "Commande inconnue. Réessayez." << endl;
                 cin >> userInput;
@@ -119,32 +122,113 @@ int main()
         switch(userInput)
         {
             case 0:
+            {
                 afficheMan();
                 break;
-            
+            }
             case 1:
             {
                 cout << "----------------------------------" << endl;
                 cout << "Statistiques sur un rayon et une durée ou moment" << endl;
                 cout << "----------------------------------" << endl;
-                cout << "Veuillez entrez un latitude";
+                cout << "Veuillez entrez un latitude" << endl;
                 cin >> latInput;
-                cout << "Veuillez entrez un longitude";
+                cout << "Veuillez entrez un longitude" << endl;
                 cin >> logInput;
-                cout << "Veuillez entrez un rayon : ";
+                cout << "Veuillez entrez un rayon : " << endl;
                 cin >> rayonInput;
-                cout << "Veuillez entrez une date : ";
-                cin >> dateInput;
-                cout << "Veuillez entrez un mois: ";
-                cin >> monthInput;
-                cout << "Veuillez entrez un annee: ";
+
+                cout << "Choix des types de données\nVoulez-vous avoir des statistiques sur O3 (oui : 1, non : 0) : " << endl;
+                cin >> dataInput;
+                if(dataInput == 1)
+                {
+                    for(multimap<Sensor, Measurement>::iterator it=mesuresO3.begin(); it != mesuresO3.end(); ++it)
+                    {
+                        mesuresInput.insert(*it);
+                    }
+                }
+                dataInputTab[0] = dataInput;
+                cout << "Voulez-vous avoir des statistiques sur SO2 (oui : 1, non : 0) : " << endl;
+                cin >> dataInput;
+                if(dataInput == 1)
+                {
+                    for(multimap<Sensor, Measurement>::iterator it=mesuresSO2.begin(); it != mesuresSO2.end(); ++it)
+                    {
+                        mesuresInput.insert(*it);
+                    }
+                }
+                dataInputTab[1] = dataInput;
+                cout << "Voulez-vous avoir des statistiques sur NO2 (oui : 1, non : 0) : " << endl;
+                cin >> dataInput;
+                if(dataInput == 1)
+                {
+                    for(multimap<Sensor, Measurement>::iterator it=mesuresNO2.begin(); it != mesuresNO2.end(); ++it)
+                    {
+                        mesuresInput.insert(*it);
+                    }
+                }
+                dataInputTab[2] = dataInput;
+                cout << "Voulez-vous avoir des statistiques sur PM10 (oui : 1, non : 0) : " << endl;
+                cin >> dataInput;
+                if(dataInput == 1)
+                {
+                    for(multimap<Sensor, Measurement>::iterator it=mesuresPM10.begin(); it != mesuresPM10.end(); ++it)
+                    {
+                        mesuresInput.insert(*it);
+                    }
+                }
+                dataInputTab[3] = dataInput;
+                list<Attribute>::iterator it = listeAttributs.begin();
+                list<string> listeTypesDonnees;
+                for(int i=0; i<4; ++i)
+                {
+                    if(dataInputTab[i] == 1)
+                    {
+                        advance(it,i);
+                        listeTypesDonnees.push_back(it->getAttributeId());
+                        it=listeAttributs.begin();
+                    }
+                }
+                cout << "nb type data : " << listeTypesDonnees.size() << " - nb data : " << mesuresInput.size() << endl;
+
+                cout << "Veuillez entrez une annee pour la date de début: " << endl;
                 cin >> yearInput;
+                cout << "Veuillez entrez un mois pour la date de début: " << endl;
+                cin >> monthInput;
+                cout << "Veuillez entrez un jour pour la date de début: " << endl;
+                cin >> dateInput;
                 struct tm userDate = {0};
+                userDate.tm_hour = 12;
+                userDate.tm_min = 0;
+                userDate.tm_sec = 0;
                 userDate.tm_year = yearInput - 1900; // Nombres d'annees depuis 1900
                 userDate.tm_mon = monthInput - 1; // 0-based month
                 userDate.tm_mday = dateInput; // 1-based date
-                time_t convertedDate = mktime(&userDate);
+                time_t convertedDebDate = mktime(&userDate);
+
+                cout << "Veuillez entrez une annee pour la date de fin: " << endl;
+                cin >> yearInput;
+                cout << "Veuillez entrez un mois pour la date de fin: " << endl;
+                cin >> monthInput;
+                cout << "Veuillez entrez un jour pour la date de fin: " << endl;
+                cin >> dateInput;
+                userDate.tm_year = yearInput - 1900; // Nombres d'annees depuis 1900
+                userDate.tm_mon = monthInput - 1; // 0-based month
+                userDate.tm_mday = dateInput; // 1-based date
+                time_t convertedFinDate = mktime(&userDate);
                 
+                double** statistiques = service.calculerStatistiques(listeCapteurs, mesuresInput, listeTypesDonnees, latInput, logInput, rayonInput, convertedDebDate, convertedFinDate);
+                list<string>::iterator itListTypeData = listeTypesDonnees.begin();
+                for(long unsigned int i = 0; i<listeTypesDonnees.size(); ++i)
+                {
+                    advance(itListTypeData, i);
+                    cout << *itListTypeData << " :" << endl;
+                    cout << "Moyenne : " << statistiques[i][0] << endl;
+                    cout << "Max : " << statistiques[i][1] << endl;
+                    cout << "Min : " << statistiques[i][2] << endl;
+                    cout << endl;
+                }
+                free(statistiques);
                 break;
             }
             case 2:
