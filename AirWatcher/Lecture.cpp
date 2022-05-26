@@ -55,7 +55,7 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
                 longitude = stod(temp);
                 Sensor * s = new Sensor(id, latitude, longitude);
                 listeCapteurs.insert(make_pair(id, *s));
-                free(s);
+                delete(s);
             }
         }
         fic.close();
@@ -64,20 +64,30 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
         fic.open("dataset/attributes.csv");
         if(!fic.fail())
         {
-            //Dummy for the first line
-            getline(fic, temp, '\n');
+            getline(fic, temp, '\n'); //Dummy for the first line
             string id;
             string unit;
             string description;
+
+            getline(fic, temp, '\n');
+            scraping << temp;
+            getline(scraping, id, ';');
+            getline(scraping, unit, ';');
+            getline(scraping, description, ';');
+            Attribute * a = new Attribute(id, unit, description);
+            listeAttributs.push_back(*a);
+            delete(a);
+
             while(getline(fic, temp, '\n'))
             {
                 scraping << temp;
                 getline(scraping, id, ';');
+                id.erase(0,1);
                 getline(scraping, unit, ';');
                 getline(scraping, description, ';');
                 Attribute * a = new Attribute(id, unit, description);
                 listeAttributs.push_back(*a);
-                free(a);
+                delete(a);
             }
         }
         fic.close();
@@ -107,7 +117,7 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
                 fin = mktime(&tm);
                 Cleaner * c = new Cleaner(id, lat, longi, debut, fin);
                 listeCleaners.push_back(*c);
-                free(c);
+                delete(c);
             }
         }
         fic.close();
@@ -125,7 +135,7 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
                 getline(scraping, sensorId, ';');
                 PrivateUser * u = new PrivateUser(userId, "Jean", "Dupond", "jean.dupond@insa-lyon.fr", "123456", 0, sensorId);
                 listePrivateUsers.push_back(*u);
-                free(u);
+                delete(u);
             }
         }
         fic.close();
@@ -143,7 +153,7 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
                 getline(scraping, cleanerId, ';');
                 Provider * p = new Provider(providerId, cleanerId);
                 listeProviders.push_back(*p);
-                free(p);
+                delete(p);
             }
         }
         fic.close();
@@ -170,7 +180,6 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
 
                 map<string, Sensor>::iterator it;
                 it = listeCapteurs.find(sensorId);
-                //cout << attribute.compare("O3") << attribute.compare("SO2") << attribute.compare("NO2") << attribute.compare("PM10") << endl;
                 if(!attribute.compare("O3"))
                 {
                     mesuresO3.insert(make_pair(it->second, *c));
@@ -187,11 +196,10 @@ multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesu
                 {
                     throw std::invalid_argument("type ne correspond a aucun type existant");
                 }
-                free(c);
+                delete(c);
             }
         }
         fic.close();
-        cout << "APRES//////////" << endl;
 
     }catch(exception& e)
     {

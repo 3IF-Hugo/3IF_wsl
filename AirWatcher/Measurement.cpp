@@ -60,9 +60,6 @@ Measurement::Measurement ( const Measurement & unMeasurement )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Measurement>" << endl;
 #endif
-
-    timestamp = unMeasurement.timestamp;
-    value = unMeasurement.value;
 } //----- Fin de Measurement (constructeur de copie)
 
 

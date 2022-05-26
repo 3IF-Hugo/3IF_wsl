@@ -95,7 +95,7 @@ int main()
     double latitudeRef;
     double longitudeRef;
     
-    while (userInput != 6) {
+    while (userInput != 7) {
         //Menu
         cout << "-----------------------------------------------------------------------------------" << endl;
         cout << "-----------------------------------------------------------------------------------" << endl;
@@ -184,17 +184,17 @@ int main()
                 }
                 dataInputTab[3] = dataInput;
                 list<Attribute>::iterator it = listeAttributs.begin();
-                list<string> listeTypesDonnees;
+                map<string, int> listeTypesDonnees;
+                int cpt = 0;
                 for(int i=0; i<4; ++i)
                 {
                     if(dataInputTab[i] == 1)
                     {
                         advance(it,i);
-                        listeTypesDonnees.push_back(it->getAttributeId());
+                        listeTypesDonnees.insert(make_pair(it->getAttributeId(), cpt++));
                         it=listeAttributs.begin();
                     }
                 }
-                cout << "nb type data : " << listeTypesDonnees.size() << " - nb data : " << mesuresInput.size() << endl;
 
                 cout << "Veuillez entrez une annee pour la date de début: " << endl;
                 cin >> yearInput;
@@ -223,17 +223,16 @@ int main()
                 time_t convertedFinDate = mktime(&userDate);
                 
                 double** statistiques = service.calculerStatistiques(listeCapteurs, mesuresInput, listeTypesDonnees, latInput, logInput, rayonInput, convertedDebDate, convertedFinDate);
-                list<string>::iterator itListTypeData = listeTypesDonnees.begin();
-                for(long unsigned int i = 0; i<listeTypesDonnees.size(); ++i)
+                for(map<string, int>::iterator itListTypeData = listeTypesDonnees.begin(); itListTypeData != listeTypesDonnees.end(); ++itListTypeData)
                 {
-                    advance(itListTypeData, i);
-                    cout << *itListTypeData << " :" << endl;
-                    cout << "Moyenne : " << statistiques[i][0] << endl;
-                    cout << "Max : " << statistiques[i][1] << endl;
-                    cout << "Min : " << statistiques[i][2] << endl;
+                    cout << "\nVoici les statistiques demandées : " << endl << endl;
+                    cout << itListTypeData->first << " : " << endl;
+                    cout << "Moyenne : " << statistiques[itListTypeData->second][0] << endl;
+                    cout << "Max : " << statistiques[itListTypeData->second][1] << endl;
+                    cout << "Min : " << statistiques[itListTypeData->second][2] << endl;
                     cout << endl;
                 }
-                free(statistiques);
+                delete(statistiques);
                 break;
             }
             case 2:
