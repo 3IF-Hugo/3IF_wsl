@@ -52,7 +52,10 @@ void afficheMan(){
     cout << "5 : L'utilisateur rentre la latitude et la longitude du capteur. Si le capteur avec de telles coordonnées n'existe pas encore, un message";
     cout << "de succès va être affiché. S'il existe déjà, soit fiable soit pas fiable, ou si les coordonnées ne sont pas valides, un message d'erreur va être affiché. Dans les 2 cas, l'utilisateur peut taper 0 pour revenir au menu principal." << endl;
     cout << "----------------------------------" << endl;
-    cout << "6 : L'utilisateur peut taper 1 pour se déconnecter et aller au menu au lancement de l'application, ou taper 0 pour quitter l'application." << endl;
+    cout << "6 : (Uniquement pour la démonstration) L'utilisateur rentre l'ID du capteur qu'il souhaite analyser ainsi que le rayon de la zone et la période d'analyse.";
+    cout << "Après l'analyse effectuée, un message s'affiche et indique l'état du capteur (défectueux ou fonctionnel). L'utilisateur peut taper 0 pour revenir au menu principal."<< endl;
+    cout << "----------------------------------" << endl;
+    cout << "7 : L'utilisateur peut taper 1 pour se déconnecter et aller au menu au lancement de l'application, ou taper 0 pour quitter l'application." << endl;
     cout << "----- FIN MANUEL D'INSTRUCTION -----" << endl;
 }
 
@@ -75,8 +78,7 @@ int main()
 
     int userInput = 1;
     int userTypeInput = 1;
-    string cleanerInputID;
-    Sensor sensorToAnalyze;
+    string sensorInputID;
     double rayonInput;
     int dateInput;
     int monthInput;
@@ -84,12 +86,14 @@ int main()
     double latInput;
     double logInput;
     double rayonZone;
-    int nbrJours;
     int dataInputTab[4] = {0};
     int dataInput; 
     bool capteurFonctionnel;
-    list<Sensor> listeCapteursDefectueux;
+    list<string> listeCapteursDefectueux;
     multimap<Sensor, Measurement> mesuresInput;
+    string sensorIDRef;
+    double latitudeRef;
+    double longitudeRef;
     
     while (userInput != 6) {
         //Menu
@@ -102,16 +106,17 @@ int main()
         cout << "3* - Déterminer qualité de l'air à un endroit précis" << endl;
         //Si utilisateur = agence gouvernementale ou fournisseur : 4 = Vérifier l'efficacité d'un air cleaner 
         //Si utilisateur = client privé avec un capteur : 4 = Consulter nombre des points
-        cout << "4 - Vérifier l'efficacité d'un air cleaner / Consulter nombre des points" << endl;
+        cout << "4* - Vérifier l'efficacité d'un air cleaner / Consulter nombre des points" << endl;
         cout << "5* - Ajouter un capteur" << endl;
-        cout << "6 - Se déconnecter/Quitter l'application" << endl;
+        cout << "6 - Vérifier l'efficacité d'un air cleaner / Consulter nombre des points" << endl;
+        cout << "7 - Se déconnecter/Quitter l'application" << endl;
         cout << "* fonctions non dévéloppées" << endl;
         cin >> userInput;
 
         //Verification d'entree
-        if (userInput < 0 || userInput > 6)
+        if (userInput < 0 || userInput > 7)
         {
-            while (userInput < 0 || userInput > 6)
+            while (userInput < 0 || userInput > 7)
             {
                 cout << "Commande inconnue. Réessayez." << endl;
                 cin >> userInput;
@@ -266,35 +271,8 @@ int main()
                     case 2:
                     {
                         cout << "----- Vérifier l'efficacité d'un air cleaner -----" << endl;
-                        cout << "Veuillez entrez l'identifiant d'un air cleaner (seulement le numero X dans 'CleanerX') : "<< endl;
-                        cin >> cleanerInputID; 
-                        cout << "Veuillez entrez le rayon de la zone sur laquelle on veut analyser l'impact du capteur (en mètres):"<< endl;
-                        cin >> rayonZone;
-                        cout <<"Veuillez entrez la durée de la période sur laquelle on veut analyser l'impact du capteur (à partir de la date actuelle, en jours):" << endl;
-                        cin >> nbrJours;
-                        time_t now = time(0);
-                        
-                        //Trouver le capteur dont l'identifiant correspond à celui entré par l'utilisateur  
-                        for(map<string,Sensor>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it)
-                        {
-                            if((it->first).compare(cleanerInputID) == 0)
-                            {
-                            //    sensorToAnalyze = new Sensor(it->second.getSensorID(),it->second.getLatitude(),it->second.getLongitude());    
-                            }
-                        }
-                        //Analyse du capteur   
-                        capteurFonctionnel = util.analyseSensor(listeCapteurs, sensorToAnalyze, rayonZone, now, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10); 
-                        if(capteurFonctionnel == true)
-                        {
-                            cout << "Le capteur analysé est fonctionnel" << endl;
-                        }
-                        else
-                        {
-                            cout << "Le capteur analysé est défectueux" << endl;
-                            //On enlève le capteur de la liste des capteurs et on l'ajoute à la liste des capteurs défectueux
-                            listeCapteurs.erase(sensorToAnalyze.getSensorID());
-                            listeCapteursDefectueux.push_back(sensorToAnalyze);
-                        }                
+                        cout << "Fonctionnalité non développée" << endl;
+                        cout << "---------------------------------------" << endl;
                         break;
                     }
                 }
@@ -308,8 +286,44 @@ int main()
                 cout << "----------------------------------" << endl;
                 break;
             }
-                
-            case 6:
+
+            case 6: 
+            {
+                cout << "----- Vérifier l'état d'un capteur (défectueux ou fonctionnel) -----" << endl;
+                cout << "Veuillez entrez l'identifiant d'un capteur (selon le modèle 'SensorX') : "<< endl;
+                cin >> sensorInputID; 
+                cout << "Veuillez entrez le rayon de la zone sur laquelle on veut analyser l'impact du capteur (en mètres):"<< endl;
+                cin >> rayonZone;
+                        
+               //Trouver le capteur dont l'identifiant correspond à celui entré par l'utilisateur  
+                for(map<string,Sensor>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it)
+                {
+                    if((it->first).compare(sensorInputID) == 0)
+                    {
+                        //sensorToAnalyze = new Sensor(it->second.getSensorID(),it->second.getLatitude(),it->second.getLongitude());   
+                        cout<< "Sensor a analyser dont l'ID est : " << it->second.getSensorID() << endl;
+                        sensorIDRef = it->second.getSensorID();
+                        latitudeRef = it->second.getLatitude();
+                        longitudeRef = it->second.getLongitude();
+                    }
+                }
+                //Analyse du capteur   
+                capteurFonctionnel = util.analyseSensor(listeCapteurs, sensorIDRef, latitudeRef, longitudeRef, rayonZone, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10); 
+                if(capteurFonctionnel == true)
+                {
+                    cout << "Le capteur analysé est fonctionnel" << endl;
+                }
+                else
+                {
+                    cout << "Le capteur analysé est défectueux" << endl;
+                    //On enlève le capteur de la liste des capteurs et on l'ajoute à la liste des capteurs défectueux
+                    listeCapteurs.erase(sensorIDRef);
+                    listeCapteursDefectueux.push_back(sensorIDRef);
+                }               
+                break;
+            }
+
+            case 7:
             {
                 cout << "Quitting..." << endl;
                 break;
