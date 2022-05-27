@@ -46,7 +46,7 @@ public:
     // Contrat :
     //
 
-    Attribute getAttribute();
+    string getAttribute();
     // Mode d'emploi :
     //
     // Contrat :
@@ -73,7 +73,7 @@ public:
     // Contrat :
     //
 
-    Measurement (time_t ts, double val, Attribute attr);
+    Measurement (time_t ts, double val, string attr);
 
     //Measurement(string id, double lat, double log);
 
@@ -91,7 +91,7 @@ protected:
 //----------------------------------------------------- Attributs protégés
     time_t timestamp;
     double value;
-    Attribute attribute;
+    string attribute;
 }; 
 
 //-------------------------------- Autres définitions dépendantes de <Measurement>

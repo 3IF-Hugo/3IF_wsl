@@ -11,6 +11,7 @@ using namespace std;
 #include <iostream>
 #include <list>
 #include <map>
+#include <time.h>
 #if ! defined ( SERVICE_H )
 #define SERVICE_H
 #include "Measurement.h"
@@ -37,7 +38,7 @@ class Service
 public:
 //----------------------------------------------------- Méthodes publiques
 
-    double** calculerStatistiques(list<Sensor> sensors, multimap <Sensor, Measurement> tousMeasurements, list<string> listeTypesDonnees, double latitude, double longitude, double rayonZone, int nbrJours);
+    double** calculerStatistiques(map<string, Sensor> sensors, multimap <Sensor, Measurement> tousMeasurements, map<string, int> listeTypesDonnees, double latitude, double longitude, double rayonZone, time_t dateDeb, time_t dateFin);
     // Mode d'emploi :
     //
     // Contrat :

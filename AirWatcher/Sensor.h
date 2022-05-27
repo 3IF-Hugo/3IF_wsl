@@ -85,6 +85,8 @@ public:
     // Contrat :
     //
 
+    Sensor & operator= (Sensor* unSensor);
+
 //-------------------------------------------- Constructeurs - destructeur
     Sensor ( const Sensor & unSensor );
     // Mode d'emploi (constructeur de copie) :

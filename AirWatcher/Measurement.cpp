@@ -34,7 +34,7 @@ double Measurement::getValue(){
     return value;
 }
 
-Attribute Measurement::getAttribute()
+string Measurement::getAttribute()
 {
     return attribute;
 }
@@ -60,9 +60,6 @@ Measurement::Measurement ( const Measurement & unMeasurement )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Measurement>" << endl;
 #endif
-
-    timestamp = unMeasurement.timestamp;
-    value = unMeasurement.value;
 } //----- Fin de Measurement (constructeur de copie)
 
 
@@ -75,7 +72,7 @@ Measurement::Measurement ( )
 #endif
 } //----- Fin de Measurement
 
-Measurement::Measurement(time_t ts, double val, Attribute attr):timestamp(ts),value(val),attribute(attr)
+Measurement::Measurement(time_t ts, double val, string attr):timestamp(ts),value(val),attribute(attr)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Measurement>" << endl;

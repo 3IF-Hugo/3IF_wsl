@@ -52,7 +52,10 @@ void afficheMan(){
     cout << "5 : L'utilisateur rentre la latitude et la longitude du capteur. Si le capteur avec de telles coordonnées n'existe pas encore, un message";
     cout << "de succès va être affiché. S'il existe déjà, soit fiable soit pas fiable, ou si les coordonnées ne sont pas valides, un message d'erreur va être affiché. Dans les 2 cas, l'utilisateur peut taper 0 pour revenir au menu principal." << endl;
     cout << "----------------------------------" << endl;
-    cout << "6 : L'utilisateur peut taper 1 pour se déconnecter et aller au menu au lancement de l'application, ou taper 0 pour quitter l'application." << endl;
+    cout << "6 : (Uniquement pour la démonstration) L'utilisateur rentre l'ID du capteur qu'il souhaite analyser ainsi que le rayon de la zone et la période d'analyse.";
+    cout << "Après l'analyse effectuée, un message s'affiche et indique l'état du capteur (défectueux ou fonctionnel). L'utilisateur peut taper 0 pour revenir au menu principal."<< endl;
+    cout << "----------------------------------" << endl;
+    cout << "7 : L'utilisateur peut taper 1 pour se déconnecter et aller au menu au lancement de l'application, ou taper 0 pour quitter l'application." << endl;
     cout << "----- FIN MANUEL D'INSTRUCTION -----" << endl;
 }
 
@@ -75,8 +78,7 @@ int main()
 
     int userInput = 1;
     int userTypeInput = 1;
-    string cleanerInputID;
-    Sensor sensorToAnalyze;
+    string sensorInputID;
     double rayonInput;
     int dateInput;
     int monthInput;
@@ -84,11 +86,16 @@ int main()
     double latInput;
     double logInput;
     double rayonZone;
-    int nbrJours; 
+    int dataInputTab[4] = {0};
+    int dataInput; 
     bool capteurFonctionnel;
-    list<Sensor> listeCapteursDefectueux;
+    list<string> listeCapteursDefectueux;
+    multimap<Sensor, Measurement> mesuresInput;
+    string sensorIDRef;
+    double latitudeRef;
+    double longitudeRef;
     
-    while (userInput != 0) {
+    while (userInput != 7) {
         //Menu
         cout << "-----------------------------------------------------------------------------------" << endl;
         cout << "-----------------------------------------------------------------------------------" << endl;
@@ -99,16 +106,17 @@ int main()
         cout << "3* - Déterminer qualité de l'air à un endroit précis" << endl;
         //Si utilisateur = agence gouvernementale ou fournisseur : 4 = Vérifier l'efficacité d'un air cleaner 
         //Si utilisateur = client privé avec un capteur : 4 = Consulter nombre des points
-        cout << "4 - Vérifier l'efficacité d'un air cleaner / Consulter nombre des points" << endl;
+        cout << "4* - Vérifier l'efficacité d'un air cleaner / Consulter nombre des points" << endl;
         cout << "5* - Ajouter un capteur" << endl;
-        cout << "6 - Se déconnecter/Quitter l'application" << endl;
+        cout << "6 - Vérifier l'efficacité d'un air cleaner / Consulter nombre des points" << endl;
+        cout << "7 - Se déconnecter/Quitter l'application" << endl;
         cout << "* fonctions non dévéloppées" << endl;
         cin >> userInput;
 
         //Verification d'entree
-        if (userInput < 0 || userInput > 5)
+        if (userInput < 0 || userInput > 7)
         {
-            while (userInput < 0 || userInput > 5)
+            while (userInput < 0 || userInput > 7)
             {
                 cout << "Commande inconnue. Réessayez." << endl;
                 cin >> userInput;
@@ -119,32 +127,112 @@ int main()
         switch(userInput)
         {
             case 0:
+            {
                 afficheMan();
                 break;
-            
+            }
             case 1:
             {
                 cout << "----------------------------------" << endl;
                 cout << "Statistiques sur un rayon et une durée ou moment" << endl;
                 cout << "----------------------------------" << endl;
-                cout << "Veuillez entrez un latitude";
+                cout << "Veuillez entrez un latitude" << endl;
                 cin >> latInput;
-                cout << "Veuillez entrez un longitude";
+                cout << "Veuillez entrez un longitude" << endl;
                 cin >> logInput;
-                cout << "Veuillez entrez un rayon : ";
+                cout << "Veuillez entrez un rayon : " << endl;
                 cin >> rayonInput;
-                cout << "Veuillez entrez une date : ";
-                cin >> dateInput;
-                cout << "Veuillez entrez un mois: ";
-                cin >> monthInput;
-                cout << "Veuillez entrez un annee: ";
+
+                cout << "Choix des types de données\nVoulez-vous avoir des statistiques sur O3 (oui : 1, non : 0) : " << endl;
+                cin >> dataInput;
+                if(dataInput == 1)
+                {
+                    for(multimap<Sensor, Measurement>::iterator it=mesuresO3.begin(); it != mesuresO3.end(); ++it)
+                    {
+                        mesuresInput.insert(*it);
+                    }
+                }
+                dataInputTab[0] = dataInput;
+                cout << "Voulez-vous avoir des statistiques sur SO2 (oui : 1, non : 0) : " << endl;
+                cin >> dataInput;
+                if(dataInput == 1)
+                {
+                    for(multimap<Sensor, Measurement>::iterator it=mesuresSO2.begin(); it != mesuresSO2.end(); ++it)
+                    {
+                        mesuresInput.insert(*it);
+                    }
+                }
+                dataInputTab[1] = dataInput;
+                cout << "Voulez-vous avoir des statistiques sur NO2 (oui : 1, non : 0) : " << endl;
+                cin >> dataInput;
+                if(dataInput == 1)
+                {
+                    for(multimap<Sensor, Measurement>::iterator it=mesuresNO2.begin(); it != mesuresNO2.end(); ++it)
+                    {
+                        mesuresInput.insert(*it);
+                    }
+                }
+                dataInputTab[2] = dataInput;
+                cout << "Voulez-vous avoir des statistiques sur PM10 (oui : 1, non : 0) : " << endl;
+                cin >> dataInput;
+                if(dataInput == 1)
+                {
+                    for(multimap<Sensor, Measurement>::iterator it=mesuresPM10.begin(); it != mesuresPM10.end(); ++it)
+                    {
+                        mesuresInput.insert(*it);
+                    }
+                }
+                dataInputTab[3] = dataInput;
+                list<Attribute>::iterator it = listeAttributs.begin();
+                map<string, int> listeTypesDonnees;
+                int cpt = 0;
+                for(int i=0; i<4; ++i)
+                {
+                    if(dataInputTab[i] == 1)
+                    {
+                        advance(it,i);
+                        listeTypesDonnees.insert(make_pair(it->getAttributeId(), cpt++));
+                        it=listeAttributs.begin();
+                    }
+                }
+
+                cout << "Veuillez entrez une annee pour la date de début: " << endl;
                 cin >> yearInput;
+                cout << "Veuillez entrez un mois pour la date de début: " << endl;
+                cin >> monthInput;
+                cout << "Veuillez entrez un jour pour la date de début: " << endl;
+                cin >> dateInput;
                 struct tm userDate = {0};
+                userDate.tm_hour = 12;
+                userDate.tm_min = 0;
+                userDate.tm_sec = 0;
                 userDate.tm_year = yearInput - 1900; // Nombres d'annees depuis 1900
                 userDate.tm_mon = monthInput - 1; // 0-based month
                 userDate.tm_mday = dateInput; // 1-based date
-                time_t convertedDate = mktime(&userDate);
+                time_t convertedDebDate = mktime(&userDate);
+
+                cout << "Veuillez entrez une annee pour la date de fin: " << endl;
+                cin >> yearInput;
+                cout << "Veuillez entrez un mois pour la date de fin: " << endl;
+                cin >> monthInput;
+                cout << "Veuillez entrez un jour pour la date de fin: " << endl;
+                cin >> dateInput;
+                userDate.tm_year = yearInput - 1900; // Nombres d'annees depuis 1900
+                userDate.tm_mon = monthInput - 1; // 0-based month
+                userDate.tm_mday = dateInput; // 1-based date
+                time_t convertedFinDate = mktime(&userDate);
                 
+                double** statistiques = service.calculerStatistiques(listeCapteurs, mesuresInput, listeTypesDonnees, latInput, logInput, rayonInput, convertedDebDate, convertedFinDate);
+                for(map<string, int>::iterator itListTypeData = listeTypesDonnees.begin(); itListTypeData != listeTypesDonnees.end(); ++itListTypeData)
+                {
+                    cout << "\nVoici les statistiques demandées : " << endl << endl;
+                    cout << itListTypeData->first << " : " << endl;
+                    cout << "Moyenne : " << statistiques[itListTypeData->second][0] << endl;
+                    cout << "Max : " << statistiques[itListTypeData->second][1] << endl;
+                    cout << "Min : " << statistiques[itListTypeData->second][2] << endl;
+                    cout << endl;
+                }
+                delete(statistiques);
                 break;
             }
             case 2:
@@ -182,35 +270,8 @@ int main()
                     case 2:
                     {
                         cout << "----- Vérifier l'efficacité d'un air cleaner -----" << endl;
-                        cout << "Veuillez entrez l'identifiant d'un air cleaner (seulement le numero X dans 'CleanerX') : "<< endl;
-                        cin >> cleanerInputID; 
-                        cout << "Veuillez entrez le rayon de la zone sur laquelle on veut analyser l'impact du capteur (en mètres):"<< endl;
-                        cin >> rayonZone;
-                        cout <<"Veuillez entrez la durée de la période sur laquelle on veut analyser l'impact du capteur (à partir de la date actuelle, en jours):" << endl;
-                        cin >> nbrJours;
-                        time_t now = time(0);
-                        
-                        //Trouver le capteur dont l'identifiant correspond à celui entré par l'utilisateur  
-                        for(map<string,Sensor>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it)
-                        {
-                            if((it->first).compare(cleanerInputID) == 0)
-                            {
-                            //    sensorToAnalyze = new Sensor(it->second.getSensorID(),it->second.getLatitude(),it->second.getLongitude());    
-                            }
-                        }
-                        //Analyse du capteur   
-                        capteurFonctionnel = util.analyseSensor(listeCapteurs, sensorToAnalyze, rayonZone, now, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10); 
-                        if(capteurFonctionnel == true)
-                        {
-                            cout << "Le capteur analysé est fonctionnel" << endl;
-                        }
-                        else
-                        {
-                            cout << "Le capteur analysé est défectueux" << endl;
-                            //On enlève le capteur de la liste des capteurs et on l'ajoute à la liste des capteurs défectueux
-                            listeCapteurs.erase(sensorToAnalyze.getSensorID());
-                            listeCapteursDefectueux.push_back(sensorToAnalyze);
-                        }                
+                        cout << "Fonctionnalité non développée" << endl;
+                        cout << "---------------------------------------" << endl;
                         break;
                     }
                 }
@@ -224,8 +285,44 @@ int main()
                 cout << "----------------------------------" << endl;
                 break;
             }
-                
-            case 6:
+
+            case 6: 
+            {
+                cout << "----- Vérifier l'état d'un capteur (défectueux ou fonctionnel) -----" << endl;
+                cout << "Veuillez entrez l'identifiant d'un capteur (selon le modèle 'SensorX') : "<< endl;
+                cin >> sensorInputID; 
+                cout << "Veuillez entrez le rayon de la zone sur laquelle on veut analyser l'impact du capteur (en mètres):"<< endl;
+                cin >> rayonZone;
+                        
+               //Trouver le capteur dont l'identifiant correspond à celui entré par l'utilisateur  
+                for(map<string,Sensor>::iterator it = listeCapteurs.begin(); it != listeCapteurs.end(); ++it)
+                {
+                    if((it->first).compare(sensorInputID) == 0)
+                    {
+                        //sensorToAnalyze = new Sensor(it->second.getSensorID(),it->second.getLatitude(),it->second.getLongitude());   
+                        cout<< "Sensor a analyser dont l'ID est : " << it->second.getSensorID() << endl;
+                        sensorIDRef = it->second.getSensorID();
+                        latitudeRef = it->second.getLatitude();
+                        longitudeRef = it->second.getLongitude();
+                    }
+                }
+                //Analyse du capteur   
+                capteurFonctionnel = util.analyseSensor(listeCapteurs, sensorIDRef, latitudeRef, longitudeRef, rayonZone, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10); 
+                if(capteurFonctionnel == true)
+                {
+                    cout << "Le capteur analysé est fonctionnel" << endl;
+                }
+                else
+                {
+                    cout << "Le capteur analysé est défectueux" << endl;
+                    //On enlève le capteur de la liste des capteurs et on l'ajoute à la liste des capteurs défectueux
+                    listeCapteurs.erase(sensorIDRef);
+                    listeCapteursDefectueux.push_back(sensorIDRef);
+                }               
+                break;
+            }
+
+            case 7:
             {
                 cout << "Quitting..." << endl;
                 break;

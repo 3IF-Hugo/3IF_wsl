@@ -67,6 +67,11 @@ bool operator== ( Sensor & sensor1, const Sensor & sensor2)
     return (sensor1.sensorID == sensor2.sensorID);
 }
 
+Sensor & Sensor::operator= (Sensor* unSensor)
+{
+    return *this;
+}
+
 
 //-------------------------------------------- Constructeurs - destructeur
 Sensor::Sensor ( const Sensor & unSensor )
