@@ -90,10 +90,9 @@ void LDS(int vus[], int nbVus, int nonVus[], int nbNonVus, int longueur, int d){
 
     if (nbNonVus == 0){
         int p = longueur + cout[vus[nbVus-1]][0];
-        printf("%d ", p);
+        printf("%d ", pcc);
         if (p < pcc) {
             pcc = p;
-            
         }
         //printf("%d\n", longueur + cout[vus[nbVus-1]][0]);
         return;
