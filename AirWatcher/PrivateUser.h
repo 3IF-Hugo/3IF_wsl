@@ -27,7 +27,7 @@ class PrivateUser : public User
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    
+
     int getScore();
     // Mode d'emploi :
     //
@@ -38,6 +38,7 @@ public:
     //
     // Contrat :
     //
+    void setUnreliable();
 
     //get the state of the sensor
     StateSensorUser getStatut();

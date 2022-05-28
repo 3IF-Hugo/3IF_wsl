@@ -32,7 +32,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-double** Service::calculerStatistiques(map<string, Sensor> sensors, multimap <Sensor, Measurement> tousMeasurements, map <string, int> listeTypesDonnees, double latitude, double longitude, double rayonZone, time_t dateDeb, time_t dateFin){
+double** Service::calculerStatistiques(map<string, Sensor> sensors, multimap <Sensor, Measurement> tousMeasurements, map <string, int> listeTypesDonnees, double latitude, double longitude, double rayonZone, time_t dateDeb, time_t dateFin, list<PrivateUser> & listeUsers){
     double** returnArray;
     returnArray = (double**) malloc(sizeof(double*)*((int)listeTypesDonnees.size()));
     for(int i=0; i<(int)(listeTypesDonnees.size()); ++i)
@@ -60,6 +60,14 @@ double** Service::calculerStatistiques(map<string, Sensor> sensors, multimap <Se
     // Calculer la moyenne, le min et max pour chaque type de donnees
     for(map<Sensor, Measurement>::iterator itm = tousMeasurements.begin(); itm != tousMeasurements.end(); ++itm){
         if(listSensorsArea.find(itm->first.getSensorID()) != listSensorsArea.end() && itm->second.getTimestamp() <= dateFin && itm->second.getTimestamp() >= dateDeb){
+            for(list<PrivateUser>::iterator itPU = listeUsers.begin(); itPU != listeUsers.end(); ++itPU)
+            {
+                if(itPU->getSensorId().compare(itm->first.getSensorID()) == 0 && itPU->getStatut() == 0)
+                {
+                    itPU->setScorePlus1();
+                    break;
+                }
+            }
             map <string, int>::iterator itl;
             for(itl = listeTypesDonnees.begin(); itl != listeTypesDonnees.end(); itl++){
                 if(itl->first.compare(itm->second.getAttribute()) == 0){

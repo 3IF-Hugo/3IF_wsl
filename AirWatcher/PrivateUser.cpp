@@ -37,6 +37,10 @@ bool PrivateUser::setScorePlus1(){
     return true;
 }
 
+void PrivateUser::setUnreliable(){
+    statut = Unreliable;
+}
+
 //get the state of the sensor
 StateSensorUser PrivateUser::getStatut(){
     return statut;
