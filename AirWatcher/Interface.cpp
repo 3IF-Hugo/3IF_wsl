@@ -108,7 +108,7 @@ int main()
         //Si utilisateur = client privé avec un capteur : 4 = Consulter nombre des points
         cout << "4* - Vérifier l'efficacité d'un air cleaner / Consulter nombre des points" << endl;
         cout << "5* - Ajouter un capteur" << endl;
-        cout << "6 - Vérifier l'efficacité d'un air cleaner / Consulter nombre des points" << endl;
+        cout << "6 - Tester fonctionnement capteur et l'exclure si besoin" << endl;//"6 - Vérifier l'efficacité d'un air cleaner / Consulter nombre des points" << endl;
         cout << "7 - Se déconnecter/Quitter l'application" << endl;
         cout << "* fonctions non dévéloppées" << endl;
         cin >> userInput;
