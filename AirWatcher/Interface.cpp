@@ -76,7 +76,6 @@ int main()
     multimap<Sensor, Measurement> mesuresPM10;
     Lecture::LireDonnees(listeCapteurs, listeAttributs, listePrivateUsers, listeCleaners, listeProviders, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10);
 
-    cout << listePrivateUsers.begin()->getStatut() << endl;
     int userInput = 1;
     int userTypeInput = 1;
     string sensorInputID;
@@ -223,21 +222,25 @@ int main()
                 userDate.tm_mday = dateInput; // 1-based date
                 time_t convertedFinDate = mktime(&userDate);
                 
+                clock_t tpsDebut = clock();
                 double** statistiques = service.calculerStatistiques(listeCapteurs, mesuresInput, listeTypesDonnees, latInput, logInput, rayonInput, convertedDebDate, convertedFinDate, listePrivateUsers);
+                float duree = ((double) (clock() - tpsDebut)) / CLOCKS_PER_SEC;
+                cout << "Temps d'exécution de l'algorithme : " << duree << "s" << endl;
+
+                cout << "\nVoici les statistiques demandées : " << endl << endl;
                 for(map<string, int>::iterator itListTypeData = listeTypesDonnees.begin(); itListTypeData != listeTypesDonnees.end(); ++itListTypeData)
                 {
-                    cout << "\nVoici les statistiques demandées : " << endl << endl;
                     cout << itListTypeData->first << " : " << endl;
                     cout << "Moyenne : " << statistiques[itListTypeData->second][0] << endl;
                     cout << "Max : " << statistiques[itListTypeData->second][1] << endl;
                     cout << "Min : " << statistiques[itListTypeData->second][2] << endl;
                     cout << endl;
                 }
-                for(int i=0; i<3; ++i)
+                for(int i=0; i<(int)listeTypesDonnees.size(); ++i)
                 {
-                    free(statistiques[i]);
+                    delete(statistiques[i]);
                 }
-                free(statistiques);
+                delete(statistiques);
                 break;
             }
             case 2:
@@ -311,8 +314,11 @@ int main()
                         longitudeRef = it->second.getLongitude();
                     }
                 }
-                //Analyse du capteur   
-                capteurFonctionnel = util.analyseSensor(listeCapteurs, listeCapteursDefectueux, sensorIDRef, latitudeRef, longitudeRef, rayonZone, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10, listePrivateUsers); 
+                //Analyse du capteur
+                clock_t tpsDebut = clock(); 
+                capteurFonctionnel = util.analyseSensor(listeCapteurs, listeCapteursDefectueux, sensorIDRef, latitudeRef, longitudeRef, rayonZone, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10, listePrivateUsers);
+                float duree = ((double) (clock() - tpsDebut)) / CLOCKS_PER_SEC;
+                cout << "Temps d'exécution de l'algorithme : " << duree << "s" << endl;
                 if(capteurFonctionnel == true)
                 {
                     cout << "Le capteur analysé est fonctionnel" << endl;

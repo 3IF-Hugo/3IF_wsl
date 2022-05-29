@@ -152,7 +152,7 @@ bool UtilityService::analyseSensor(map<string, Sensor> & allSensors, list<string
             listeSensorCompare.insert(make_pair(it->first, it->second));
         }
     }
-    cout <<listeSensorCompare.size()<<endl;
+
     if(listeSensorCompare.size() > 0)
     {
         //Stockage des 4 dernières mesures faites par le capteur à analyser dans le tableau mesureSensor
@@ -197,35 +197,57 @@ bool UtilityService::analyseSensor(map<string, Sensor> & allSensors, list<string
         }
         //Stockage de la moyenne des mesures des capteurs proches dans le tableau moyenneMesure
         moyenneMesure = calculateMean(listeSensorCompare,dateMeasurement,mesureO3,mesureSO2,mesureNO2,mesurePM10, listePrivateUsers);
+        double moyennePourcentageEcart = 0;
         //On vérifie si l'écart entre la moyenne des mesures et la mesure du capteur est inférieur à +/-25%
         for(int i=0; i<4 ;++i)
         {
             pourcentageEcart = abs(moyenneMesure[i]-mesureSensor[i]) / mesureSensor[i] *100.0;
+            moyennePourcentageEcart += pourcentageEcart;
             cout << "Moyenne mesure : " << moyenneMesure[i] << endl;
             cout << "Mesure ref : " << mesureSensor[i] << endl;
-            cout << "Pourcentage ecart : " << pourcentageEcart << endl; 
-            if(abs(pourcentageEcart)>25.0)
-            {
-                free(moyenneMesure);
-                //On enlève le capteur de la liste des capteurs et on l'ajoute à la liste des capteurs défectueux
-                allSensors.erase(sensorAnalyseID);
-                sensorsDefecteux.push_back(sensorAnalyseID);
-                for(list<PrivateUser>::iterator itPU = listePrivateUsers.begin(); itPU != listePrivateUsers.end(); ++itPU)
-                {
-                    if(itPU->getSensorId().compare(sensorAnalyseID) == 0 && itPU->getStatut() == 0)
-                    {
-                        itPU->setUnreliable();
-                        break;
-                    }
-                }  
-                return false;
-            }
+            cout << "Pourcentage ecart : " << pourcentageEcart << endl << endl; 
+            // if(abs(pourcentageEcart)>25.0)
+            // {
+            //     delete(moyenneMesure);
+            //     //On enlève le capteur de la liste des capteurs et on l'ajoute à la liste des capteurs défectueux
+            //     allSensors.erase(sensorAnalyseID);
+            //     sensorsDefecteux.push_back(sensorAnalyseID);
+            //     for(list<PrivateUser>::iterator itPU = listePrivateUsers.begin(); itPU != listePrivateUsers.end(); ++itPU)
+            //     {
+            //         if(itPU->getSensorId().compare(sensorAnalyseID) == 0 && itPU->getStatut() == 0)
+            //         {
+            //             itPU->setUnreliable();
+            //             break;
+            //         }
+            //     }
+            //     return false;
+            // }
         }
-        free(moyenneMesure);
-        return true;
+        delete(moyenneMesure);
+        moyennePourcentageEcart /= 4;
+        cout << "Moyenne pourcetage écart : " << moyennePourcentageEcart << endl;
+        if(moyennePourcentageEcart > 20)
+        {
+            allSensors.erase(sensorAnalyseID);
+            sensorsDefecteux.push_back(sensorAnalyseID);
+            for(list<PrivateUser>::iterator itPU = listePrivateUsers.begin(); itPU != listePrivateUsers.end(); ++itPU)
+            {
+                if(itPU->getSensorId().compare(sensorAnalyseID) == 0 && itPU->getStatut() == 0)
+                {
+                    itPU->setUnreliable();
+                    break;
+                }
+            }
+            return false;
+        }else
+        {
+            return true;
+        }
+        
     }
     else
     {
+        cerr << "Aucun capteur trouvé pour comparer le capteur" << endl;
         return false;
     }
 }

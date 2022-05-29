@@ -33,11 +33,12 @@ using namespace std;
 
 
 double** Service::calculerStatistiques(map<string, Sensor> sensors, multimap <Sensor, Measurement> tousMeasurements, map <string, int> listeTypesDonnees, double latitude, double longitude, double rayonZone, time_t dateDeb, time_t dateFin, list<PrivateUser> & listeUsers){
-    double** returnArray;
-    returnArray = (double**) malloc(sizeof(double*)*((int)listeTypesDonnees.size()));
+    double** returnArray = new double*[listeTypesDonnees.size()];
     for(int i=0; i<(int)(listeTypesDonnees.size()); ++i)
     {
-        returnArray[i] = (double*) calloc(3, sizeof(double));
+        returnArray[i] = new double[3];
+        returnArray[i][0] = 0;
+        returnArray[i][1] = 0;
         returnArray[i][2] = __INT_MAX__;
     }
     map<string, Sensor> listSensorsArea;
