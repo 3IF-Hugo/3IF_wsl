@@ -49,6 +49,10 @@ double** Service::calculerStatistiques(map<string, Sensor> sensors, multimap <Se
     map<string, Sensor> listSensorsArea;
     //Nombre de mesures pour chaque type de données
     int * nbMeasurements = new int(listeTypesDonnees.size());
+    for(int i=0; i<(int)(listeTypesDonnees.size()); ++i)
+    {
+        nbMeasurements[i] = 0;
+    }
     //Distance par rapport au point passé en paramètre
     double distance;
     
