@@ -33,16 +33,23 @@ using namespace std;
 
 
 double** Service::calculerStatistiques(map<string, Sensor> sensors, multimap <Sensor, Measurement> tousMeasurements, map <string, int> listeTypesDonnees, double latitude, double longitude, double rayonZone, time_t dateDeb, time_t dateFin, list<PrivateUser> & listeUsers){
+    //Initialisation du tableau contenant les statistiques
     double** returnArray = new double*[listeTypesDonnees.size()];
     for(int i=0; i<(int)(listeTypesDonnees.size()); ++i)
     {
         returnArray[i] = new double[3];
+        //Moyenne
         returnArray[i][0] = 0;
+        //Maximum
         returnArray[i][1] = 0;
+        //Minimum
         returnArray[i][2] = __INT_MAX__;
     }
+    //Liste des Sensors dans la zone demandée
     map<string, Sensor> listSensorsArea;
+    //Nombre de mesures pour chaque type de données
     int * nbMeasurements = new int(listeTypesDonnees.size());
+    //Distance par rapport au point passé en paramètre
     double distance;
     
     // Recuperer les capteurs dans la zone choisie
@@ -54,13 +61,12 @@ double** Service::calculerStatistiques(map<string, Sensor> sensors, multimap <Se
         }
     }
 
-    // long long borneSup = static_cast<long long>(dateFin); //date de fin, en secondes
-    // long long borneInf = static_cast<long long>(dateDeb); //date de debut, en secondes
-    // int iterateur = 0; // Variable pour remplacer l'index de l'element pointe par 'itl' - a la place de la fonction distance(listTypesDonnees, itl)
-
     // Calculer la moyenne, le min et max pour chaque type de donnees
+    //Pour chaque mesures
     for(map<Sensor, Measurement>::iterator itm = tousMeasurements.begin(); itm != tousMeasurements.end(); ++itm){
+        //Si le capteur correspondant à la mesure est dans la liste des capteurs à prendre en compte et dans la bonne période de temps
         if(listSensorsArea.find(itm->first.getSensorID()) != listSensorsArea.end() && itm->second.getTimestamp() <= dateFin && itm->second.getTimestamp() >= dateDeb){
+            //Ajout éventuel de points
             for(list<PrivateUser>::iterator itPU = listeUsers.begin(); itPU != listeUsers.end(); ++itPU)
             {
                 if(itPU->getSensorId().compare(itm->first.getSensorID()) == 0 && itPU->getStatut() == 0)
@@ -69,61 +75,38 @@ double** Service::calculerStatistiques(map<string, Sensor> sensors, multimap <Se
                     break;
                 }
             }
+            //Recherche de l'attribut de la mesure pour la mise à jour des statistiques dans le tableau de retour
             map <string, int>::iterator itl;
             for(itl = listeTypesDonnees.begin(); itl != listeTypesDonnees.end(); itl++){
                 if(itl->first.compare(itm->second.getAttribute()) == 0){
                     break;
                 }
             }
+            //Mise à jour des statistiques correspondantes au type de mesure trouvée
             if(itl != listeTypesDonnees.end())
             {
+                //Moyenne
                 returnArray[itl->second][0] += itm->second.getValue();
-
+                
+                //Maximum
                 if(itm->second.getValue() > returnArray[itl->second][1]){
                     returnArray[itl->second][1] = itm->second.getValue();
                 }
+
+                //Minimum
                 if(itm->second.getValue() < returnArray[itl->second][2]){
                     returnArray[itl->second][2] = itm->second.getValue();
                 }
+                //Nombre de mesures pour le calcul de la moyenne
                 nbMeasurements[itl->second] += 1;
             }
         }
     }
+    //Calcul de la moyenne
     for(map<string, int>::iterator itl = listeTypesDonnees.begin(); itl != listeTypesDonnees.end(); itl++){
         returnArray[itl->second][0] /= nbMeasurements[itl->second];
     }
     delete(nbMeasurements);
-
-
-    // for(list <string>::iterator itl = listeTypesDonnees.begin(); itl != listeTypesDonnees.end(); itl++){
-    //     for(map<Sensor, Measurement>::iterator itm = tousMeasurements.begin(); itm != tousMeasurements.end(); itm++){
-            
-    //         // Moyenne (Calculer la somme et diviser a la fin de cette boucle)
-    //         if (listSensorsArea.find(itm->first.getSensorID()) != listSensorsArea.end() && itl->compare(itm->second.getAttribute()) == 0 && itm->second.getTimestamp() <= dateFin && itm->second.getTimestamp() >= dateDeb){
-                
-    //             //returnArray[distance(listTypesDonnees, itl)][0] += itm->second.value;
-    //             returnArray[iterateur][0] += itm->second.getValue();
-                
-    //             // Max
-    //             if (itm->second.getValue() > returnArray[iterateur][1])
-    //             {
-    //                 //returnArray[distance(listTypesDonnees, itl)][1] = itm->second.value;
-    //                 returnArray[iterateur][1] = itm->second.getValue();
-    //             }
-
-    //             // Min
-    //             if (itm->second.getValue() < returnArray[iterateur][2])
-    //             {
-    //                 //returnArray[distance(listTypesDonnees, itl)][2] = itm->second.value;
-    //                 returnArray[iterateur][2] = itm->second.getValue();
-    //             }
-    //             nbMeasurements++;
-    //         }
-    //     }
-    //     returnArray[iterateur][0] /= nbMeasurements;
-    //     nbMeasurements = 0;
-    //     iterateur++;
-    // }
     return returnArray;
 }
 

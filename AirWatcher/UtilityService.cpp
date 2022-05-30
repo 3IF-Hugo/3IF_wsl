@@ -203,29 +203,37 @@ bool UtilityService::analyseSensor(map<string, Sensor> & allSensors, list<string
         {
             pourcentageEcart = abs(moyenneMesure[i]-mesureSensor[i]) / mesureSensor[i] *100.0;
             moyennePourcentageEcart += pourcentageEcart;
+            switch(i)
+            {
+                case 0:
+                {
+                    cout << "O3 : " << endl;
+                    break;
+                }
+                case 1:
+                {
+                    cout << "SO2 : " << endl;
+                    break;
+                }
+                case 2:
+                {
+                    cout << "NO2 : " << endl;
+                    break;
+                }
+                case 3:
+                {
+                    cout << "PM10 : " << endl;
+                    break;
+                }
+            }
             cout << "Moyenne mesure : " << moyenneMesure[i] << endl;
             cout << "Mesure ref : " << mesureSensor[i] << endl;
             cout << "Pourcentage ecart : " << pourcentageEcart << endl << endl; 
-            // if(abs(pourcentageEcart)>25.0)
-            // {
-            //     delete(moyenneMesure);
-            //     //On enlève le capteur de la liste des capteurs et on l'ajoute à la liste des capteurs défectueux
-            //     allSensors.erase(sensorAnalyseID);
-            //     sensorsDefecteux.push_back(sensorAnalyseID);
-            //     for(list<PrivateUser>::iterator itPU = listePrivateUsers.begin(); itPU != listePrivateUsers.end(); ++itPU)
-            //     {
-            //         if(itPU->getSensorId().compare(sensorAnalyseID) == 0 && itPU->getStatut() == 0)
-            //         {
-            //             itPU->setUnreliable();
-            //             break;
-            //         }
-            //     }
-            //     return false;
-            // }
         }
         delete(moyenneMesure);
         moyennePourcentageEcart /= 4;
         cout << "Moyenne pourcetage écart : " << moyennePourcentageEcart << endl;
+
         if(moyennePourcentageEcart > 20)
         {
             allSensors.erase(sensorAnalyseID);
