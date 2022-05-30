@@ -55,7 +55,9 @@ void afficheMan(){
     cout << "6 : (Uniquement pour la démonstration) L'utilisateur rentre l'ID du capteur qu'il souhaite analyser ainsi que le rayon de la zone et la période d'analyse.";
     cout << "Après l'analyse effectuée, un message s'affiche et indique l'état du capteur (défectueux ou fonctionnel). L'utilisateur peut taper 0 pour revenir au menu principal."<< endl;
     cout << "----------------------------------" << endl;
-    cout << "7 : L'utilisateur peut taper 1 pour se déconnecter et aller au menu au lancement de l'application, ou taper 0 pour quitter l'application." << endl;
+    cout << "7 : (Uniquement pour la démonstration) Affiche les IDs des capteurs exclus."<< endl;
+    cout << "----------------------------------" << endl;
+    cout << "8 : L'utilisateur peut taper 1 pour se déconnecter et aller au menu au lancement de l'application, ou taper 0 pour quitter l'application." << endl;
     cout << "----- FIN MANUEL D'INSTRUCTION -----" << endl;
 }
 
@@ -94,8 +96,9 @@ int main()
     string sensorIDRef;
     double latitudeRef;
     double longitudeRef;
+    string userID;
     
-    while (userInput != 7) {
+    while (userInput != 8) {
         //Menu
         cout << "-----------------------------------------------------------------------------------" << endl;
         cout << "-----------------------------------------------------------------------------------" << endl;
@@ -108,15 +111,16 @@ int main()
         //Si utilisateur = client privé avec un capteur : 4 = Consulter nombre des points
         cout << "4* - Vérifier l'efficacité d'un air cleaner / Consulter nombre des points" << endl;
         cout << "5* - Ajouter un capteur" << endl;
-        cout << "6 - Tester fonctionnement capteur et l'exclure si besoin" << endl;//"6 - Vérifier l'efficacité d'un air cleaner / Consulter nombre des points" << endl;
-        cout << "7 - Se déconnecter/Quitter l'application" << endl;
+        cout << "6 - Tester fonctionnement capteur et l'exclure si besoin" << endl;
+        cout << "7 - Consulter les capteurs exclus" << endl;
+        cout << "8 - Se déconnecter/Quitter l'application" << endl;
         cout << "* fonctions non dévéloppées" << endl;
         cin >> userInput;
 
         //Verification d'entree
         if (userInput < 0 || userInput > 7)
         {
-            while (userInput < 0 || userInput > 7)
+            while (userInput < 0 || userInput > 8)
             {
                 cout << "Commande inconnue. Réessayez." << endl;
                 cin >> userInput;
@@ -271,8 +275,16 @@ int main()
                     case 1:
                     {
                         cout << "----- Consulter nombre des points -----" << endl;
-                        cout << "Fonctionnalité non développée" << endl;
-                        cout << "---------------------------------------" << endl;
+                        cout << "Entrez votre UserID : " << endl;
+                        cin >> userID;
+                        for(list<PrivateUser>::iterator itPU = listePrivateUsers.begin(); itPU != listePrivateUsers.end(); ++itPU)
+                        {
+                            if(itPU->getUserId().compare(userID) == 0)
+                            {
+                                cout << "Nombre de points : " << itPU->getScore() << endl;
+                                break;
+                            }
+                        }
                         break;
                     }
                     case 2:
@@ -331,6 +343,15 @@ int main()
             }
 
             case 7:
+            {
+                for(list<string>::iterator it = listeCapteursDefectueux.begin(); it != listeCapteursDefectueux.end(); ++it)
+                {
+                    cout << *it << endl;
+                }
+                break;
+            }
+
+            case 8:
             {
                 cout << "Quitting..." << endl;
                 break;
