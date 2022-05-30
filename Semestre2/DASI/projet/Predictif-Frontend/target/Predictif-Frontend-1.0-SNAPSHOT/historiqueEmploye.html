@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Mes consultations</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </head>
+    <body>
+        <button id="bouton-decon">Se déconnecter</button>
+        <button onclick="window.location.href='EspaceEmploye.html'">Retourner vers mon espace</button>
+        
+        <h1>PREDICT'IF</h1>
+        <h2 id="titre">Mes consultations</h2>
+        <table id="historique-table" border="3" width="95%" align="center">
+            
+            </table>
+        
+        <script>       
+            $(document).ready( function () {
+                $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'consulter-historique-employe'
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        $.each(response.listConsultation, function(index, consultation){
+                            $('#historique-table').append(
+                                    '<tr>'+
+                                    '<td> Consultation du '+ consultation.dateHeureDemande + ' en tant que '+ response.listDenomination[index] + '</td>' +
+                                    '<td>'+ '<button data-cid="'+ index +'">Afficher</button>' + '</td>' +'</tr>'
+                                    );
+                            
+                        });
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+                $('#bouton-decon').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+
+                    console.log("clic sur le bouton de deconnexion"); // LOG dans Console Javascript
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'deconnecter'
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.succes) {
+                            window.location = "login.html";
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+                });
+             });
+        </script>
+        
+    </body>
+   
+</html>

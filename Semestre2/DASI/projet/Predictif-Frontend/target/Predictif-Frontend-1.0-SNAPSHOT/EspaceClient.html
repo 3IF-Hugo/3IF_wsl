@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+     <head>
+        <title>Espace Client</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </head>
+    <body>
+        <button id="bouton-decon">Se déconnecter</button>
+        
+        
+        <h1>PREDICT'IF</h1>
+        <table border="3" width="95%" align="center">
+                <tbody>
+                    <tr>
+                        <td>
+                            <h1>Mon profil astral</h1>
+                            <h3>
+                                <span>Signe du zodiaque : </span>
+                                <span id="zodiaque" />
+                            </h3>
+                            <h3>
+                                <span>Signe astrologique chinois : </span>
+                                <span id="astro" />
+                            </h3>
+                            <h3>
+                                <span>Animal totem : </span>
+                                <span id="animal" />
+                            </h3>
+                            <h3>
+                                <span>Couleur porte bonheur : </span>
+                                <span id="couleur" />
+                            </h3>
+                            <button onclick="window.location.href='historiqueClient.html'">Consulter mon historique</button>
+                        </td>
+
+                        <!-- Page de droite -->
+                        <td>
+                            <h1>Nos médiums</h1>
+                            <table id="table_mediums" border="3" width="95%" align="center">
+                                
+                            </table>
+                            
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        <script>       
+            $(document).ready( function () {
+                $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'profilAstral',
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        $('#zodiaque').html(response.zodiaque); // Message pour le paragraphe de notification
+                        $('#astro').html(response.astro);
+                        $('#animal').html(response.animal);
+                        $('#couleur').html(response.couleur);
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+                    
+                $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'consulter-medium',
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        $.each(response.listMedium, function(index, medium){
+                            $('#table_mediums').append(
+                                    '<tr>'+
+                                    '<td>'+ response.typeMedium[index] + '</td>' +
+                                    '<td>'+ medium.genre + ' ' + medium.denomination + '</td>' +
+                                    '<td>'+ medium.presentation + '</td>'+
+                                    '<td>'+ '<button data-mid="'+ index +'">Prendre RDV</button>' + '</td>' +'</tr>'
+                                    );
+                            
+                        });
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+                
+                $('#table_mediums').on( 'click', 'button', function () { // Fonction appelée lors du clic sur le bouton
+
+                    var index = $(this).attr('data-mid');
+
+                    console.log("clic sur le bouton de réservation"); // LOG dans Console Javascript
+                    $('#notification').html("En atttente d'un professionel..."); // Message pour le paragraphe de notification
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'reserver',
+                            index: index
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.succes) {
+                            //Aller à l'espace employé
+                            alert("Veuillez attendre l'appel du médium.");
+                            // TODO: afficher les informations du client dans la notification
+                            // Exemple: Connexion de Ada Lovelace (ID 1)
+                        }
+                        else {
+                            alert("Ce médium n'est malheureusement pas disponible. Prière de réessayer plus tard.");
+                        }
+                        
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+                });
+                
+                $('#bouton-decon').on( 'click', function () { // Fonction appelée lors du clic sur le bouton
+
+                    console.log("clic sur le bouton de deconnexion"); // LOG dans Console Javascript
+
+                    // Appel AJAX
+                    $.ajax({
+                        url: './ActionServlet',
+                        method: 'POST',
+                        data: {
+                            todo: 'deconnecter'
+                        },
+                        dataType: 'json'
+                    })
+                    .done( function (response) { // Fonction appelée en cas d'appel AJAX réussi
+                        console.log('Response',response); // LOG dans Console Javascript
+                        if (response.succes) {
+                            window.location = "login.html";
+                        }
+                    })
+                    .fail( function (error) { // Fonction appelée en cas d'erreur lors de l'appel AJAX
+                        console.log('Error',error); // LOG dans Console Javascript
+                        alert("Erreur lors de l'appel AJAX");
+                    })
+                    .always( function () { // Fonction toujours appelée
+                        
+                    });
+                });
+             });
+        </script>
+
+    </body>
+</html>

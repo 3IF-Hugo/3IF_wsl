@@ -17,7 +17,6 @@
 #include "../UtilityService.h"
 #include <gtest/gtest.h>
 
-
 //Partie User
 //test le constructor vide
 TEST(UserTest, ConstructorVide) {
@@ -123,14 +122,12 @@ TEST(ProviderTest, ConstructorWithParameters) {
 }
 
 //Partie Measurement
-//test le constructor avec paramètres time_t, double, Attribute
+//test le constructor Measurement::Measurement(time_t ts, double val, string attr)
 TEST(MeasurementTest, ConstructorWithParameters) {
-    Measurement measurement(time(NULL), 1.0, Attribute("attributeId", "unit", "description"));
+    Measurement measurement(time(NULL), 1, "attributeId");
     EXPECT_EQ(measurement.getTimestamp(), time(NULL));
-    EXPECT_EQ(measurement.getValue(), 1.0);
-    EXPECT_EQ(measurement.getAttribute().getAttributeId(), "attributeId");
-    EXPECT_EQ(measurement.getAttribute().getUnit(), "unit");
-    EXPECT_EQ(measurement.getAttribute().getDescription(), "description");
+    EXPECT_EQ(measurement.getValue(), 1);
+    EXPECT_EQ(measurement.getAttribute(), "attributeId");
 }
 
 //Partie Cleaner
@@ -147,52 +144,39 @@ TEST(CleanerTest, ConstructorWithParameters) {
 
 
 //Partie UtilityService
-//test double * UtilityService::calculateMean(map<string, Sensor> sensors, Sensor sensorRef, time_t date, multimap<Sensor,Measurement> mesureO3, multimap<Sensor,Measurement> mesureSO2, multimap<Sensor,Measurement> mesureNO2, multimap<Sensor,Measurement> mesurePM10 )
+//double * UtilityService::calculateMean(map<string, Sensor> sensors, time_t date, multimap<Sensor,Measurement> mesureO3, multimap<Sensor,Measurement> mesureSO2, multimap<Sensor,Measurement> mesureNO2, multimap<Sensor,Measurement> mesurePM10, list<PrivateUser> & listePrivateUsers)
 TEST(UtilityServiceTest, CalculateMean) {
     UtilityService utilityService;
+    map<string, Sensor> sensors;
     multimap<Sensor, Measurement> mesureO3;
     multimap<Sensor, Measurement> mesureSO2;
     multimap<Sensor, Measurement> mesureNO2;
     multimap<Sensor, Measurement> mesurePM10;
-
-    Sensor sensorO3("sensorO3", 1, 1);
-    Sensor sensorSO2("sensorSO2", 1, 1);
-    Sensor sensorNO2("sensorNO2", 1, 1);
-    Sensor sensorPM10("sensorPM10", 1, 1);
-
-    mesureO3.insert(pair<Sensor, Measurement>(sensorO3, Measurement(time(NULL), 1.0, Attribute("attributeId", "unit", "description"))));
-    mesureSO2.insert(pair<Sensor, Measurement>(sensorSO2, Measurement(time(NULL), 1.0, Attribute("attributeId", "unit", "description"))));
-    mesureNO2.insert(pair<Sensor, Measurement>(sensorNO2, Measurement(time(NULL), 1.0, Attribute("attributeId", "unit", "description"))));
-    mesurePM10.insert(pair<Sensor, Measurement>(sensorPM10, Measurement(time(NULL), 1.0, Attribute("attributeId", "unit", "description"))));
-
-    map<string, Sensor> sensors;
-    sensors.insert(pair<string, Sensor>("sensorO3", sensorO3));
-    sensors.insert(pair<string, Sensor>("sensorSO2", sensorSO2));
-    sensors.insert(pair<string, Sensor>("sensorNO2", sensorNO2));
-    sensors.insert(pair<string, Sensor>("sensorPM10", sensorPM10));
-    double * mean = utilityService.calculateMean(sensors, sensorO3, time(NULL), mesureO3, mesureSO2, mesureNO2, mesurePM10);
-    EXPECT_EQ(mean[0], 0.25);
+    list<PrivateUser> listePrivateUsers;
+    double * mean = utilityService.calculateMean(sensors, time(NULL), mesureO3, mesureSO2, mesureNO2, mesurePM10, listePrivateUsers);
+    EXPECT_EQ(mean[0], 0.0);
+    EXPECT_EQ(mean[1], 0.0);
+    EXPECT_EQ(mean[2], 0.0);
+    EXPECT_EQ(mean[3], 0.0);
+    EXPECT_EQ(mean[4], 0.0);
 }
 
-//test double * UtilityService::calculateMean(map<string, Sensor> sensors, Sensor sensorRef,
-
-
-
-
-
-//bool UtilityService::analyseSensor(map<string, Sensor> allSensors, Sensor sensorAnalyse, double rayon, time_t date, multimap<Sensor,Measurement> mesureO3, multimap<Sensor,Measurement> mesureSO2, multimap<Sensor,Measurement> mesureNO2, multimap<Sensor,Measurement> mesurePM10)
-TEST(UtilityServiceTest, analyseSensor) {
+//bool UtilityService::analyseSensor(map<string, Sensor> & allSensors, list<string> & sensorsDefecteux, string sensorAnalyseID, double sensorAnalyseLatitude, double sensorAnalyseLongitude, double rayon, multimap<Sensor,Measurement> mesureO3, multimap<Sensor,Measurement> mesureSO2, multimap<Sensor,Measurement> mesureNO2, multimap<Sensor,Measurement> mesurePM10, list<PrivateUser> & listePrivateUsers)
+TEST(UtilityServiceTest, AnalyseSensor) {
     UtilityService utilityService;
     map<string, Sensor> allSensors;
-    Sensor sensorAnalyse("sensorAnalyse", 1.0, 2.0);
-    allSensors.insert(pair<string, Sensor>("sensorAnalyse", sensorAnalyse));
-    double rayon = 1.0;
-    time_t date = time(NULL);
+    list<string> sensorsDefecteux;
+    string sensorAnalyseID = "sensorAnalyseID";
+    double sensorAnalyseLatitude = 1.0;
+    double sensorAnalyseLongitude = 2.0;
+    double rayon = 3.0;
     multimap<Sensor, Measurement> mesureO3;
     multimap<Sensor, Measurement> mesureSO2;
     multimap<Sensor, Measurement> mesureNO2;
     multimap<Sensor, Measurement> mesurePM10;
-    EXPECT_EQ(utilityService.analyseSensor(allSensors, sensorAnalyse, rayon, date, mesureO3, mesureSO2, mesureNO2, mesurePM10), true);
+    list<PrivateUser> listePrivateUsers;
+    bool analyse = utilityService.analyseSensor(allSensors, sensorsDefecteux, sensorAnalyseID, sensorAnalyseLatitude, sensorAnalyseLongitude, rayon, mesureO3, mesureSO2, mesureNO2, mesurePM10, listePrivateUsers);
+    EXPECT_EQ(analyse, false);
 }
 
 //Partie Lecture
@@ -237,26 +221,24 @@ TEST(PerformanceTest, LireDonnees) {
 }
 
 //test performance service.analyzeSensor
-TEST(PerformanceTest, analyzeSensor) {
+TEST(PerformanceTest, AnalyseSensor) {
     UtilityService utilityService;
     map<string, Sensor> allSensors;
-    Sensor sensorAnalyse("sensorAnalyse", 1.0, 2.0);
-    allSensors.insert(pair<string, Sensor>("sensorAnalyse", sensorAnalyse));
-    double rayon = 1.0;
-    time_t date = time(NULL);
+    list<string> sensorsDefecteux;
+    string sensorAnalyseID = "sensorAnalyseID";
+    double sensorAnalyseLatitude = 1.0;
+    double sensorAnalyseLongitude = 2.0;
+    double rayon = 3.0;
     multimap<Sensor, Measurement> mesureO3;
     multimap<Sensor, Measurement> mesureSO2;
     multimap<Sensor, Measurement> mesureNO2;
     multimap<Sensor, Measurement> mesurePM10;
+    list<PrivateUser> listePrivateUsers;
     clock_t start = clock();
-    utilityService.analyseSensor(allSensors, sensorAnalyse, rayon, date, mesureO3, mesureSO2, mesureNO2, mesurePM10);
+    utilityService.analyseSensor(allSensors, sensorsDefecteux, sensorAnalyseID, sensorAnalyseLatitude, sensorAnalyseLongitude, rayon, mesureO3, mesureSO2, mesureNO2, mesurePM10, listePrivateUsers);
     clock_t end = clock();
     double time = (double) (end - start) / CLOCKS_PER_SEC;
     //affiche le temps d'exécution
     cout << "Temps d'exécution : " << time << " secondes" << endl;
     EXPECT_LT(time, 0.5);
 }
-
-
-
-
