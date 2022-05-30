@@ -17,6 +17,41 @@
 #include "../UtilityService.h"
 #include <gtest/gtest.h>
 
+//Initialise des services et charge des donnees
+    Service service;
+    UtilityService util;
+    map<string, Sensor> listeCapteurs;
+    list<Attribute> listeAttributs;
+    list<PrivateUser> listePrivateUsers;
+    list<Cleaner> listeCleaners;
+    list<Provider> listeProviders;
+    UtilityService utilityService;
+    multimap<Sensor, Measurement> mesuresO3;
+    multimap<Sensor, Measurement> mesuresSO2;
+    multimap<Sensor, Measurement> mesuresNO2;
+    multimap<Sensor, Measurement> mesuresPM10;
+    Lecture lect;
+    bool resutl = lect.LireDonnees(listeCapteurs, listeAttributs, listePrivateUsers, listeCleaners, listeProviders, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10);
+
+
+
+//Partie Lecture
+TEST(LectureTest, LireDonnees) {
+    //test si result est true
+    EXPECT_TRUE(resutl);
+    //test si les multimaps ne sont pas vides
+    EXPECT_FALSE(mesuresO3.empty());
+    EXPECT_FALSE(mesuresSO2.empty());
+    EXPECT_FALSE(mesuresNO2.empty());
+    EXPECT_FALSE(mesuresPM10.empty());
+    //test si les listes ne sont pas vides
+    EXPECT_FALSE(listeCapteurs.empty());
+    EXPECT_FALSE(listeAttributs.empty());
+    EXPECT_FALSE(listePrivateUsers.empty());
+    EXPECT_FALSE(listeCleaners.empty());
+    EXPECT_FALSE(listeProviders.empty());
+}
+
 //Partie User
 //test le constructor vide
 TEST(UserTest, ConstructorVide) {
@@ -146,99 +181,27 @@ TEST(CleanerTest, ConstructorWithParameters) {
 //Partie UtilityService
 //double * UtilityService::calculateMean(map<string, Sensor> sensors, time_t date, multimap<Sensor,Measurement> mesureO3, multimap<Sensor,Measurement> mesureSO2, multimap<Sensor,Measurement> mesureNO2, multimap<Sensor,Measurement> mesurePM10, list<PrivateUser> & listePrivateUsers)
 TEST(UtilityServiceTest, CalculateMean) {
-    UtilityService utilityService;
-    map<string, Sensor> sensors;
-    multimap<Sensor, Measurement> mesureO3;
-    multimap<Sensor, Measurement> mesureSO2;
-    multimap<Sensor, Measurement> mesureNO2;
-    multimap<Sensor, Measurement> mesurePM10;
-    list<PrivateUser> listePrivateUsers;
-    double * mean = utilityService.calculateMean(sensors, time(NULL), mesureO3, mesureSO2, mesureNO2, mesurePM10, listePrivateUsers);
-    EXPECT_EQ(mean[0], 0.0);
-    EXPECT_EQ(mean[1], 0.0);
-    EXPECT_EQ(mean[2], 0.0);
-    EXPECT_EQ(mean[3], 0.0);
-    EXPECT_EQ(mean[4], 0.0);
+    multimap<Sensor,Measurement>::iterator it = mesuresO3.begin();
+    time_t dateMeasurement = it->second.getTimestamp(); 
+    double * mean = utilityService.calculateMean(listeCapteurs, dateMeasurement, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10, listePrivateUsers);
+
 }
 
 //bool UtilityService::analyseSensor(map<string, Sensor> & allSensors, list<string> & sensorsDefecteux, string sensorAnalyseID, double sensorAnalyseLatitude, double sensorAnalyseLongitude, double rayon, multimap<Sensor,Measurement> mesureO3, multimap<Sensor,Measurement> mesureSO2, multimap<Sensor,Measurement> mesureNO2, multimap<Sensor,Measurement> mesurePM10, list<PrivateUser> & listePrivateUsers)
 TEST(UtilityServiceTest, AnalyseSensor) {
     UtilityService utilityService;
-    map<string, Sensor> allSensors;
     list<string> sensorsDefecteux;
-    string sensorAnalyseID = "sensorAnalyseID";
-    double sensorAnalyseLatitude = 1.0;
-    double sensorAnalyseLongitude = 2.0;
+    map<string,Sensor>::iterator it = listeCapteurs.begin();
+    double latitudeRef = it->second.getLatitude();
+    double longitudeRef = it->second.getLongitude();
+    string sensorIDRef = it->second.getSensorID();
     double rayon = 3.0;
-    multimap<Sensor, Measurement> mesureO3;
-    multimap<Sensor, Measurement> mesureSO2;
-    multimap<Sensor, Measurement> mesureNO2;
-    multimap<Sensor, Measurement> mesurePM10;
-    list<PrivateUser> listePrivateUsers;
-    bool analyse = utilityService.analyseSensor(allSensors, sensorsDefecteux, sensorAnalyseID, sensorAnalyseLatitude, sensorAnalyseLongitude, rayon, mesureO3, mesureSO2, mesureNO2, mesurePM10, listePrivateUsers);
-    EXPECT_EQ(analyse, false);
-}
-
-//Partie Lecture
-// test bool Lecture::LireDonnees(map<string, Sensor> & listeCapteurs,list<Attribute> & listeAttributs, list<PrivateUser> & listePrivateUsers,
-//list<Cleaner> & listeCleaners, list<Provider> & listeProviders,
-//multimap<Sensor, Measurement> & mesuresO3, multimap<Sensor, Measurement> & mesuresSO2,
-//multimap<Sensor, Measurement> & mesuresNO2, multimap<Sensor, Measurement> & mesuresPM10)
-TEST(LectureTest, LireDonnees) {
-    Lecture lecture;
-    map<string, Sensor> listeCapteurs;
-    list<Attribute> listeAttributs;
-    list<PrivateUser> listePrivateUsers;
-    list<Cleaner> listeCleaners;
-    list<Provider> listeProviders;
-    multimap<Sensor, Measurement> mesuresO3;
-    multimap<Sensor, Measurement> mesuresSO2;
-    multimap<Sensor, Measurement> mesuresNO2;
-    multimap<Sensor, Measurement> mesuresPM10;
-    EXPECT_EQ(lecture.LireDonnees(listeCapteurs, listeAttributs, listePrivateUsers, listeCleaners, listeProviders, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10), true);
+    bool analyse = utilityService.analyseSensor(listeCapteurs, sensorsDefecteux, sensorIDRef, latitudeRef, longitudeRef, rayon, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10, listePrivateUsers);
+    EXPECT_EQ(analyse, true);
 }
 
 //Performance test
 //test méthode Lecture::LireDonnees
 TEST(PerformanceTest, LireDonnees) {
-    Lecture lecture;
-    map<string, Sensor> listeCapteurs;
-    list<Attribute> listeAttributs;
-    list<PrivateUser> listePrivateUsers;
-    list<Cleaner> listeCleaners;
-    list<Provider> listeProviders;
-    multimap<Sensor, Measurement> mesuresO3;
-    multimap<Sensor, Measurement> mesuresSO2;
-    multimap<Sensor, Measurement> mesuresNO2;
-    multimap<Sensor, Measurement> mesuresPM10;
-    clock_t start = clock();
-    lecture.LireDonnees(listeCapteurs, listeAttributs, listePrivateUsers, listeCleaners, listeProviders, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10);
-    clock_t end = clock();
-    double time = (double) (end - start) / CLOCKS_PER_SEC;
-    //affiche le temps d'exécution
-    cout << "Temps d'exécution : " << time << " secondes" << endl;
-    EXPECT_LT(time, 0.5);
-}
-
-//test performance service.analyzeSensor
-TEST(PerformanceTest, AnalyseSensor) {
-    UtilityService utilityService;
-    map<string, Sensor> allSensors;
-    list<string> sensorsDefecteux;
-    string sensorAnalyseID = "sensorAnalyseID";
-    double sensorAnalyseLatitude = 1.0;
-    double sensorAnalyseLongitude = 2.0;
-    double rayon = 3.0;
-    multimap<Sensor, Measurement> mesureO3;
-    multimap<Sensor, Measurement> mesureSO2;
-    multimap<Sensor, Measurement> mesureNO2;
-    multimap<Sensor, Measurement> mesurePM10;
-    list<PrivateUser> listePrivateUsers;
-    clock_t start = clock();
-    utilityService.analyseSensor(allSensors, sensorsDefecteux, sensorAnalyseID, sensorAnalyseLatitude, sensorAnalyseLongitude, rayon, mesureO3, mesureSO2, mesureNO2, mesurePM10, listePrivateUsers);
-    clock_t end = clock();
-    double time = (double) (end - start) / CLOCKS_PER_SEC;
-    //affiche le temps d'exécution
-    cout << "Temps d'exécution : " << time << " secondes" << endl;
-    EXPECT_LT(time, 0.5);
+    lect.LireDonnees(listeCapteurs, listeAttributs, listePrivateUsers, listeCleaners, listeProviders, mesuresO3, mesuresSO2, mesuresNO2, mesuresPM10);
 }
