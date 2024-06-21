@@ -24,4 +24,8 @@ public class AgenceDao {
         TypedQuery<Agence> typedQuery = em.createQuery("select a from Agence a", Agence.class);
         return typedQuery.getResultList();
     }
+    // lister une seule agence
+    
+    public static void 
+    
 }

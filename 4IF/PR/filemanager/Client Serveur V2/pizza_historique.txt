@@ -1,0 +1,6 @@
+hugo;/group
+hugo;/invite
+hugo;/invite
+franfran;/join
+franfran;fran
+franfran;franfran disconnected !

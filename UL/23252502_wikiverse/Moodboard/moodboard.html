@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodboard</title>
+    <!-- CSS styles -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .moodboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .moodboard-item {
+            flex: 0 0 calc(45% - 20px);
+            max-width: calc(45% - 20px);
+            border: 3px solid rgb(84, 126, 139);
+            padding: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+        }
+        .moodboard-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        body {
+          background-color: rgb(100, 250, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class="moodboard">
+        <div class="moodboard-item">
+            <p>An interesting article about the net.art. Talking about Nasty Nets, among other works.</p>
+            <a href="https://verisart.com/blog/post/from-net-art-to-nfts-a-short-history-of-art-and-the-internet">From Net.art to NFTs: A short history of Art and the Internet</a>
+        </div>
+
+        <div class="moodboard-item">
+          <p>Nasty Nets: "participants would remix, juxtapose and curate various decontextualized Internet artifacts together to make disjointed compositions. "</p>
+          <img src="nastyNets.png" alt="Nasty Nets Image">
+          <a href="http://archive.rhizome.org/artbase/53981/nastynets.com/index512b.html?m=201104">Nasty Nets, April 2011</a>
+        </div>
+        
+        <div class="moodboard-item">
+            <p>Olia Lialina, My Boyfriend Came Back From the War, 1996</p>
+            <p>We interact with the work and discover a story. By clicking, we are guided by the author.</p>
+            <img src="Lialina.png" alt="Website">
+            <a href="https://sites.rhizome.org/anthology/lialina.html">My Boyfriend Came Back From the War, 1996</a>
+        </div>
+
+        <div class="moodboard-item">
+          <p>"Mirrroring.net": A clickable series of outdated animations, already outdated functions and aesthetics of the "early" Internet circa 2000.</p>
+          <p>Once again, interaction with the work, and we can see that it's not random by looking at the URL of the site: the route is mapped out and we have to follow it.</p>
+          <img src="mirroring.png" alt="Website">
+          <a href="http://mirrrroring.net/index.html">Mirrroring.net</a>
+        </div>
+
+        <div class="moodboard-item">
+          <p>Shulgin (1999)  - Forms: "An interactive, formalist art site, which can be aimlessly navigated by clicking through blank boxes and links."</p>
+          <p>A work that intrigues me. There are a number of possible interactions, without necessarily having any particular intention, and there is no ending.</p>
+          <img src="form.png" alt="Website">
+          <a href="https://www.c3.hu/collection/form/">Form</a>
+        </div>
+        
+        <div class="moodboard-item">
+          <p>Vertical Blanking Interval, 1996 — Selbo's project for äda'web</p>
+          <p>I was already interested in this work at the beginning of this module because it combines several characteristics that I like. 
+            We interact with the site by clicking on images and in exchange, the image changes to another and it's hard to predict which one will appear. 
+            We can also access other parts of the site depending on the clicks we make, to discover an even bigger universe. </p>
+          <img src="selbo.png" alt="Website">
+          <a href="http://adaweb.walkerart.org/project/selbo/index.html">Selbo's project</a>
+        </div>
+
+        <div class="moodboard-item">
+          <p>JODI: 404</p>
+          <p>An intriguing work which, to my mind, questions what a error is and how we can see it differently.</p>
+          <img src="404.png" alt="Website">
+          <a href="https://404.jodi.org/">https://404.jodi.org/</a>
+        </div>
+
+        <div class="moodboard-item">
+          <p>Basic view for displaying links on a wikipedia page.</p>
+          <img src="firstDraft.png" alt="firstDraft">
+          <pre>
+            function displayContent() {
+              textSize(16);
+              textAlign(LEFT);
+            
+              fill(0, 0, 255);
+              let maxLinks = min(links.length, 15);
+              for (let i = 0; i < maxLinks; i++) {
+                let linkText = links[i].text;
+                let x = linkPositions[i].x;
+                let y = linkPositions[i].y;
+                text(linkText, x, y);
+              }
+            }
+            </pre>            
+        </div>
+
+        <div class="moodboard-item">
+          <p>How do I make another work based on a error...</p>
+          <img src="errorCORS.png" alt="errorCORS">          
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+jean;/group
+jean;Salut les dingos !
+jean;/invite
+hugo;/join
+hugo;hugo disconnected !

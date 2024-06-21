@@ -1,0 +1,12 @@
+hugo;/group
+hugo;/invite
+hugo;Salut juan !
+juan;/join
+juan;Salut hugo, ca va ?
+hugo;Bien et toi ?
+juan;/infos
+juan;juan disconnected !
+hugo;Oh flute, j'invite franfran !
+hugo;/invite
+hugo;ca va franfran ?
+hugo;hugo disconnected !

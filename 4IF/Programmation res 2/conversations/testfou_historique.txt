@@ -1,0 +1,14 @@
+juan;/group
+juan;salut les fous
+juan;/invite
+juan;salut jean dans les fou
+jean;/join
+juan;juan disconnected !
+juan;/infos
+juan;juan disconnected !
+juan;/join
+jean;et oh ?
+jean;/join
+juan;juan disconnected !
+juan;juan disconnected !
+juan;juan disconnected !

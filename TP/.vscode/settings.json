@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "historique_messages": "plaintext",
+        "string": "cpp",
+        "deque": "cpp",
+        "new": "cpp"
+    }
+}
